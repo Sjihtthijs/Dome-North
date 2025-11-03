@@ -13,3 +13,12 @@ config_version=5
 config/name="Dome North"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[file_customization]
+
+folder_colors={
+"res://Assets/": "red",
+"res://Scenes/": "orange",
+"res://Scripts/": "yellow",
+"res://Sprites/": "green"
+}
