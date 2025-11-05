@@ -1,0 +1,42 @@
+[gd_scene load_steps=9 format=3 uid="uid://bctbgys8ib55b"]
+
+[ext_resource type="Shader" uid="uid://bju0ak5uyj222" path="res://Assets/Shaders/terrain.gdshader" id="1_ydrqe"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yhqha"]
+size = Vector3(1, 0.3, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3p1dy"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1se7a"]
+in_3d_space = true
+noise = SubResource("FastNoiseLite_3p1dy")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4y0ux"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0b1xo"]
+as_normal_map = true
+noise = SubResource("FastNoiseLite_4y0ux")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k2w74"]
+render_priority = 0
+shader = ExtResource("1_ydrqe")
+shader_parameter/noise = SubResource("NoiseTexture2D_1se7a")
+shader_parameter/height_scale = 0.4
+shader_parameter/normalmap = SubResource("NoiseTexture2D_0b1xo")
+
+[sub_resource type="BoxMesh" id="BoxMesh_n3f48"]
+material = SubResource("ShaderMaterial_k2w74")
+subdivide_width = 32
+subdivide_height = 1
+subdivide_depth = 32
+
+[node name="Tile" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_yhqha")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.3, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_n3f48")
