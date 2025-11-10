@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvspob7xdp68v"]
+
+[ext_resource type="Texture2D" uid="uid://fonk865vjnwx" path="res://Assets/Sprites/Player - Prototpe Sprite.png" id="1_ufkav"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ufkav"]
+size = Vector2(32, 32)
+
+[node name="player_2d" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ufkav")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_ufkav")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
