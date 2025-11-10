@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://fqrnuosskddr"]
 
-[ext_resource type="PackedScene" uid="uid://bctbgys8ib55b" path="res://Scenes/BadNorthScene/Components/tile.tscn" id="1_nn8mi"]
+[ext_resource type="PackedScene" uid="uid://bctbgys8ib55b" path="res://Scenes/BadNorthScene/Components/TileTypes/BasicNoiseTile.tscn" id="1_nn8mi"]
 
 [node name="StrategyLandscape" type="Node3D"]
 
