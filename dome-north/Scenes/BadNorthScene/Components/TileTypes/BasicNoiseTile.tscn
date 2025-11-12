@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bctbgys8ib55b"]
 
-[ext_resource type="Shader" uid="uid://bju0ak5uyj222" path="res://Assets/Shaders/terrain.gdshader" id="1_ydrqe"]
+[ext_resource type="Shader" uid="uid://bju0ak5uyj222" path="res://Assets/Shaders/terrain.gdshader" id="1_nqhrl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yhqha"]
 size = Vector3(1, 0.3, 1)
@@ -19,7 +19,7 @@ noise = SubResource("FastNoiseLite_4y0ux")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k2w74"]
 render_priority = 0
-shader = ExtResource("1_ydrqe")
+shader = ExtResource("1_nqhrl")
 shader_parameter/noise = SubResource("NoiseTexture2D_1se7a")
 shader_parameter/height_scale = 0.4
 shader_parameter/normalmap = SubResource("NoiseTexture2D_0b1xo")
