@@ -3,11 +3,12 @@
 [ext_resource type="Texture2D" uid="uid://fonk865vjnwx" path="res://Assets/Sprites/Player - Prototpe Sprite.png" id="1_ufkav"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ufkav"]
-size = Vector2(32, 32)
+size = Vector2(16, 16)
 
 [node name="player_2d" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_ufkav")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
