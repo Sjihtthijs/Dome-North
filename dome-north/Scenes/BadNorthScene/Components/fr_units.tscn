@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://by88d32udbmay"]
+[gd_scene load_steps=5 format=3 uid="uid://by88d32udbmay"]
+
+[ext_resource type="Script" uid="uid://i5rjx7mhtdp4" path="res://Scripts/fr_units.gd" id="1_hcpbv"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ia8ni"]
 
@@ -6,7 +8,12 @@
 radius = 0.4
 height = 0.8
 
-[node name="FrUnits" type="Node3D"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sd3lo"]
+radius = 0.528241
+height = 2.78742
+
+[node name="FrUnits" type="CharacterBody3D"]
+script = ExtResource("1_hcpbv")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_ia8ni")
@@ -14,3 +21,7 @@ mesh = SubResource("CapsuleMesh_ia8ni")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 mesh = SubResource("CapsuleMesh_w82d0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.999863, -0.0165275, 0, 0.0165275, 0.999863, 0.00546563, 0.281688, -0.0188634)
+shape = SubResource("CapsuleShape3D_sd3lo")
