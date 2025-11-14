@@ -1,4 +1,4 @@
-[gd_scene load_steps=333 format=3 uid="uid://ctmge248q6cgx"]
+[gd_scene load_steps=334 format=3 uid="uid://ctmge248q6cgx"]
 
 [ext_resource type="ArrayMesh" uid="uid://brjv4romk3un2" path="res://Assets/kenney_nature-kit/Models/OBJ format/bed.obj" id="1_uwmvx"]
 [ext_resource type="ArrayMesh" uid="uid://hmdcju071pkf" path="res://Assets/kenney_nature-kit/Models/OBJ format/bed_floor.obj" id="2_eqj02"]
@@ -329,6 +329,7 @@
 [ext_resource type="ArrayMesh" uid="uid://dxhuss0l51m7i" path="res://Assets/kenney_nature-kit/Models/OBJ format/tree_thin.obj" id="327_6ck2w"]
 [ext_resource type="ArrayMesh" uid="uid://dkq32qq6msec1" path="res://Assets/kenney_nature-kit/Models/OBJ format/tree_thin_dark.obj" id="328_0u6af"]
 [ext_resource type="ArrayMesh" uid="uid://ccwp4ct6xxo03" path="res://Assets/kenney_nature-kit/Models/OBJ format/tree_thin_fall.obj" id="329_j0vrp"]
+[ext_resource type="PackedScene" uid="uid://dusi3kxa7f5da" path="res://Scenes/BadNorthScene/Components/TileTypes/tile_display.tscn" id="330_eqj02"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rlbfr"]
 size = Vector3(1, 0.5, 1)
@@ -1671,3 +1672,6 @@ mesh = ExtResource("328_0u6af")
 [node name="TreeThinFall" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.44, 0, 0.162338)
 mesh = ExtResource("329_j0vrp")
+
+[node name="TileDisplay" parent="." instance=ExtResource("330_eqj02")]
+transform = Transform3D(1.05, 0, 0, 0, 0.08, 0, 0, 0, 1.05, 7.40413, 2.05484, 12.1586)
