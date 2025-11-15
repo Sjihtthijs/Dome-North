@@ -1,4 +1,7 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmucxboiwvch3"]
 [gd_scene load_steps=4 format=3 uid="uid://cmucxboiwvch3"]
+
+[ext_resource type="Script" uid="uid://b02hlmhvk0ltx" path="res://Scripts/ho_units.gd" id="1_h0pva"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0uonj"]
 albedo_color = Color(0, 0, 0, 1)
@@ -10,8 +13,13 @@ material = SubResource("StandardMaterial3D_0uonj")
 radius = 0.4
 height = 0.8
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nro58"]
+height = 2.85843
 [node name="HoUnits" type="Node3D"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+
+[node name="HoUnits" type="CharacterBody3D"]
+script = ExtResource("1_h0pva")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_ia8ni")
@@ -19,3 +27,7 @@ mesh = SubResource("CapsuleMesh_ia8ni")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 mesh = SubResource("CapsuleMesh_w82d0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0109487, 0.317145, -0.0434251)
+shape = SubResource("CapsuleShape3D_nro58")
