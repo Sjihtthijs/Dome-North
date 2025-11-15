@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://betv6lyrq6sei"]
+[gd_scene load_steps=6 format=3 uid="uid://betv6lyrq6sei"]
 
+[ext_resource type="Script" uid="uid://dx2wkceya0k7s" path="res://Scripts/camera_3d.gd" id="1_0il6w"]
 [ext_resource type="MeshLibrary" uid="uid://dxib8wpedjmkq" path="res://Assets/kenney_nature-kit/MeshLibrary.tres" id="1_5wavh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o1b5p"]
@@ -18,6 +19,7 @@ mesh = SubResource("PlaneMesh_4vm2e")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, 0, 5, 6)
+script = ExtResource("1_0il6w")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.74939, 1.22198)
