@@ -1,7 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cmj7xb0je6exd"]
 
 [ext_resource type="PackedScene" uid="uid://betv6lyrq6sei" path="res://Scenes/BadNorthScene/Components/Landscapes/Nature_Landscape.tscn" id="1_a0pj2"]
-[ext_resource type="PackedScene" uid="uid://cmucxboiwvch3" path="res://Scenes/BadNorthScene/Components/ho_units.tscn" id="3_87432"]
 [ext_resource type="PackedScene" uid="uid://dusi3kxa7f5da" path="res://Scenes/BadNorthScene/Components/TileTypes/tile_display.tscn" id="4_87432"]
 
 [sub_resource type="GDScript" id="GDScript_m547k"]
@@ -12,9 +11,6 @@ script/source = "extends Node3D
 script = SubResource("GDScript_m547k")
 
 [node name="NatureLandscape" parent="." instance=ExtResource("1_a0pj2")]
-
-[node name="HoUnits" parent="." instance=ExtResource("3_87432")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 2.5, 1, 1.5)
 
 [node name="Node3D" type="Node3D" parent="."]
 editor_description = "For displaying where a unit can move, when the player wants to command them around"
