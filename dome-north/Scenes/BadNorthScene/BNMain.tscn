@@ -1,7 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cmj7xb0je6exd"]
 
 [ext_resource type="PackedScene" uid="uid://betv6lyrq6sei" path="res://Scenes/BadNorthScene/Components/Landscapes/Nature_Landscape.tscn" id="1_a0pj2"]
-[ext_resource type="PackedScene" uid="uid://by88d32udbmay" path="res://Scenes/BadNorthScene/Components/fr_units.tscn" id="2_va20y"]
 [ext_resource type="PackedScene" uid="uid://cmucxboiwvch3" path="res://Scenes/BadNorthScene/Components/ho_units.tscn" id="3_87432"]
 [ext_resource type="PackedScene" uid="uid://dusi3kxa7f5da" path="res://Scenes/BadNorthScene/Components/TileTypes/tile_display.tscn" id="4_87432"]
 
@@ -13,9 +12,6 @@ script/source = "extends Node3D
 script = SubResource("GDScript_m547k")
 
 [node name="NatureLandscape" parent="." instance=ExtResource("1_a0pj2")]
-
-[node name="FrUnits" parent="." instance=ExtResource("2_va20y")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 1.5, 1, 2.5)
 
 [node name="HoUnits" parent="." instance=ExtResource("3_87432")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 2.5, 1, 1.5)
