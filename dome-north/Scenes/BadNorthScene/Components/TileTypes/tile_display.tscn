@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://dusi3kxa7f5da"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eejih"]
+blend_mode = 1
+depth_draw_mode = 1
+
+[sub_resource type="BoxMesh" id="BoxMesh_iaplb"]
+material = SubResource("StandardMaterial3D_eejih")
+
+[sub_resource type="MeshTexture" id="MeshTexture_nuiiy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fjbry"]
+transparency = 1
+blend_mode = 2
+albedo_color = Color(1, 1, 1, 0.870588)
+albedo_texture = SubResource("MeshTexture_nuiiy")
+
+[sub_resource type="BoxMesh" id="BoxMesh_dk2li"]
+material = SubResource("StandardMaterial3D_fjbry")
+
+[node name="TileDisplay" type="MeshInstance3D"]
+transform = Transform3D(1.05, 0, 0, 0, 0.08, 0, 0, 0, 1.05, 0, 0, 0)
+mesh = SubResource("BoxMesh_iaplb")
+skeleton = NodePath("Transparency")
+
+[node name="Transparency" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.95, 0, 0, 0, 1.11, 0, 0, 0, 0.95, 0, 0, 0)
+mesh = SubResource("BoxMesh_dk2li")
+skeleton = NodePath("../..")

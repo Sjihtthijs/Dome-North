@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://do8vk55de7kw3"]
+[gd_scene load_steps=16 format=4 uid="uid://cpcn0fhltkl08"]
 
 [ext_resource type="Texture2D" uid="uid://b5a75r81h0suu" path="res://Assets/Sprites/Mineable Walls.png" id="1_rrcky"]
 [ext_resource type="Texture2D" uid="uid://bpmmjf6mhl7in" path="res://Assets/Sprites/Mine Limit Walls.png" id="2_jqbop"]

@@ -1,26 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://by88d32udbmay"]
 [gd_scene load_steps=5 format=3 uid="uid://by88d32udbmay"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8ll11"]
+albedo_color = Color(0, 0.192157, 0.419608, 1)
 
 [ext_resource type="Script" uid="uid://i5rjx7mhtdp4" path="res://Scripts/fr_units.gd" id="1_hcpbv"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ia8ni"]
+material = SubResource("StandardMaterial3D_8ll11")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_w82d0"]
 radius = 0.4
 height = 0.8
 
+[node name="FrUnits" type="Node3D"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sd3lo"]
 radius = 0.528241
 height = 2.78742
 
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
 [node name="FrUnits" type="CharacterBody3D"]
 script = ExtResource("1_hcpbv")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_ia8ni")
+skeleton = NodePath("../..")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 mesh = SubResource("CapsuleMesh_w82d0")
+skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.999863, -0.0165275, 0, 0.0165275, 0.999863, 0.00546563, 0.281688, -0.0188634)

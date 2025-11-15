@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://fqrnuosskddr"]
+
+[ext_resource type="PackedScene" uid="uid://by88d32udbmay" path="res://Scenes/BadNorthScene/Components/fr_units.tscn" id="1_2wxue"]
+[ext_resource type="PackedScene" uid="uid://bctbgys8ib55b" path="res://Scenes/BadNorthScene/Components/tile.tscn" id="1_nn8mi"]
+[ext_resource type="Script" uid="uid://dx2wkceya0k7s" path="res://Scripts/camera_3d.gd" id="2_2bqop"]
+[ext_resource type="PackedScene" uid="uid://cwrr2k0yits7i" path="res://Scenes/DomeKeeperScene/enemySpawn.tscn" id="2_6aivv"]
+[ext_resource type="PackedScene" uid="uid://cmucxboiwvch3" path="res://Scenes/BadNorthScene/Components/ho_units.tscn" id="3_2wxue"]
+[ext_resource type="PackedScene" uid="uid://bctbgys8ib55b" path="res://Scenes/BadNorthScene/Components/TileTypes/BasicNoiseTile.tscn" id="1_57heg"]
+
+[node name="StrategyLandscape" type="Node3D"]
+
+[node name="EnemySpawn" parent="." instance=ExtResource("2_6aivv")]
+transform = Transform3D(0.999224, 0.0393819, 0, -0.038924, 0.987605, 0.152054, 0.00598819, -0.151936, 0.988372, 0.116951, 1.22395, -0.225429)
+
+[node name="HoUnits" parent="." instance=ExtResource("3_2wxue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52445, 1.41172, -4.09648)
+
+[node name="FrUnits" parent="." instance=ExtResource("1_2wxue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.572585, 1.24931, 0.633676)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 2.5, 3, 2.5)
+script = ExtResource("2_2bqop")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Camera3D"]
+omni_range = 360.371
+
+[node name="All the tiles" type="Node3D" parent="."]
+
+[node name="Tile" parent="All the tiles" instance=ExtResource("1_57heg")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Tile2" parent="All the tiles" instance=ExtResource("1_57heg")]
+transform = Transform3D(-1, -8.74228e-08, 8.74228e-08, -8.74228e-08, 1, 0, 8.74228e-08, 7.64274e-15, 1, 0, 0, 1)
+
+[node name="Tile3" parent="All the tiles" instance=ExtResource("1_57heg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="Tile4" parent="All the tiles" instance=ExtResource("1_nn8mi")]
+transform = Transform3D(1, 0, -8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1, 0, 0.00255966)
+[node name="Tile4" parent="All the tiles" instance=ExtResource("1_57heg")]
+transform = Transform3D(1, 0, -8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1, 0, 0)
+
+[node name="Tile5" parent="All the tiles" instance=ExtResource("1_57heg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
+
+[node name="Tile6" parent="All the tiles" instance=ExtResource("1_57heg")]
+transform = Transform3D(-1, 8.74228e-08, 0, 8.74228e-08, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="Tile7" parent="All the tiles" instance=ExtResource("1_57heg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
+
+[node name="Tile8" parent="All the tiles" instance=ExtResource("1_57heg")]
+transform = Transform3D(1, -8.74228e-08, -8.74228e-08, 8.74228e-08, 1, 0, -8.74228e-08, 7.64274e-15, -1, -1, 0, 0)
+
+[node name="Tile9" parent="All the tiles" instance=ExtResource("1_57heg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
