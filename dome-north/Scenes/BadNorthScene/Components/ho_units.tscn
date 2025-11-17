@@ -10,7 +10,7 @@ material = SubResource("StandardMaterial3D_0uonj")
 radius = 0.4
 height = 0.8
 
-[node name="HoUnits" type="Node3D"]
+[node name="HoUnits" type="CharacterBody3D"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
