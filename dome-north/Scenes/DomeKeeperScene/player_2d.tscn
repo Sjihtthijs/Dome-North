@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dvspob7xdp68v"]
+[gd_scene load_steps=4 format=3 uid="uid://dvspob7xdp68v"]
 
+[ext_resource type="Script" uid="uid://bptx6s5h5fcwq" path="res://Scripts/player_2d.gd" id="1_dnkg7"]
 [ext_resource type="Texture2D" uid="uid://fonk865vjnwx" path="res://Assets/Sprites/Player - Prototpe Sprite.png" id="1_ufkav"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ufkav"]
 size = Vector2(16, 16)
 
 [node name="player_2d" type="Node2D"]
+script = ExtResource("1_dnkg7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
@@ -17,5 +19,6 @@ texture = ExtResource("1_ufkav")
 shape = SubResource("RectangleShape2D_ufkav")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
