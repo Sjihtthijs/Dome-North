@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cmucxboiwvch3"]
+[gd_scene load_steps=11 format=3 uid="uid://cmucxboiwvch3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0uonj"]
 albedo_color = Color(0, 0, 0, 1)
@@ -13,8 +13,26 @@ height = 0.8
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0uonj"]
 height = 2.5
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h0pva"]
+albedo_color = Color(0.349689, 0.349689, 0.349689, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nro58"]
+albedo_color = Color(0.34902, 0.34902, 0.34902, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xqef0"]
+albedo_color = Color(0.34902, 0.34902, 0.34902, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i0w4a"]
+albedo_color = Color(0.52312, 0.52312, 0.52312, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sdk7h"]
+albedo_color = Color(0.580392, 0.34902, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fc7w4"]
+albedo_color = Color(0.580392, 0.34902, 0, 1)
+
 [node name="HoUnits" type="CharacterBody3D"]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.00010097, 0.00095053, 0.000947088)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_ia8ni")
@@ -26,3 +44,53 @@ mesh = SubResource("CapsuleMesh_w82d0")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.313, 0)
 shape = SubResource("CapsuleShape3D_0uonj")
+
+[node name="Helm2" type="CSGSphere3D" parent="."]
+transform = Transform3D(0.9, 0, 0, 0, 1, 0, 0, 0, 0.9, 0, 1.25, 0)
+radial_segments = 8
+rings = 7
+material = SubResource("StandardMaterial3D_h0pva")
+
+[node name="Halver" type="CSGBox3D" parent="Helm2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+operation = 2
+size = Vector3(1, 1.02, 1)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Helm2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0387707, 0)
+radius = 0.487
+height = 0.1
+material = SubResource("StandardMaterial3D_nro58")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Helm2/CSGCylinder3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0, 0.15)
+operation = 2
+size = Vector3(1, 0.1, 0.2)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Helm2/CSGCylinder3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0, -0.148)
+operation = 2
+size = Vector3(1, 0.1, 0.2)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Helm2"]
+transform = Transform3D(0.075, 0, 0, 0, -0.225, 1.13247e-08, 0, -3.39741e-08, -0.075, 0, 0.664575, 0)
+polygon = PackedVector2Array(0, 0, 0, 1, 1, 1, 1, 1)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 32
+material = SubResource("StandardMaterial3D_xqef0")
+
+[node name="Sword" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.612997, 0.712499)
+size = Vector3(0.2, 0.8, 0.2)
+material = SubResource("StandardMaterial3D_i0w4a")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Sword"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.43889, 0)
+size = Vector3(0.3, 0.15, 0.4)
+material = SubResource("StandardMaterial3D_sdk7h")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Sword"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.591221, 0)
+size = Vector3(0.2, 0.2, 0.2)
+material = SubResource("StandardMaterial3D_fc7w4")

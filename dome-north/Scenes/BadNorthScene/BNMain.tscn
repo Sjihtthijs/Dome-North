@@ -27,133 +27,133 @@ attack_cooldown = 2.0
 
 [node name="NatureLandscape" parent="." instance=ExtResource("1_a0pj2")]
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="Virtual Nodes" type="Node3D" parent="."]
 editor_description = "For displaying where a unit can move, when the player wants to command them around"
 
-[node name="TileDisplay2" parent="Node3D" instance=ExtResource("4_87432")]
+[node name="TileDisplay2" parent="Virtual Nodes" instance=ExtResource("4_87432")]
 transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, 1.5, 0.75, 1.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay" parent="Node3D" instance=ExtResource("4_87432")]
+[node name="TileDisplay" parent="Virtual Nodes" instance=ExtResource("4_87432")]
 transform = Transform3D(0.8, 0, 0, 0, 0.061, 0, 0, 0, 0.8, 1.5, 0.75, 0.5)
 
-[node name="TileDisplay20" parent="Node3D" instance=ExtResource("4_87432")]
+[node name="TileDisplay20" parent="Virtual Nodes" instance=ExtResource("4_87432")]
 transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, 2.5, 0.75, 1.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay21" parent="Node3D" instance=ExtResource("4_87432")]
+[node name="TileDisplay21" parent="Virtual Nodes" instance=ExtResource("4_87432")]
 transform = Transform3D(0.8, 0, 0, 0, 0.061, 0, 0, 0, 0.8, 2.5, 0.75, 0.5)
 
-[node name="TileDisplay22" parent="Node3D" instance=ExtResource("4_87432")]
+[node name="TileDisplay22" parent="Virtual Nodes" instance=ExtResource("4_87432")]
 transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, 2.5, 0.75, -0.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay24" parent="Node3D" instance=ExtResource("4_87432")]
+[node name="TileDisplay24" parent="Virtual Nodes" instance=ExtResource("4_87432")]
 transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, 2.5, 0.75, -2.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay23" parent="Node3D" instance=ExtResource("4_87432")]
+[node name="TileDisplay23" parent="Virtual Nodes" instance=ExtResource("4_87432")]
 transform = Transform3D(0.8, 0, 0, 0, 0.061, 0, 0, 0, 0.8, 2.5, 0.75, -1.5)
 
-[node name="TileDisplay3" parent="Node3D" instance=ExtResource("4_87432")]
+[node name="TileDisplay3" parent="Virtual Nodes" instance=ExtResource("4_87432")]
 transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, 0.5, 0.75, 1.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay4" parent="Node3D" instance=ExtResource("4_87432")]
+[node name="TileDisplay4" parent="Virtual Nodes" instance=ExtResource("4_87432")]
 transform = Transform3D(0.8, 0, 0, 0, 0.061, 0, 0, 0, 0.8, 1.5, 0.75, -2.5)
 
-[node name="TileDisplay13" parent="Node3D" instance=ExtResource("4_87432")]
+[node name="TileDisplay13" parent="Virtual Nodes" instance=ExtResource("4_87432")]
 transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, 0.5, 0.75, -2.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay17" parent="Node3D" instance=ExtResource("4_87432")]
+[node name="TileDisplay17" parent="Virtual Nodes" instance=ExtResource("4_87432")]
 transform = Transform3D(0.8, 0, 0, 0, 0.061, 0, 0, 0, 0.8, 0.5, 0.75, -3.5)
 
-[node name="TileDisplay18" parent="Node3D" instance=ExtResource("4_87432")]
+[node name="TileDisplay18" parent="Virtual Nodes" instance=ExtResource("4_87432")]
 transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, -0.5, 0.75, -2.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay34" parent="Node3D" instance=ExtResource("4_87432")]
+[node name="TileDisplay34" parent="Virtual Nodes" instance=ExtResource("4_87432")]
 transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, -1.5, 0.75, -2.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay19" parent="Node3D" instance=ExtResource("4_87432")]
+[node name="TileDisplay19" parent="Virtual Nodes" instance=ExtResource("4_87432")]
 transform = Transform3D(0.8, 0, 0, 0, 0.061, 0, 0, 0, 0.8, -0.5, 0.75, -3.5)
 
-[node name="TileDisplay14" parent="Node3D" instance=ExtResource("4_87432")]
+[node name="TileDisplay14" parent="Virtual Nodes" instance=ExtResource("4_87432")]
 transform = Transform3D(0.8, 0, 0, 0, 0.061, 0, 0, 0, 0.8, -0.5, 1, -1.5)
 
-[node name="TileDisplay15" parent="Node3D" instance=ExtResource("4_87432")]
+[node name="TileDisplay15" parent="Virtual Nodes" instance=ExtResource("4_87432")]
 transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, -1.5, 1, -0.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay16" parent="Node3D" instance=ExtResource("4_87432")]
+[node name="TileDisplay16" parent="Virtual Nodes" instance=ExtResource("4_87432")]
 transform = Transform3D(0.8, 0, 0, 0, 0.061, 0, 0, 0, 0.8, -1.5, 1, -1.5)
 
-[node name="TileDisplay9" parent="Node3D" instance=ExtResource("4_87432")]
+[node name="TileDisplay9" parent="Virtual Nodes" instance=ExtResource("4_87432")]
 transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, -0.5, 0.75, 1.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay25" parent="Node3D" instance=ExtResource("4_87432")]
+[node name="TileDisplay25" parent="Virtual Nodes" instance=ExtResource("4_87432")]
 transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, 1.5, 0.75, 2.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay26" parent="Node3D" instance=ExtResource("4_87432")]
+[node name="TileDisplay26" parent="Virtual Nodes" instance=ExtResource("4_87432")]
 transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, 0.5, 0.75, 2.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay27" parent="Node3D" instance=ExtResource("4_87432")]
+[node name="TileDisplay27" parent="Virtual Nodes" instance=ExtResource("4_87432")]
 transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, -0.5, 0.75, 2.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay28" parent="Node3D" instance=ExtResource("4_87432")]
+[node name="TileDisplay28" parent="Virtual Nodes" instance=ExtResource("4_87432")]
 transform = Transform3D(-3.49691e-08, 0, -0.8, 0, 0.06, 0, 0.8, 0, -3.49691e-08, -2.5, 0.75, 0.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay29" parent="Node3D" instance=ExtResource("4_87432")]
+[node name="TileDisplay29" parent="Virtual Nodes" instance=ExtResource("4_87432")]
 transform = Transform3D(-3.49691e-08, 0, -0.8, 0, 0.06, 0, 0.8, 0, -3.49691e-08, -2.5, 0.75, -0.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay30" parent="Node3D" instance=ExtResource("4_87432")]
+[node name="TileDisplay30" parent="Virtual Nodes" instance=ExtResource("4_87432")]
 transform = Transform3D(-3.49691e-08, 0, -0.8, 0, 0.06, 0, 0.8, 0, -3.49691e-08, -2.5, 0.75, -1.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay31" parent="Node3D" instance=ExtResource("4_87432")]
+[node name="TileDisplay31" parent="Virtual Nodes" instance=ExtResource("4_87432")]
 transform = Transform3D(-3.49691e-08, 0, -0.8, 0, 0.06, 0, 0.8, 0, -3.49691e-08, -1.5, 0.75, 2.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay32" parent="Node3D" instance=ExtResource("4_87432")]
+[node name="TileDisplay32" parent="Virtual Nodes" instance=ExtResource("4_87432")]
 transform = Transform3D(-3.49691e-08, 0, -0.8, 0, 0.06, 0, 0.8, 0, -3.49691e-08, -2.5, 0.75, 2.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay33" parent="Node3D" instance=ExtResource("4_87432")]
+[node name="TileDisplay33" parent="Virtual Nodes" instance=ExtResource("4_87432")]
 transform = Transform3D(-3.49691e-08, 0, -0.8, 0, 0.06, 0, 0.8, 0, -3.49691e-08, -2.5, 0.75, 1.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay10" parent="Node3D" instance=ExtResource("4_87432")]
+[node name="TileDisplay10" parent="Virtual Nodes" instance=ExtResource("4_87432")]
 transform = Transform3D(0.8, 0, 0, 0, 0.061, 0, 0, 0, 0.8, -0.5, 0.75, 0.5)
 
-[node name="TileDisplay11" parent="Node3D" instance=ExtResource("4_87432")]
+[node name="TileDisplay11" parent="Virtual Nodes" instance=ExtResource("4_87432")]
 transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, -1.5, 1, 1.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay12" parent="Node3D" instance=ExtResource("4_87432")]
+[node name="TileDisplay12" parent="Virtual Nodes" instance=ExtResource("4_87432")]
 transform = Transform3D(0.8, 0, 0, 0, 0.061, 0, 0, 0, 0.8, -1.5, 1, 0.5)
 
-[node name="TileDisplay5" parent="Node3D" instance=ExtResource("4_87432")]
+[node name="TileDisplay5" parent="Virtual Nodes" instance=ExtResource("4_87432")]
 transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, 1.5, 1, -0.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay6" parent="Node3D" instance=ExtResource("4_87432")]
+[node name="TileDisplay6" parent="Virtual Nodes" instance=ExtResource("4_87432")]
 transform = Transform3D(0.8, 0, 0, 0, 0.061, 0, 0, 0, 0.8, 1.5, 1, -1.5)
 
-[node name="TileDisplay7" parent="Node3D" instance=ExtResource("4_87432")]
+[node name="TileDisplay7" parent="Virtual Nodes" instance=ExtResource("4_87432")]
 transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, 0.5, 1.5, -0.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay35" parent="Node3D" instance=ExtResource("4_87432")]
+[node name="TileDisplay35" parent="Virtual Nodes" instance=ExtResource("4_87432")]
 transform = Transform3D(0.8, 0, 0, 0, 0.0424264, -0.565685, 0, 0.0424264, 0.565685, 0.5, 1.125, 0.45)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay8" parent="Node3D" instance=ExtResource("4_87432")]
+[node name="TileDisplay8" parent="Virtual Nodes" instance=ExtResource("4_87432")]
 transform = Transform3D(0.8, 0, 0, 0, 0.061, 0, 0, 0, 0.8, 0.5, 1, -1.5)
