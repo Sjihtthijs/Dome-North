@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://by88d32udbmay"]
+[gd_scene load_steps=15 format=3 uid="uid://by88d32udbmay"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8ll11"]
 albedo_color = Color(0, 0.192157, 0.419608, 1)
@@ -34,6 +34,141 @@ albedo_color = Color(0.580392, 0.34902, 0, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w1hwb"]
 albedo_color = Color(0.580392, 0.34902, 0, 1)
 
+[sub_resource type="Animation" id="Animation_hcpbv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sword:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.613, 0.712)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shield:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.740744, 0.134978, -0.299493)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Shield:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.261799, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8ll11"]
+resource_name = "Swordstab"
+length = 1.2
+loop_mode = 2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sword:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.613, 0.712), Vector3(-0.3, 0.263, 0.712), Vector3(0.8, 0.213, 0.712)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.8),
+"transitions": PackedFloat32Array(1, 0.287175, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.0872665, -1.309), Vector3(0, -0.261799, -1.5708)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shield:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.740744, 0.134978, -0.299493), Vector3(0.541, 0.135, -0.299)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Shield:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.261799, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.174533, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sd3lo"]
+_data = {
+&"RESET": SubResource("Animation_hcpbv"),
+&"Swordstab": SubResource("Animation_8ll11")
+}
+
 [node name="FrUnits" type="CharacterBody3D"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.000166774, 0.000827149, -7.14362e-05)
 
@@ -65,7 +200,7 @@ size = Vector3(0.1, 0.15, 0.1)
 material = SubResource("StandardMaterial3D_sd3lo")
 
 [node name="Shield" type="CSGBox3D" parent="."]
-transform = Transform3D(0.9, 0, 0, 0, 0.99, 0, 0, 0, 0.9, 0.740744, 0.134978, -0.299493)
+transform = Transform3D(0.869333, 0, 0.232937, 0, 0.99, 0, -0.232937, 0, 0.869333, 0.740744, 0.134978, -0.299493)
 size = Vector3(0.1, 1.3, 1)
 material = SubResource("StandardMaterial3D_0gecr")
 
@@ -79,8 +214,8 @@ operation = 2
 size = Vector3(0.16, 1.25, 0.95)
 
 [node name="Sword" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.612997, 0.712499)
-size = Vector3(0.2, 0.8, 0.2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.613, 0.712)
+size = Vector3(0.2, 1, 0.2)
 material = SubResource("StandardMaterial3D_ehkyp")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Sword"]
@@ -92,3 +227,8 @@ material = SubResource("StandardMaterial3D_3rc7m")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.591221, 0)
 size = Vector3(0.2, 0.2, 0.2)
 material = SubResource("StandardMaterial3D_w1hwb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_sd3lo")
+}
