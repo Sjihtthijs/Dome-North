@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://by88d32udbmay"]
+[gd_scene load_steps=16 format=3 uid="uid://by88d32udbmay"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8ll11"]
 albedo_color = Color(0, 0.192157, 0.419608, 1)
@@ -18,6 +18,9 @@ albedo_color = Color(0.349689, 0.349689, 0.349689, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sd3lo"]
 albedo_color = Color(0.34902, 0.34902, 0.34902, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_43pdo"]
+albedo_color = Color(1, 1, 0.564706, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0gecr"]
 albedo_color = Color(0.556953, 0.556953, 0.556953, 1)
@@ -170,7 +173,7 @@ _data = {
 }
 
 [node name="FrUnits" type="CharacterBody3D"]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.000166774, 0.000827149, -7.14362e-05)
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 
 [node name="Body" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_ia8ni")
@@ -183,21 +186,23 @@ mesh = SubResource("CapsuleMesh_w82d0")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.325481, 0)
 shape = SubResource("CapsuleShape3D_8ll11")
 
-[node name="Helm" type="CSGSphere3D" parent="."]
-transform = Transform3D(0.9, 0, 0, 0, 1, 0, 0, 0, 0.9, -0.00181139, 1.26118, 0.00519276)
-radial_segments = 8
-rings = 7
+[node name="Helm" type="CSGPolygon3D" parent="."]
+transform = Transform3D(0.42, 0, 0, 0, 0.6, 0, 0, 0, 0.42, 0, 1.24, 0)
+polygon = PackedVector2Array(0, 0, 0, 1, 0.7, 1, 1, 0)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 16
 material = SubResource("StandardMaterial3D_hcpbv")
 
-[node name="Halver" type="CSGBox3D" parent="Helm"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-operation = 2
-size = Vector3(1, 1.02, 1)
-
 [node name="CSGBox3D2" type="CSGBox3D" parent="Helm"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.419007, 0.00329888, -0.000466573)
-size = Vector3(0.1, 0.15, 0.1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.906842, 0.00329876, -0.000466573)
+size = Vector3(0.1, 0.23, 0.15)
 material = SubResource("StandardMaterial3D_sd3lo")
+
+[node name="GoldDetail" type="CSGBox3D" parent="Helm"]
+transform = Transform3D(0.95882, -0.284015, 0, 0.284015, 0.95882, 0, 0, 0, 1, 0.806108, 0.483245, -0.000265737)
+size = Vector3(0.1, 1, 0.04)
+material = SubResource("StandardMaterial3D_43pdo")
 
 [node name="Shield" type="CSGBox3D" parent="."]
 transform = Transform3D(0.869333, 0, 0.232937, 0, 0.99, 0, -0.232937, 0, 0.869333, 0.740744, 0.134978, -0.299493)
