@@ -12,7 +12,7 @@
 transform = Transform3D(0.999224, 0.0393819, 0, -0.038924, 0.987605, 0.152054, 0.00598819, -0.151936, 0.988372, 0.116951, 1.22395, -0.225429)
 
 [node name="HoUnits" parent="." instance=ExtResource("3_2wxue")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52445, 1.41172, -4.09648)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="FrUnits" parent="." instance=ExtResource("1_2wxue")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.572585, 1.24931, 0.633676)

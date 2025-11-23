@@ -14,7 +14,7 @@ material = SubResource("StandardMaterial3D_o1b5p")
 [node name="NatureLandscape" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1000, 0, 0, 0, 1, 0, 0, 0, 1000, 0, 0.65, 0)
+transform = Transform3D(1000, 0, 0, 0, 1, 0, 0, 0, 1000, -0.176748, 0.628011, -0.0337844)
 mesh = SubResource("PlaneMesh_4vm2e")
 
 [node name="Camera3D" type="Camera3D" parent="."]

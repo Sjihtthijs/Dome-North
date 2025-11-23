@@ -1,5 +1,9 @@
 extends CharacterBody3D
 
+# --- Navigation & Layer Constants ---
+const MAP_TILE_LAYER_BIT = 1 << 1
+const UNIT_LAYER_BIT = 1 << 0
+
 # --- HP & Death System ---
 @export_group("Health")
 @export var max_hp: float = 100.0
@@ -11,13 +15,17 @@ const SPEED = 5.0
 const ROTATION_SPEED = 10.0
 var target_position: Vector3 = global_position # Player's click target position
 
+var is_selected: bool = false # Tracks if this unit is currently selected by the player
+const STOP_DISTANCE_NAV = 0.5 
+const STOP_DISTANCE_AGGRO = 2.0
+
 # --- Aggro Target ---
 # Automatic counter-attack target. Set when the unit takes damage.
 var aggro_target: CharacterBody3D = null
 
 const STOP_DISTANCE = 0.1
 var camera: Camera3D
-
+@onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 # --- Attack System ---
 @export_group("Attack")
 @export var attack_damage: float = 20.0
@@ -33,6 +41,10 @@ func _ready():
 	if camera == null:
 		push_error("camera3D not found")
 		set_physics_process(false)
+		
+	if nav_agent == null:
+		push_error("NavigationAgent3D not found on fr_units node.")
+		set_physics_process(false)
 
 func _process(delta: float):
 	# Update attack cooldown timer
@@ -47,9 +59,10 @@ func _physics_process(delta: float):
 	else:
 		# Clear invalid target and revert to player click movement
 		aggro_target = null
-		_handle_click_movement(delta)
+		#_handle_click_movement(delta)
+		_handle_navigation_movement()
 
-# --- REVISED: Handles movement and attack when an aggro target is present ---
+# --- Handles movement and attack when an aggro target is present ---
 func _handle_aggro_movement_and_attack(target: CharacterBody3D):
 	# Calculate distance to the aggro target
 	var distance_to_target = global_position.distance_to(target.global_position)
@@ -69,7 +82,26 @@ func _handle_aggro_movement_and_attack(target: CharacterBody3D):
 		# Out of range: stop and hold position (velocity is already zero)
 		pass 
 
-# --- New: Consolidated Movement Function ---
+# ---   Navigation Click Movement  ---
+func _handle_navigation_movement():
+	if nav_agent.is_navigation_finished():
+		velocity = Vector3.ZERO
+		move_and_slide()
+		return
+	var next_path_position: Vector3 = nav_agent.get_next_path_position()
+	var direction_3d = (next_path_position - global_position).normalized()
+	direction_3d.y = 0.0 
+	var distance_to_next = global_position.distance_to(next_path_position)
+	if distance_to_next > STOP_DISTANCE_NAV:
+		var target_look_at = global_position + direction_3d
+		look_at(target_look_at, Vector3.UP, true)
+		velocity = direction_3d * SPEED
+	else:
+		velocity = Vector3.ZERO
+	move_and_slide()
+
+'''
+# --- Consolidated Movement Function ---
 # Used for both chasing (if we re-add it) and player click movement
 func _move_towards(target_pos: Vector3):
 	var direction_3d = (target_pos - global_position).normalized()
@@ -91,7 +123,7 @@ func _handle_click_movement(delta: float):
 	else:
 		velocity = Vector3.ZERO
 		move_and_slide()
-
+'''
 # --- Mouse Input (Click to Move) ---
 # (Raycasting code omitted for brevity, logic remains the same)
 func _input(event: InputEvent):
@@ -107,16 +139,33 @@ func _input(event: InputEvent):
 		var ray_end = ray_origin + ray_dir * 1000 
 		var space_state = get_world_3d().direct_space_state
 		var query = PhysicsRayQueryParameters3D.create(ray_origin, ray_end)
-		query.exclude = [self.get_rid()] 
 		var result = space_state.intersect_ray(query)
 		# ... (Raycasting code to get new_target) ...
-		if result.has("position"):
-			var new_target = result.position
-			set_target_position(new_target)
-# Placeholder for actual raycasting code from original script
+		if result.has("collider"):
+			var clicked_node = result.collider
+			
+			if clicked_node == self:
+				is_selected = true
+				aggro_target = null
+				print("Unit ", name, " **SELECTED**")
+				return
+
+			elif is_selected:
+				var new_target = result.position
+				set_target_position(new_target) 
+				
+				is_selected = false
+				print("Unit ", name, " ordered to move to hit position on node: ", clicked_node.name)
+				return
+		elif not result.has("collider") and is_selected:
+			is_selected = false
+			print("Unit ", name, " deselected by clicking empty space.")
+			return
 
 func set_target_position(new_pos: Vector3):
+	aggro_target = null
 	target_position = new_pos
+	nav_agent.target_position = target_position
 
 
 # --- Attack Logic ---

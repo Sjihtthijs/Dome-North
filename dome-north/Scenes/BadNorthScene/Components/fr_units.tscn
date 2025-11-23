@@ -237,3 +237,5 @@ material = SubResource("StandardMaterial3D_w1hwb")
 libraries = {
 &"": SubResource("AnimationLibrary_sd3lo")
 }
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
