@@ -1,5 +1,6 @@
-[gd_scene load_steps=17 format=4 uid="uid://cpcn0fhltkl08"]
+[gd_scene load_steps=18 format=4 uid="uid://cpcn0fhltkl08"]
 
+[ext_resource type="PackedScene" uid="uid://bv5cvbi4w4jjj" path="res://Scenes/DomeKeeperScene/Breakable Tile Objects/resource_a.tscn" id="1_8ywtx"]
 [ext_resource type="Texture2D" uid="uid://b5a75r81h0suu" path="res://Assets/Sprites/Mineable Walls.png" id="1_rrcky"]
 [ext_resource type="Texture2D" uid="uid://bpmmjf6mhl7in" path="res://Assets/Sprites/Mine Limit Walls.png" id="2_jqbop"]
 [ext_resource type="Texture2D" uid="uid://dxckgg1sa6bj5" path="res://Assets/Sprites/Resource Tile A.png" id="3_3f7pg"]
@@ -140,6 +141,9 @@ sources/0 = SubResource("TileSetAtlasSource_uwh6h")
 [node name="Mine" type="Node2D"]
 
 [node name="Resources" type="Node2D" parent="."]
+
+[node name="Resource A" parent="Resources" instance=ExtResource("1_8ywtx")]
+position = Vector2(-8, -49)
 
 [node name="TileMap" type="Node2D" parent="."]
 

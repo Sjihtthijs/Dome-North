@@ -18,7 +18,6 @@ texture = ExtResource("2_dnkg7")
 shape = SubResource("RectangleShape2D_ufkav")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-enabled = false
 zoom = Vector2(4, 4)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
