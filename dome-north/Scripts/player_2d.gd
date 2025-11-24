@@ -28,3 +28,7 @@ func _physics_process(delta):
 	else:
 		velocity.y = move_toward(velocity.y, 0, speed)
 	move_and_slide()
+
+# Make Function to send signal of breaking block
+# that acts when there is a collision
+# and when the player inputs to move in that direction

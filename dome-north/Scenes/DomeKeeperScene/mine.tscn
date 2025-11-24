@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://cpcn0fhltkl08"]
+[gd_scene load_steps=19 format=4 uid="uid://cpcn0fhltkl08"]
 
 [ext_resource type="PackedScene" uid="uid://bv5cvbi4w4jjj" path="res://Scenes/DomeKeeperScene/Breakable Tile Objects/resource_a.tscn" id="1_8ywtx"]
 [ext_resource type="Texture2D" uid="uid://b5a75r81h0suu" path="res://Assets/Sprites/Mineable Walls.png" id="1_rrcky"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c3eyf3howm10g" path="res://Assets/Sprites/Resource Tile B.png" id="4_6tou7"]
 [ext_resource type="Texture2D" uid="uid://bsl3uxiulv01t" path="res://Assets/Sprites/Resource Tile C.png" id="5_8ywtx"]
 [ext_resource type="PackedScene" uid="uid://dvspob7xdp68v" path="res://Scenes/DomeKeeperScene/player_2d.tscn" id="6_6tou7"]
+[ext_resource type="Script" uid="uid://bbd04gyy2eyxe" path="res://Scenes/DomeKeeperScene/generated_grid.gd" id="8_umdy5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rrcky"]
 texture = ExtResource("1_rrcky")
@@ -169,3 +170,7 @@ tile_set = SubResource("TileSet_lkg7l")
 
 [node name="player_2d" parent="." instance=ExtResource("6_6tou7")]
 position = Vector2(-8, 10)
+
+[node name="Generated Grid" type="Node2D" parent="."]
+position = Vector2(21, -78)
+script = ExtResource("8_umdy5")
