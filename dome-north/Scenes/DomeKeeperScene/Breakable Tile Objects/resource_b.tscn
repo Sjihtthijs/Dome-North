@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://e0dkhcr0o5cj"]
+[gd_scene load_steps=15 format=3 uid="uid://e0dkhcr0o5cj"]
 
 [ext_resource type="Texture2D" uid="uid://c3eyf3howm10g" path="res://Assets/Sprites/Resource Tile B.png" id="1_3s4qs"]
+[ext_resource type="Script" uid="uid://mvfyonhege4b" path="res://Scripts/resource_b_dk.gd" id="1_noryl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tbmra"]
 atlas = ExtResource("1_3s4qs")
@@ -116,13 +117,24 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fmarl"]
 size = Vector2(16, 16)
 
-[node name="Resource A" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7vb0q"]
+size = Vector2(16.1, 16.1)
+
+[node name="Resource B" type="Node2D"]
+script = ExtResource("1_noryl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hm2y6")
-animation = &"upper_corner_right"
+animation = &"bottom_side_middle"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_fmarl")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_7vb0q")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

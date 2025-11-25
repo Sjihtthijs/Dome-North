@@ -1,5 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://mh52peoi08k7"]
+[gd_scene load_steps=15 format=3 uid="uid://mh52peoi08k7"]
 
+[ext_resource type="Script" uid="uid://bvabepqm1jjen" path="res://Scripts/breakable_mine_tiles.gd" id="1_8p7oe"]
 [ext_resource type="Texture2D" uid="uid://b5a75r81h0suu" path="res://Assets/Sprites/Mineable Walls.png" id="1_vok44"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jneup"]
@@ -116,7 +117,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fmarl"]
 size = Vector2(16, 16)
 
-[node name="Resource A" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vok44"]
+size = Vector2(16.1, 16.1)
+
+[node name="Breakable Mine Tiles" type="Node2D"]
+script = ExtResource("1_8p7oe")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_rcnk5")
@@ -126,3 +131,10 @@ animation = &"upper_side_middle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_fmarl")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_vok44")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://clpuc0usb5cxx"]
+[gd_scene load_steps=15 format=3 uid="uid://clpuc0usb5cxx"]
 
 [ext_resource type="Texture2D" uid="uid://bsl3uxiulv01t" path="res://Assets/Sprites/Resource Tile C.png" id="1_71ypn"]
+[ext_resource type="Script" uid="uid://c53ivcvlma056" path="res://Scripts/resource_c_dk.gd" id="1_frcmp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_arnu7"]
 atlas = ExtResource("1_71ypn")
@@ -116,7 +117,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fmarl"]
 size = Vector2(16, 16)
 
-[node name="Resource A" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_71ypn"]
+size = Vector2(16.1, 16.1)
+
+[node name="Resource C" type="Node2D"]
+script = ExtResource("1_frcmp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_rcnk5")
@@ -126,3 +131,10 @@ animation = &"bottom_corner_left"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_fmarl")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_71ypn")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
