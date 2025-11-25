@@ -2,7 +2,7 @@ extends Node2D
 
 # Ratios
 
-@onready var ratio_Gold = 7
+@onready var ratio_Gold = 25
 @onready var ratio_Iron = 15
 @onready var ratio_Normal = 78
 
@@ -14,7 +14,7 @@ var Normal = preload("res://Scenes/DomeKeeperScene/Breakable Tile Objects/breaka
 
 
 func _ready():
-	var grid = generate_grid(10,10)
+	var grid = generate_grid(17,20)
 	print(grid)
 	spawn_blocks(grid)
 
@@ -37,24 +37,34 @@ func generate_grid(width: int, height: int):
 
 func spawn_blocks(grid: Array):
 	# Instantiate blocks
-	var GInst = Gold.instantiate()
-	var IInst = Iron.instantiate()
-	var NInst = Normal.instantiate()
 	
 	# Loop over grid to create the children and place them
 	var width = len(grid[0])
 	var height = len(grid)
 	for x in range(width):
 		for y in range(height):
-			var Btype = grid[x][y]
+			var Btype = grid[y][x]
+			var Child
+			# add_child(NInst)
+			# add_child(IInst)
+			# add_child(GInst)
 			if Btype == 0:
+				var GInst = Gold.instantiate()
 				add_child(GInst)
-				GInst.position = Vector2(GInst.position.x + 16*x, GInst.position.y + 16*y)
+				GInst.name = "Gold" + "%d" %[x*10 +y]
+				Child = get_node(NodePath(GInst.name))
+				# GInst.position = Vector2(GInst.position.x + 16*x, GInst.position.y + 16*y)
 			elif Btype == 1:
+				var IInst = Iron.instantiate()
 				add_child(IInst)
-				IInst.position = Vector2(IInst.position.x + 16*x, IInst.position.y + 16*y)
+				IInst.name = "Iron" + "%d" %[x*10 +y]
+				Child = get_node(NodePath(IInst.name))
+				# IInst.position = Vector2(IInst.position.x + 16*x, IInst.position.y + 16*y)
 			else:
-				NInst.position = Vector2(NInst.position.x + 16*x, NInst.position.y + 16*y)
+				var NInst = Normal.instantiate()
 				add_child(NInst)
-			
+				NInst.name = "Rock" + "%d" %[x*10 +y]
+				Child = get_node(NodePath(NInst.name))
+				# NInst.position = Vector2(NInst.position.x + 16*x, NInst.position.y + 16*y)
+			Child.position = Vector2(Child.position.x + 16*y, Child.position.y + 16*x)
 	pass
