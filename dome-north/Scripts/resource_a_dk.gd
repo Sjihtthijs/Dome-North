@@ -3,17 +3,37 @@ extends Node2D
 var hit_count: int = 0
 const MAX_HITS := 4
 
-# Called when the node enters the scene tree for the first time.
+var Current_time = 0.0
+var time_to_mine = 4000.0
+var start_mine = 0.0
+
+@onready var GoldObject = preload("res://Scenes/DomeKeeperScene/resource_a_gold_object.tscn")
+
 func _ready():
 	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	Current_time = Time.get_ticks_msec()
+	if Current_time-start_mine >= time_to_mine:
+		queue_free()
 
 func _on_area_2d_body_entered(body):
 	if body is Player_2D:
-		hit_count += 1
-		print("Hit count:", hit_count)
-		if hit_count >= MAX_HITS:
+		start_mine = Time.get_ticks_msec()
+		print("Yes!")
+		if Current_time - start_mine >= time_to_mine:
 			queue_free()
+
+func _on_area_2d_body_exited(body):
+	if body is Player_2D:
+		start_mine = Current_time
+		print("No!")
+
+func initiate_resource():
+	var gold = GoldObject.instantiate()
+	gold.global_position = global_position
+	get_tree().get_root().add_child(gold)
+
+func drop_resource():
+	if Current_time - start_mine >= time_to_mine:
+		initiate_resource()

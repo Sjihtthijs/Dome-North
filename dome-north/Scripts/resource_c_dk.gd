@@ -3,19 +3,26 @@ extends Node2D
 var hit_count: int = 0
 const MAX_HITS := 4
 
-# Called when the node enters the scene tree for the first time.
+var Current_time = 0.0
+var time_to_mine = 4000.0
+var start_mine = 0.0
+
 func _ready():
-	pass # Replace with function body.
+	pass 
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
-
+	Current_time = Time.get_ticks_msec()
+	if Current_time-start_mine >= time_to_mine:
+		queue_free()
 
 func _on_area_2d_body_entered(body):
 	if body is Player_2D:
-		hit_count += 1
-		print("Hit count:", hit_count)
-		if hit_count >= MAX_HITS:
+		start_mine = Time.get_ticks_msec()
+		print("Yes!")
+		if Current_time - start_mine >= time_to_mine:
 			queue_free()
+
+func _on_area_2d_body_exited(body):
+	if body is Player_2D:
+		start_mine = Current_time
+		print("No!")
