@@ -7,7 +7,7 @@ var speed = 500
 func _ready():
 	pass
 
-func _physics_process(delta):
+func _physics_process(_delta):
 		#checks what direction the player is looking (left/right)
 	if Input.is_action_pressed("move_left"):
 		sprite.scale.x = abs(sprite.scale.x) * -1
