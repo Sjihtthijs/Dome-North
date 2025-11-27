@@ -153,7 +153,7 @@ position = Vector2(-65, -39)
 [node name="Resources" type="Node2D" parent="."]
 
 [node name="Resource A" parent="Resources" instance=ExtResource("1_8ywtx")]
-position = Vector2(-8, -10)
+position = Vector2(-11, -56)
 
 [node name="Resource B" parent="Resources" instance=ExtResource("2_f2xv3")]
 position = Vector2(20, -31)
@@ -193,4 +193,4 @@ position = Vector2(-135, 41)
 script = ExtResource("8_umdy5")
 
 [node name="ResourceAGoldObject" parent="." instance=ExtResource("12_hm3e8")]
-position = Vector2(-25, -25)
+position = Vector2(-6, -5)

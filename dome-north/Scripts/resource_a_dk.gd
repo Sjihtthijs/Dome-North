@@ -23,6 +23,8 @@ func _on_area_2d_body_entered(body):
 		print("Yes!")
 		if Current_time - start_mine >= time_to_mine:
 			queue_free()
+			drop_resource()
+			print("Resource Dropped")
 
 func _on_area_2d_body_exited(body):
 	if body is Player_2D:
