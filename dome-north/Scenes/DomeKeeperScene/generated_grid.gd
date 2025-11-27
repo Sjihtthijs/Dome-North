@@ -8,8 +8,8 @@ extends Node2D
 
 # Scenes
 
-var Gold = preload("res://Scenes/DomeKeeperScene/Breakable Tile Objects/resource_a.tscn")
-var Iron = preload("res://Scenes/DomeKeeperScene/Breakable Tile Objects/resource_b.tscn")
+var Gold = preload("res://Scenes/DomeKeeperScene/Breakable Tile Objects/resource_a_block.tscn")
+var Iron = preload("res://Scenes/DomeKeeperScene/Breakable Tile Objects/resource_b_block.tscn")
 var Normal = preload("res://Scenes/DomeKeeperScene/Breakable Tile Objects/breakable_mine_tiles.tscn")
 
 
