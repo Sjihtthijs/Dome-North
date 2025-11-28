@@ -3,20 +3,25 @@
 [ext_resource type="Script" uid="uid://bptx6s5h5fcwq" path="res://Scripts/player_2d.gd" id="1_dnkg7"]
 [ext_resource type="Texture2D" uid="uid://bjfe14rmvfwnd" path="res://Assets/Sprites/Player - Miner.png" id="2_dnkg7"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ufkav"]
-size = Vector2(13, 14)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dnkg7"]
+radius = 4.0
+height = 15.0
 
 [node name="player_2d" type="CharacterBody2D"]
 script = ExtResource("1_dnkg7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_dnkg7")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_dnkg7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(4.76837e-07, 4.76837e-07)
 scale = Vector2(0.875, 0.875)
 texture = ExtResource("2_dnkg7")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 0)
-shape = SubResource("RectangleShape2D_ufkav")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)

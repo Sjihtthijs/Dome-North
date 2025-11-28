@@ -1,42 +1,42 @@
 [gd_scene load_steps=15 format=3 uid="uid://e0dkhcr0o5cj"]
 
-[ext_resource type="Texture2D" uid="uid://c3eyf3howm10g" path="res://Assets/Sprites/Resource Tile B.png" id="1_3s4qs"]
-[ext_resource type="Script" uid="uid://mvfyonhege4b" path="res://Scripts/resource_b_dk.gd" id="1_noryl"]
+[ext_resource type="Script" uid="uid://mvfyonhege4b" path="res://Scripts/resource_b_dk.gd" id="1_smfci"]
+[ext_resource type="Texture2D" uid="uid://c3eyf3howm10g" path="res://Assets/Sprites/Resource Tile B.png" id="2_fl7m5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tbmra"]
-atlas = ExtResource("1_3s4qs")
+atlas = ExtResource("2_fl7m5")
 region = Rect2(1, 35, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gqr3j"]
-atlas = ExtResource("1_3s4qs")
+atlas = ExtResource("2_fl7m5")
 region = Rect2(35, 35, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6s3tj"]
-atlas = ExtResource("1_3s4qs")
+atlas = ExtResource("2_fl7m5")
 region = Rect2(18, 35, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dx017"]
-atlas = ExtResource("1_3s4qs")
+atlas = ExtResource("2_fl7m5")
 region = Rect2(18, 18, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oc55q"]
-atlas = ExtResource("1_3s4qs")
+atlas = ExtResource("2_fl7m5")
 region = Rect2(1, 18, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l847p"]
-atlas = ExtResource("1_3s4qs")
+atlas = ExtResource("2_fl7m5")
 region = Rect2(35, 18, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a1pgy"]
-atlas = ExtResource("1_3s4qs")
+atlas = ExtResource("2_fl7m5")
 region = Rect2(1, 1, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i8r6i"]
-atlas = ExtResource("1_3s4qs")
+atlas = ExtResource("2_fl7m5")
 region = Rect2(35, 1, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_018gq"]
-atlas = ExtResource("1_3s4qs")
+atlas = ExtResource("2_fl7m5")
 region = Rect2(18, 1, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hm2y6"]
@@ -121,7 +121,7 @@ size = Vector2(16, 16)
 size = Vector2(16.1, 16.1)
 
 [node name="Resource B" type="Node2D"]
-script = ExtResource("1_noryl")
+script = ExtResource("1_smfci")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hm2y6")
@@ -138,3 +138,4 @@ shape = SubResource("RectangleShape2D_fmarl")
 shape = SubResource("RectangleShape2D_7vb0q")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

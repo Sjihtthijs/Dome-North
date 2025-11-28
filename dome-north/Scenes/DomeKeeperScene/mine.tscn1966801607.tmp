@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://cpcn0fhltkl08"]
+[gd_scene load_steps=22 format=4 uid="uid://cpcn0fhltkl08"]
 
 [ext_resource type="PackedScene" uid="uid://bv5cvbi4w4jjj" path="res://Scenes/DomeKeeperScene/Breakable Tile Objects/resource_a_block.tscn" id="1_8ywtx"]
 [ext_resource type="Texture2D" uid="uid://b5a75r81h0suu" path="res://Assets/Sprites/Mineable Walls.png" id="1_rrcky"]
@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://bsl3uxiulv01t" path="res://Assets/Sprites/Resource Tile C.png" id="5_8ywtx"]
 [ext_resource type="PackedScene" uid="uid://dvspob7xdp68v" path="res://Scenes/DomeKeeperScene/player_2d.tscn" id="6_6tou7"]
 [ext_resource type="Script" uid="uid://bbd04gyy2eyxe" path="res://Scenes/DomeKeeperScene/generated_grid.gd" id="8_umdy5"]
-[ext_resource type="PackedScene" uid="uid://yv5mr4jcg6jn" path="res://Scenes/DomeKeeperScene/resource_a_gold_object.tscn" id="12_hm3e8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rrcky"]
 texture = ExtResource("1_rrcky")
@@ -148,12 +147,12 @@ sources/0 = SubResource("TileSetAtlasSource_uwh6h")
 [node name="Breakable Mine Tiles" type="Node2D" parent="."]
 
 [node name="Breakable Mine Tiles" parent="Breakable Mine Tiles" instance=ExtResource("1_uwh6h")]
-position = Vector2(-65, -39)
+position = Vector2(-8, -17)
 
 [node name="Resources" type="Node2D" parent="."]
 
 [node name="Resource A" parent="Resources" instance=ExtResource("1_8ywtx")]
-position = Vector2(-11, -56)
+position = Vector2(-8, -49)
 
 [node name="Resource B" parent="Resources" instance=ExtResource("2_f2xv3")]
 position = Vector2(20, -31)
@@ -191,6 +190,3 @@ position = Vector2(-8, 10)
 [node name="Generated Grid" type="Node2D" parent="."]
 position = Vector2(-135, 41)
 script = ExtResource("8_umdy5")
-
-[node name="ResourceAGoldObject" parent="." instance=ExtResource("12_hm3e8")]
-position = Vector2(-6, -5)
