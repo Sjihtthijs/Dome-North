@@ -1,0 +1,89 @@
+[gd_scene load_steps=12 format=3 uid="uid://bs8rx5ccjguxt"]
+
+[ext_resource type="MeshLibrary" uid="uid://dxib8wpedjmkq" path="res://Assets/kenney_nature-kit/MeshLibrary.tres" id="1_5l6ct"]
+[ext_resource type="PackedScene" uid="uid://cmucxboiwvch3" path="res://Scenes/BadNorthScene/Components/ho_units.tscn" id="2_2e6rs"]
+[ext_resource type="Script" uid="uid://dh68m1dcrpp6d" path="res://Scenes/BadNorthScene/Components/ho_units.gd" id="3_pk3th"]
+[ext_resource type="PackedScene" uid="uid://by88d32udbmay" path="res://Scenes/BadNorthScene/Components/fr_units.tscn" id="4_hf6iq"]
+[ext_resource type="Script" uid="uid://c81gb3mpd2ca6" path="res://Scenes/BadNorthScene/Components/fr_units.gd" id="5_40e0f"]
+[ext_resource type="Script" uid="uid://dx2wkceya0k7s" path="res://Scripts/camera_3d.gd" id="6_2clbx"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_4txri"]
+vertices = PackedVector3Array(-4.5, 0.5, -4.5, -4.5, 0.5, 4.5, 4.5, 0.5, 4.5, 4.5, 0.5, -4.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+agent_max_climb = 1.0
+agent_max_slope = 75.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_04x88"]
+size = Vector2(10, 10)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_a2o25"]
+data = PackedVector3Array(5, 0, 5, -5, 0, 5, 5, 0, -5, -5, 0, 5, -5, 0, -5, 5, 0, -5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o1b5p"]
+albedo_color = Color(0.188235, 0.615686, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_a2o25"]
+material = SubResource("StandardMaterial3D_o1b5p")
+
+[node name="debugscene" type="Node3D"]
+
+[node name="Village" type="GridMap" parent="."]
+mesh_library = ExtResource("1_5l6ct")
+cell_size = Vector3(0.2, 0.2, 0.2)
+data = {
+"cells": PackedInt32Array(65532, 65533, 1442056)
+}
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_4txri")
+navigation_layers = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+mesh = SubResource("PlaneMesh_04x88")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_a2o25")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1000, 0, 0, 0, 1, 0, 0, 0, 1000, 0, -0.116562, 0)
+mesh = SubResource("PlaneMesh_a2o25")
+
+[node name="HoUnits" parent="." instance=ExtResource("2_2e6rs")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 4.173, 0.453, 0)
+script = ExtResource("3_pk3th")
+move_speed = 1.0
+fall_speed = 1.0
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="HoUnits"]
+
+[node name="Timer" type="Timer" parent="HoUnits"]
+autostart = true
+
+[node name="Player" parent="." instance=ExtResource("4_hf6iq")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 1.1153, 0.453444, 2.11508)
+script = ExtResource("5_40e0f")
+
+[node name="Timer" type="Timer" parent="Player"]
+autostart = true
+
+[node name="ClickRay" type="RayCast3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, 0, 5, 6)
+script = ExtResource("6_2clbx")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.74939, 1.22198)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Camera3D"]
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.660708, 0, -0.546468)
+
+[connection signal="timeout" from="HoUnits/Timer" to="HoUnits" method="_on_timer_timeout"]
+[connection signal="timeout" from="Player/Timer" to="Player" method="_on_timer_timeout"]
+
+[editable path="HoUnits"]
+[editable path="Player"]

@@ -1,0 +1,218 @@
+[gd_scene load_steps=15 format=3 uid="uid://cmucxboiwvch3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0uonj"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ia8ni"]
+material = SubResource("StandardMaterial3D_0uonj")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_w82d0"]
+radius = 0.4
+height = 0.8
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0uonj"]
+height = 2.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h0pva"]
+albedo_color = Color(0.349689, 0.349689, 0.349689, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nro58"]
+albedo_color = Color(0.34902, 0.34902, 0.34902, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xqef0"]
+albedo_color = Color(0.34902, 0.34902, 0.34902, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i0w4a"]
+albedo_color = Color(0.52312, 0.52312, 0.52312, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sdk7h"]
+albedo_color = Color(0.580392, 0.34902, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fc7w4"]
+albedo_color = Color(0.580392, 0.34902, 0, 1)
+
+[sub_resource type="Animation" id="Animation_nro58"]
+resource_name = "BoatJump"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.17, 0), Vector3(0, 0.24, 0), Vector3(0, 0.28, 0), Vector3(0, 0.3, 0), Vector3(0, 0.26, 0), Vector3(0, 0.22, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_h0pva"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("Sword:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.612997, 0.712499)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("Sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = false
+tracks/3/path = NodePath(".:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0uonj"]
+resource_name = "SwordSlash"
+length = 1.2
+loop_mode = 2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sword:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1.00001, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.612997, 0.712499), Vector3(-0.3, 0.813, 0.712), Vector3(-0.3, 0.313, 1.212), Vector3(1.2, 0.313, 0.7), Vector3(1.3, 0.313, -0.612)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.610865), Vector3(0, 1.5708, 1.39626), Vector3(0, 3.66519, 1.5708)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.174533, 0), Vector3(0, 0.261799, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nro58"]
+_data = {
+&"BoatJump": SubResource("Animation_nro58"),
+&"RESET": SubResource("Animation_h0pva"),
+&"SwordSlash": SubResource("Animation_0uonj")
+}
+
+[node name="HoUnits" type="CharacterBody3D"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+collision_mask = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_ia8ni")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+mesh = SubResource("CapsuleMesh_w82d0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.313, 0)
+shape = SubResource("CapsuleShape3D_0uonj")
+
+[node name="Helm2" type="CSGSphere3D" parent="."]
+transform = Transform3D(0.9, 0, 0, 0, 1, 0, 0, 0, 0.9, 0, 1.25, 0)
+radial_segments = 8
+rings = 7
+material = SubResource("StandardMaterial3D_h0pva")
+
+[node name="Halver" type="CSGBox3D" parent="Helm2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+operation = 2
+size = Vector3(1, 1.02, 1)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Helm2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0387707, 0)
+radius = 0.487
+height = 0.1
+material = SubResource("StandardMaterial3D_nro58")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Helm2/CSGCylinder3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0, 0.15)
+operation = 2
+size = Vector3(1, 0.1, 0.2)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Helm2/CSGCylinder3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0, -0.148)
+operation = 2
+size = Vector3(1, 0.1, 0.2)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Helm2"]
+transform = Transform3D(0.075, 0, 0, 0, -0.225, 1.13247e-08, 0, -3.39741e-08, -0.075, 0, 0.664575, 0)
+polygon = PackedVector2Array(0, 0, 0, 1, 1, 1, 1, 1)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 32
+material = SubResource("StandardMaterial3D_xqef0")
+
+[node name="Sword" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.612997, 0.712499)
+size = Vector3(0.2, 0.8, 0.2)
+material = SubResource("StandardMaterial3D_i0w4a")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Sword"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.43889, 0)
+size = Vector3(0.3, 0.15, 0.4)
+material = SubResource("StandardMaterial3D_sdk7h")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Sword"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.591221, 0)
+size = Vector3(0.2, 0.2, 0.2)
+material = SubResource("StandardMaterial3D_fc7w4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_nro58")
+}
