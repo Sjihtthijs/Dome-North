@@ -348,7 +348,6 @@ libraries = {
 speed_scale = 4.0
 
 [connection signal="pressed" from="UI/VBoxContainer/TopBar/HBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
-[connection signal="pressed" from="UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/Panel/Button" to="." method="_on_button_pressed" binds= [1]]
 [connection signal="ready_pressed" from="UI/VBoxContainer/Shop" to="." method="_on_shop_ready_pressed"]
 [connection signal="unit_created" from="UI/VBoxContainer/Shop" to="UI/VBoxContainer/BadNorth" method="_on_shop_unit_created"]
 [connection signal="unit_updated" from="UI/VBoxContainer/Shop" to="UI/VBoxContainer/BadNorth" method="_on_shop_unit_updated"]
