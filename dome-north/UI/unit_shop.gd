@@ -2,6 +2,7 @@ extends Control
 
 @onready var unit_buttons: VBoxContainer = $PanelContainer/Panel/PanelContainer/ScrollContainer/UnitButtons
 var unit = 0
+var UnitManager = preload("res://UI/unit_manager.gd").new()
 
 signal unit_created
 signal unit_updated
@@ -24,11 +25,11 @@ signal unit_updated
 ]
 
 
-const UI_THEME = preload("res://Resources/UITheme.tres")
-const ILLUSTRATION = preload("res://Assets/Illustration.png")
+const UI_THEME = preload("res://UI/Resources/UITheme.tres")
+const ILLUSTRATION = preload("res://UI/Assets/Illustration.png")
 
 func _ready() -> void:
-	create_unit_buttons(UnitManager.units)
+#	create_unit_buttons(UnitManager.units)
 	show_bought_upgrades(unit)
 
 func create_unit_buttons(units: Array[Unit]):
@@ -77,12 +78,15 @@ func toggle_only(index: int):
 		button.button_pressed = (i == index)
 
 func show_bought_upgrades(index : int):
-	var health_up = UnitManager.units[index].health_up
-	for i in health_buttons.size():
-		health_buttons[i].disabled = (i != health_up)
-	var damage_up = UnitManager.units[index].damage_up
-	for i in damage_buttons.size():
-		damage_buttons[i].disabled = (i != damage_up)
+	if UnitManager.units.size() == 0:
+		print ("No units, skipping")
+	else:
+		var health_up = UnitManager.units[index].health_up
+		for i in health_buttons.size():
+			health_buttons[i].disabled = (i != health_up)
+		var damage_up = UnitManager.units[index].damage_up
+		for i in damage_buttons.size():
+			damage_buttons[i].disabled = (i != damage_up)
 
 func update_unit_button_text():
 	unit_buttons.get_child(unit).text = "Unit %d 

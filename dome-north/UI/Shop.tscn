@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cou5pj7414kia"]
+[gd_scene load_steps=9 format=3 uid="uid://cou5pj7414kia"]
 
 [ext_resource type="Script" uid="uid://dsqe8c7qvv7w1" path="res://UI/shop.gd" id="1_c0ofq"]
 [ext_resource type="PackedScene" uid="uid://dl4xhmrqoh6r8" path="res://UI/UnitShop.tscn" id="1_c53l5"]
 [ext_resource type="PackedScene" uid="uid://bopbetk3uwnnf" path="res://UI/VillageShop.tscn" id="2_7ae35"]
 [ext_resource type="Theme" uid="uid://be23ll5v6piho" path="res://UI/Resources/UITheme.tres" id="2_svtxo"]
 [ext_resource type="PackedScene" uid="uid://cug3q2pbu814c" path="res://UI/MineShop.tscn" id="3_f511j"]
+[ext_resource type="Script" uid="uid://dujdsi4gpi7t0" path="res://UI/signal.gd" id="6_6rs1d"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ae35"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -84,6 +85,7 @@ offset_right = -88.0
 offset_bottom = -72.0
 grow_horizontal = 0
 grow_vertical = 0
+script = ExtResource("6_6rs1d")
 
 [node name="Ready" type="Button" parent="Control"]
 layout_mode = 1
