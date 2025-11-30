@@ -65,6 +65,9 @@ autostart = true
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 1.1153, 0.453444, 2.11508)
 script = ExtResource("5_40e0f")
 
+[node name="Shield" parent="Player" index="4"]
+transform = Transform3D(0.869333, 0, 0.232937, 0, 0.99, 0, -0.232937, 0, 0.869333, 0.740744, 0.134978, -0.299493)
+
 [node name="Timer" type="Timer" parent="Player"]
 autostart = true
 

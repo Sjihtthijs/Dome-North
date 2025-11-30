@@ -24,8 +24,8 @@ signal unit_updated
 ]
 
 
-const UI_THEME = preload("res://Resources/UITheme.tres")
-const ILLUSTRATION = preload("res://Assets/Illustration.png")
+const UI_THEME = preload("res://Assets/Resources/UITheme.tres")
+const ILLUSTRATION = preload("res://Assets/Sprites/Illustration.png")
 
 func _ready() -> void:
 	create_unit_buttons(UnitManager.units)
@@ -85,9 +85,7 @@ func show_bought_upgrades(index : int):
 		damage_buttons[i].disabled = (i != damage_up)
 
 func update_unit_button_text():
-	unit_buttons.get_child(unit).text = "Unit %d 
-		HP: %d/%d
-		DMG: %d" % [unit + 1, UnitManager.units[unit].health, UnitManager.units[unit].max_health, UnitManager.units[unit].damage]
+	unit_buttons.get_child(unit).text = "Unit %d\nHP: %d/%d\nDMG: %d" % [unit + 1, UnitManager.units[unit].health, UnitManager.units[unit].max_health, UnitManager.units[unit].damage]
 
 func _on_upgrade_pressed(health_up, health, damage_up, damage) -> void:
 	UnitManager.units[unit].upgrade_unit(health_up, health, damage_up, damage)

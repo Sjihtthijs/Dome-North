@@ -1,208 +1,154 @@
 extends CharacterBody3D
+class_name Player3DClickMove
 
-# --- Navigation & Layer Constants ---
-const MAP_TILE_LAYER_BIT = 1 << 1
-const UNIT_LAYER_BIT = 1 << 0
+@export var move_speed: float = 5.0     
+@export var stop_distance: float = 0.2    
 
-# --- HP & Death System ---
-@export_group("Health")
-@export var max_hp: float = 100.0
-var current_hp: float
-
-# --- Movement System ---
-@export_group("Movement")
-const SPEED = 5.0
-const ROTATION_SPEED = 10.0
-var target_position: Vector3 = global_position # Player's click target position
-
-var is_selected: bool = false # Tracks if this unit is currently selected by the player
-const STOP_DISTANCE_NAV = 0.5 
-const STOP_DISTANCE_AGGRO = 2.0
-
-# --- Aggro Target ---
-# Automatic counter-attack target. Set when the unit takes damage.
-var aggro_target: CharacterBody3D = null
-
-const STOP_DISTANCE = 0.1
-var camera: Camera3D
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
-# --- Attack System ---
-@export_group("Attack")
-@export var attack_damage: float = 20.0
-@export var attack_range: float = 2.0
-@export var attack_cooldown: float = 1.0
-var time_since_last_attack: float = 0.0
+@onready var cam: Camera3D = $"../Camera3D"   
 
-func _ready():
-	current_hp = max_hp
-	time_since_last_attack = attack_cooldown
-	
-	camera = get_viewport().get_camera_3d()
-	if camera == null:
-		push_error("camera3D not found")
-		set_physics_process(false)
-		
+var _has_target: bool = false
+var _target_position: Vector3 = Vector3.ZERO
+
+var _debug_last_has_target: bool = false
+var hp = 10
+func _ready() -> void:
+	print("==== [Player3DClickMove] _ready ====")
+	print("  player global_position =", global_position)
+	print("  nav_agent =", nav_agent)
+	print("  cam =", cam)
+
 	if nav_agent == null:
-		push_error("NavigationAgent3D not found on fr_units node.")
-		set_physics_process(false)
-
-func _process(delta: float):
-	# Update attack cooldown timer
-	time_since_last_attack += delta
-
-func _physics_process(delta: float):
-	# 1. Check if there is a valid aggro target
-	if aggro_target != null and is_instance_valid(aggro_target):
-		# If valid target exists, prioritize handling the aggro target
-		_handle_aggro_movement_and_attack(aggro_target)
-		
-	else:
-		# Clear invalid target and revert to player click movement
-		aggro_target = null
-		#_handle_click_movement(delta)
-		_handle_navigation_movement()
-
-# --- Handles movement and attack when an aggro target is present ---
-func _handle_aggro_movement_and_attack(target: CharacterBody3D):
-	# Calculate distance to the aggro target
-	var distance_to_target = global_position.distance_to(target.global_position)
-	
-	# Unit stops moving when engaging an aggro target (no chasing)
-	velocity = Vector3.ZERO
-	move_and_slide()
-	
-	# Turn to face the target while engaging/waiting for cooldown
-	look_at(target.global_position, Vector3.UP, true)
-
-	# Check if the target is within attack range
-	if distance_to_target <= attack_range:
-		# In range: attempt to attack
-		_try_attack(target)
-	else:
-		# Out of range: stop and hold position (velocity is already zero)
-		pass 
-
-# ---   Navigation Click Movement  ---
-func _handle_navigation_movement():
-	if nav_agent.is_navigation_finished():
-		velocity = Vector3.ZERO
-		move_and_slide()
+		push_error("[Player3DClickMove] NavigationAgent3D 没找到，请检查节点路径 $NavigationAgent3D")
 		return
-	var next_path_position: Vector3 = nav_agent.get_next_path_position()
-	var direction_3d = (next_path_position - global_position).normalized()
-	direction_3d.y = 0.0 
-	var distance_to_next = global_position.distance_to(next_path_position)
-	if distance_to_next > STOP_DISTANCE_NAV:
-		var target_look_at = global_position + direction_3d
-		look_at(target_look_at, Vector3.UP, true)
-		velocity = direction_3d * SPEED
+	if cam == null:
+		push_error("[Player3DClickMove] Camera3D 没找到，请检查路径 ../Camera3D")
+		return
+
+	nav_agent.target_desired_distance = stop_distance
+	nav_agent.path_desired_distance = 0.1
+	print("  nav_agent.target_desired_distance =", nav_agent.target_desired_distance)
+	print("  nav_agent.path_desired_distance   =", nav_agent.path_desired_distance)
+	print("  nav_agent.navigation_map          =", nav_agent.get_navigation_map())
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton \
+	and event.button_index == MOUSE_BUTTON_LEFT \
+	and event.pressed:
+		print("[Input] click, spot =", event.position)
+		_handle_click(event.position)
+
+func _handle_click(mouse_pos: Vector2) -> void:
+	if cam == null:
+		push_error("[_handle_click] cam is null")
+		return
+
+	var from: Vector3 = cam.project_ray_origin(mouse_pos)
+	var dir: Vector3 = cam.project_ray_normal(mouse_pos)
+	print("[Ray] from =", from, " dir =", dir)
+
+	var space_state := get_world_3d().direct_space_state
+	var query := PhysicsRayQueryParameters3D.create(from, from + dir * 1000.0)
+	var result := space_state.intersect_ray(query)
+
+	if result:
+		var hit_pos: Vector3 = result.position
+		var collider = result.collider
+		print("[Ray] hitting:", collider, "  collider =", hit_pos)
+		_set_navigation_target(hit_pos)
 	else:
-		velocity = Vector3.ZERO
-	move_and_slide()
+		print("[Ray] not hitting anything")
 
-'''
-# --- Consolidated Movement Function ---
-# Used for both chasing (if we re-add it) and player click movement
-func _move_towards(target_pos: Vector3):
-	var direction_3d = (target_pos - global_position).normalized()
-	direction_3d.y = 0.0
-	
-	var target_look_at = global_position + direction_3d
-	look_at(target_look_at, Vector3.UP, true)
-	velocity = direction_3d * SPEED
-	move_and_slide()
+func _set_navigation_target(world_pos: Vector3) -> void:
+	if nav_agent == null:
+		push_error("[Nav] nav_agent is null")
+		return
 
-# --- Original Click Movement Logic ---
-func _handle_click_movement(delta: float):
-	var current_xz = Vector2(global_position.x, global_position.z)
-	var target_xz = Vector2(target_position.x, target_position.z)
-	var distance_to_target = current_xz.distance_to(target_xz)
+	# ★★ 关键：把点击的世界坐标“吸附”到 NavMesh 上
+	var nav_map := nav_agent.get_navigation_map()
+	if nav_map == RID():
+		push_error("[Nav] navigation_map is null，check if NavigationRegion3D exists")
+		return
 
-	if distance_to_target > STOP_DISTANCE:
-		_move_towards(target_position)
-	else:
-		velocity = Vector3.ZERO
-		move_and_slide()
-'''
-# --- Mouse Input (Click to Move) ---
-# (Raycasting code omitted for brevity, logic remains the same)
-func _input(event: InputEvent):
-	# Mouse Left Click Logic (Raycasting)
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		# Check camera... Raycasting code...
-		
-		# IMPORTANT: When player clicks, clear aggro target to prioritize movement
-		aggro_target = null
-		var mouse_pos = event.position
-		var ray_origin = camera.project_ray_origin(mouse_pos)
-		var ray_dir = camera.project_ray_normal(mouse_pos)
-		var ray_end = ray_origin + ray_dir * 1000 
-		var space_state = get_world_3d().direct_space_state
-		var query = PhysicsRayQueryParameters3D.create(ray_origin, ray_end)
-		var result = space_state.intersect_ray(query)
-		# ... (Raycasting code to get new_target) ...
-		if result.has("collider"):
-			var clicked_node = result.collider
-			
-			if clicked_node == self:
-				is_selected = true
-				aggro_target = null
-				print("Unit ", name, " **SELECTED**")
-				return
+	var closest_nav_point := NavigationServer3D.map_get_closest_point(nav_map, world_pos)
+	print("[Nav] click =", world_pos, " -> nearest point =", closest_nav_point)
 
-			elif is_selected:
-				var new_target = result.position
-				set_target_position(new_target) 
-				
-				is_selected = false
-				print("Unit ", name, " ordered to move to hit position on node: ", clicked_node.name)
-				return
-		elif not result.has("collider") and is_selected:
-			is_selected = false
-			print("Unit ", name, " deselected by clicking empty space.")
+	_target_position = closest_nav_point
+	nav_agent.set_target_position(_target_position)
+
+	var reachable := nav_agent.is_target_reachable()
+	var dist := nav_agent.distance_to_target()
+	print("  nav_agent.target_position       =", nav_agent.target_position)
+	print("  nav_agent.is_target_reachable() =", reachable)
+	print("  nav_agent.distance_to_target()  =", dist)
+
+	if not reachable:
+		print("[Nav] ⚠ unable to reach")
+		_has_target = false
+		return
+
+	_has_target = true
+
+func _physics_process(delta: float) -> void:
+	if hp <= 0:
+		queue_free()
+	if nav_agent == null:
+		return
+
+	if _has_target != _debug_last_has_target:
+		print("[Move] _has_target changed to ", _has_target, " nav_finished =", nav_agent.is_navigation_finished())
+		_debug_last_has_target = _has_target
+
+	if _has_target:
+		if nav_agent.is_navigation_finished():
+			print("[Move] stop moving pos =", global_position,
+				  " distance_to_target =", nav_agent.distance_to_target())
+			_stop_moving()
 			return
 
-func set_target_position(new_pos: Vector3):
-	aggro_target = null
-	target_position = new_pos
-	nav_agent.target_position = target_position
+		var next_point: Vector3 = nav_agent.get_next_path_position()
+		var raw_dir: Vector3 = next_point - global_position
+		var flat_dir := Vector3(raw_dir.x, 0.0, raw_dir.z)
 
+		print("[Move] next point =", next_point, " raw_dir =", raw_dir, " flat_dir =", flat_dir,
+			  " distance_to_target =", nav_agent.distance_to_target())
 
-# --- Attack Logic ---
+		if nav_agent.distance_to_target() <= stop_distance:
+			print("[Move] close to target (distance_to_target <=", stop_distance, ") -> stop moving")
+			_stop_moving()
+			return
 
-# Modified attack function, takes a target node
-func _try_attack(target_node: CharacterBody3D):
-	if time_since_last_attack >= attack_cooldown:
-		time_since_last_attack = 0.0
-		_execute_attack(target_node)
+		#if flat_dir.length() < 0.01:
+			#print("[Move] flat_dir not yet target")
+			#return
 
-func _execute_attack(enemy_node: CharacterBody3D):
-	if enemy_node.has_method("take_damage"):
-		print("FrUnits Attacks (Aggro), dealing ", attack_damage, " damage to ", enemy_node.name)
-		enemy_node.take_damage(attack_damage) # Pass self as the attacker
+		#var dir := flat_dir.normalized()
 		
-		# TODO: Play attack animation, sound effects, particles
+		var dir := raw_dir.normalized()
 
-# --- Take Damage Logic - Includes Aggro ---
+		# 旋转朝向移动方向（可选）
+		if dir.length() > 0.0:
+			look_at(global_position + dir, Vector3.UP)
 
-# Must receive the attacker as an argument to counter-attack
-func take_damage(damage_amount: float, attacker: CharacterBody3D):
-	if damage_amount <= 0:
-		return
+		velocity = dir * move_speed
+		move_and_slide()
+	else:
+		if velocity.length() > 0.0:
+			print("[Move] no target")
+		velocity = Vector3.ZERO
+		move_and_slide()
 
-	current_hp -= damage_amount
-	print("FrUnits takes damage. Current HP: ", current_hp)
-	
-	# *** Core Counter-Attack Logic ***
-	# Set the attacker as the new aggro target if they are valid
-	if attacker != null and is_instance_valid(attacker) and attacker.has_method("take_damage"):
-		aggro_target = attacker
-		print("FrUnits sets new aggro target: ", attacker.name)
+func _stop_moving() -> void:
+	_has_target = false
+	velocity = Vector3.ZERO
+	move_and_slide()
+	print("[Move] _stop_moving, final spot =", global_position)
 
-	if current_hp <= 0:
-		die()
 
-func die():
-	print("FrUnits is dead!")
-	# ... (Death logic) ...
-	queue_free()
+func _on_timer_timeout() -> void:
+	if $"../HoUnits".global_position.distance_to(global_position) <= 0.5:
+		$AnimationPlayer.play("Swordstab")
+		$"../HoUnits".hp -= 1
+	else:
+		$AnimationPlayer.play("RESET")
+	pass # Replace with function body.

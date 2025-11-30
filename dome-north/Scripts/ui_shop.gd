@@ -34,7 +34,6 @@ func _on_i_am_ready_pressed() -> void:
 	confirmation.hide()
 	emit_signal("ready_pressed")
 
-
 func _on_unit_shop_unit_created() -> void:
 	emit_signal("unit_created")
 

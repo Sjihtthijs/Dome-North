@@ -1,7 +1,7 @@
 extends Control
 
-const NEW_GAME = preload("res://StartScreen.tscn")
-const UI = preload("res://UI.tscn")
+const START_SCREEN = preload("res://Scenes/UI/StartScreen.tscn")
+const UI = preload("res://Scenes/UI/UI.tscn")
 var village_health : float = 100.0
 
 @onready var main_menu : Control = $UI/MainMenu
@@ -37,7 +37,6 @@ func _on_main_menu_new_game_pressed() -> void:
 func _on_main_menu_quit_pressed() -> void:
 	get_tree().quit()
 
-#replace with daynight cycle trigger
 func shop_scene() -> void:
 	if shop.is_visible_in_tree():
 		pass

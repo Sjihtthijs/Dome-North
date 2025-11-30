@@ -1,0 +1,39 @@
+[gd_scene load_steps=9 format=3 uid="uid://du6448im1nx3o"]
+
+[ext_resource type="PackedScene" uid="uid://by88d32udbmay" path="res://Scenes/BadNorthScene/Components/fr_units.tscn" id="1_mi6vi"]
+[ext_resource type="Script" uid="uid://i5rjx7mhtdp4" path="res://Scripts/fr_units.gd" id="2_dllb7"]
+[ext_resource type="PackedScene" uid="uid://di4aep3iyfi2o" path="res://Scenes/BadNorthScene/Components/Boat.tscn" id="3_oq8bq"]
+[ext_resource type="PackedScene" uid="uid://b1gxqdukr3b5y" path="res://Scenes/BadNorthScene/Components/navigation_region_3d.tscn" id="4_mn32l"]
+[ext_resource type="PackedScene" uid="uid://cmucxboiwvch3" path="res://Scenes/BadNorthScene/Components/ho_units.tscn" id="6_8kkkt"]
+[ext_resource type="Script" uid="uid://b02hlmhvk0ltx" path="res://Scripts/ho_units.gd" id="7_cgjqk"]
+[ext_resource type="Script" uid="uid://dx2wkceya0k7s" path="res://Scripts/camera_3d.gd" id="9_vp0jv"]
+
+[sub_resource type="GDScript" id="GDScript_m547k"]
+script/source = "extends Node3D
+"
+
+[node name="BnMain" type="Node3D"]
+script = SubResource("GDScript_m547k")
+
+[node name="FrUnits" parent="." instance=ExtResource("1_mi6vi")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 1.5, 1.3948, 2.5)
+script = ExtResource("2_dllb7")
+
+[node name="Boat" parent="." instance=ExtResource("3_oq8bq")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+visible = false
+
+[node name="NavigationRegion3D" parent="." instance=ExtResource("4_mn32l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.016047, 0, 0)
+
+[node name="HoUnits" parent="." instance=ExtResource("6_8kkkt")]
+script = ExtResource("7_cgjqk")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, 0, 5, 6)
+script = ExtResource("9_vp0jv")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.74939, 1.22198)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Camera3D"]
