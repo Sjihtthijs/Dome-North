@@ -4,8 +4,8 @@ extends Control
 
 var unit = 0
 
-const UI_THEME = preload("res://Resources/UITheme.tres")
-
+const UI_THEME = preload("res://UI/Resources/UITheme.tres")
+var UnitManager = preload("res://UI/unit_manager.gd").new()
 func _on_shop_unit_created() -> void:
 	create_unit_buttons(UnitManager.units)
 

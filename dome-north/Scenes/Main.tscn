@@ -1,6 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://ywj653nghlk4"]
 
-[ext_resource type="Script" path="res://Scripts/Switcher.gd" id="1_r150o"]
+[ext_resource type="PackedScene" uid="uid://bfb3pnfhgotbr" path="res://UI/UI.tscn" id="2_idj7w"]
 
 [node name="Main" type="Node2D"]
-script = ExtResource("1_r150o")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" parent="CanvasLayer" instance=ExtResource("2_idj7w")]

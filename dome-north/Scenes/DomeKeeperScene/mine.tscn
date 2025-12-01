@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://mh52peoi08k7" path="res://Scenes/DomeKeeperScene/Breakable Tile Objects/breakable_mine_tiles.tscn" id="1_uwh6h"]
 [ext_resource type="PackedScene" uid="uid://e0dkhcr0o5cj" path="res://Scenes/DomeKeeperScene/Breakable Tile Objects/resource_b_block.tscn" id="2_f2xv3"]
 [ext_resource type="Texture2D" uid="uid://bpmmjf6mhl7in" path="res://Assets/Sprites/Mine Limit Walls.png" id="2_jqbop"]
-[ext_resource type="PackedScene" path="res://Scenes/DomeKeeperScene/Breakable Tile Objects/resource_c_block.tscn" id="3_uwh6h"]
+[ext_resource type="PackedScene" uid="uid://clpuc0usb5cxx" path="res://Scenes/DomeKeeperScene/Breakable Tile Objects/resource_c_block.tscn" id="3_uwh6h"]
 [ext_resource type="PackedScene" uid="uid://dvspob7xdp68v" path="res://Scenes/DomeKeeperScene/player_2d.tscn" id="6_6tou7"]
 [ext_resource type="Script" uid="uid://bbd04gyy2eyxe" path="res://Scenes/DomeKeeperScene/generated_grid.gd" id="8_umdy5"]
 [ext_resource type="PackedScene" uid="uid://yv5mr4jcg6jn" path="res://Scenes/DomeKeeperScene/resource_a_gold_object.tscn" id="12_hm3e8"]

@@ -1,9 +1,18 @@
 extends Control
 
-const NEW_GAME = preload("res://StartScreen.tscn")
-const UI = preload("res://UI.tscn")
-var village_health : float = 100.0
+@export var scenes: Array[PackedScene] = [
+	preload("res://Scenes/BadNorthScene/BNMain.tscn"),
+	preload("res://Scenes/DomeKeeperScene/mine.tscn"),
+	preload("res://UI/Shop.tscn")
+]
 
+var current_index := 0
+var current_instance: Node
+
+const NEW_GAME = preload("res://UI/StartScreen.tscn")
+const UI = preload("res://UI/UI.tscn")
+var village_health : float = 100.0
+var UnitManager = preload("res://UI/unit_manager.gd").new()
 @onready var main_menu : Control = $UI/MainMenu
 @onready var menu_button : Button = $UI/VBoxContainer/TopBar/HBoxContainer/MenuButton
 @onready var bad_north: Control = $UI/VBoxContainer/BadNorth
@@ -16,6 +25,7 @@ var village_health : float = 100.0
 @onready var health_label: Label = $UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/Panel/HealthLabel
 
 func _ready() -> void:
+	load_scene(0)
 	animation_player.play("day_to_night")
 	if village_health == 100:
 		village_max_health_bar.size_flags_stretch_ratio = 0.0
@@ -39,6 +49,9 @@ func _on_main_menu_quit_pressed() -> void:
 
 #replace with daynight cycle trigger
 func shop_scene() -> void:
+	if current_instance:
+		current_instance.queue_free()
+
 	if shop.is_visible_in_tree():
 		pass
 	shop.show()
@@ -48,23 +61,36 @@ func shop_scene() -> void:
 func _on_shop_ready_pressed() -> void:
 	shop.hide()
 	bad_north.show()
+	load_scene(1)
 	dome_keeper.hide()
 	animation_player.play("night_to_day")
+	
 
 func dome_keeper_scene() -> void:
 	shop.hide()
 	bad_north.hide()
 	dome_keeper.show()
+	load_scene(0)
 
 func _on_button_pressed(damage):
 	village_health = village_health - damage
 	village_max_health_bar.size_flags_stretch_ratio = 100.0 - village_health
 	village_health_bar.size_flags_stretch_ratio = village_health
 	health_label.text = "%d/100" % int(village_health)
+	
+func load_scene(index: int):
+	if current_instance:
+		current_instance.queue_free()
+
+	current_index = index
+	current_instance = scenes[current_index].instantiate()
+	add_child(current_instance)
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "day_to_night":
 		shop_scene()
+		
+
 	if anim_name == "night_to_day":
 		dome_keeper_scene()
 		animation_player.play("day_to_night")
