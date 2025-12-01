@@ -19,7 +19,8 @@ func _process(_delta):
 		print("Poof")
 
 func _on_area_2d_body_entered(body):
-	if body is Player_2D:
+	#Breaks blocks when the player touches it
+	if body is Player_2D and Input.is_anything_pressed():
 		start_mine = Time.get_ticks_msec()
 		mining = true
 		print("Yes!")
