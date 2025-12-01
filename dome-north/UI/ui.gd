@@ -1,7 +1,7 @@
 extends Control
 
-const NEW_GAME = preload("res://StartScreen.tscn")
-const UI = preload("res://UI.tscn")
+const NEW_GAME = preload("res://UI/StartScreen.tscn")
+const UI = preload("res://UI/UI.tscn")
 var village_health : float = 100.0
 
 @onready var main_menu : Control = $UI/MainMenu
