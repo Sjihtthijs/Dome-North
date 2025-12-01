@@ -4,7 +4,7 @@ extends Node2D
 
 @onready var ratio_Gold = 25
 @onready var ratio_Iron = 15
-@onready var ratio_Normal = 78
+@onready var ratio_Normal = 60
 
 # Scenes
 
@@ -19,15 +19,24 @@ func _ready():
 	spawn_blocks(grid)
 
 func generate_grid(width: int, height: int):
+
 	var grid = Array()
 	for x in range(width):
 		var row = []
 		for y in range(height):
+			ratio_Gold = 10
+			ratio_Iron = 5
+			ratio_Normal = 60
 			var xy
 			var rand = randf()
+			if y > 0 and x > 0:
+				if row[y-1] == 0 or grid[x-1][y] == 0:
+					ratio_Gold += 25
+				if row[y-1] == 1 or grid[x-1][y] == 1:
+					ratio_Iron += 27
 			if rand < ratio_Gold/100.0:
 				xy = 0
-			elif rand < ratio_Iron/100.0:
+			elif rand - ratio_Gold/100.0 < ratio_Iron/100.0:
 				xy = 1
 			else:
 				xy = 2

@@ -9,7 +9,7 @@ var start_mine = 0.0
 var mining = false
 
 func _ready():
-	pass
+	$AnimatedSprite2D.play("middle_center_middle")
 
 func _process(_delta):
 	Current_time = Time.get_ticks_msec()

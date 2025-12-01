@@ -4,11 +4,12 @@ var hit_count: int = 0
 const MAX_HITS := 4
 
 var Current_time = 0.0
-var time_to_mine = 3000.0
+var time_to_mine = 1000.0
 var start_mine = 0.0
 var mining = false
 
 func _ready():
+	$AnimatedSprite2D.play("middle_center_middle")
 	pass
 
 func _process(_delta):

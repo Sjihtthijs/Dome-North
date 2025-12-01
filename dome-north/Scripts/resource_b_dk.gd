@@ -10,6 +10,10 @@ var mining = false
 
 @onready var IronObject = preload("res://Scenes/DomeKeeperScene/resource_b_iron_object.tscn")
 
+func _ready():
+	$AnimatedSprite2D.play("middle_center_middle")
+
+
 func _process(_delta):
 	Current_time = Time.get_ticks_msec()
 	if Current_time-start_mine >= time_to_mine and mining:
