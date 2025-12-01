@@ -1,0 +1,225 @@
+[gd_scene load_steps=14 format=3 uid="uid://cmj7xb0je6exd"]
+
+[ext_resource type="PackedScene" uid="uid://cmucxboiwvch3" path="res://Scenes/BadNorthScene/Components/ho_units.tscn" id="1_87432"]
+[ext_resource type="PackedScene" uid="uid://dirw5l86tl3cg" path="res://Scenes/BadNorthScene/Components/Landscapes/Easy landscape.tscn" id="2_jrrbk"]
+[ext_resource type="PackedScene" uid="uid://by88d32udbmay" path="res://Scenes/BadNorthScene/Components/fr_units.tscn" id="2_ox4fa"]
+[ext_resource type="Script" uid="uid://c81gb3mpd2ca6" path="res://Scenes/BadNorthScene/Components/fr_units.gd" id="2_ypux3"]
+[ext_resource type="PackedScene" uid="uid://dusi3kxa7f5da" path="res://Scenes/BadNorthScene/Components/TileTypes/tile_display.tscn" id="4_87432"]
+[ext_resource type="PackedScene" uid="uid://di4aep3iyfi2o" path="res://Scenes/BadNorthScene/Components/Boat.tscn" id="7_gt7jy"]
+[ext_resource type="Script" uid="uid://dh68m1dcrpp6d" path="res://Scenes/BadNorthScene/Components/ho_units.gd" id="7_jrrbk"]
+[ext_resource type="Script" uid="uid://cukwo7vrdc1r5" path="res://Scripts/world_controller.gd" id="8_ypux3"]
+[ext_resource type="Script" uid="uid://dx2wkceya0k7s" path="res://Scripts/camera_3d.gd" id="9_jrrbk"]
+
+[sub_resource type="GDScript" id="GDScript_m547k"]
+script/source = "extends Node3D
+"
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_gt7jy"]
+vertices = PackedVector3Array(-0.25, 1.25, -2.5, -0.5, 1.25, -3.5, -1.5, 1.25, -3.5, -1.5, 1.25, -1.75, 2.25, 1.25, -2.5, -1.5, 1.25, 1.75, -1.5, 1.25, 3.5, -0.75, 1.25, 3.5, -0.5, 1.25, 4.5, 1.5, 1.25, 4.5, 4.5, 1.25, -3.5, 2.5, 1.25, -3.5, 4.5, 1.25, -0.75, 1.75, 1.25, 3.5, 4.5, 1.25, 3.5, 4.5, 1.25, 2.75, -2.5, 1.25, -1.5, -2.5, 1.25, 1.5, 5.5, 1.25, 2.5, 5.5, 1.25, -0.5)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 4), PackedInt32Array(7, 6, 5), PackedInt32Array(9, 8, 7), PackedInt32Array(11, 10, 4), PackedInt32Array(4, 10, 12), PackedInt32Array(9, 7, 13), PackedInt32Array(13, 7, 5), PackedInt32Array(15, 14, 13), PackedInt32Array(15, 13, 12), PackedInt32Array(12, 13, 4), PackedInt32Array(4, 13, 5), PackedInt32Array(4, 5, 3), PackedInt32Array(16, 3, 17), PackedInt32Array(17, 3, 5), PackedInt32Array(18, 15, 19), PackedInt32Array(19, 15, 12)]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o1b5p"]
+albedo_color = Color(0.188235, 0.615686, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ypux3"]
+material = SubResource("StandardMaterial3D_o1b5p")
+
+[node name="BnMain" type="Node3D"]
+script = SubResource("GDScript_m547k")
+
+[node name="Boat" parent="." instance=ExtResource("7_gt7jy")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_gt7jy")
+navigation_layers = 3
+
+[node name="EasyLandscape" parent="NavigationRegion3D" instance=ExtResource("2_jrrbk")]
+
+[node name="WorldController" type="Node3D" parent="."]
+script = ExtResource("8_ypux3")
+
+[node name="ItemContainer" type="Node3D" parent="WorldController"]
+
+[node name="MapTimer" type="Timer" parent="WorldController"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1000, 0, 0, 0, 1, 0, 0, 0, 1000, -0.172382, 0.628011, -0.034101)
+mesh = SubResource("PlaneMesh_ypux3")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, 0, 5, 6)
+script = ExtResource("9_jrrbk")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.74939, 1.22198)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Camera3D"]
+
+[node name="HoUnits" parent="." instance=ExtResource("1_87432")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 1.49492, 0.988392, 0.604692)
+script = ExtResource("7_jrrbk")
+move_speed = 1.0
+fall_speed = 1.0
+
+[node name="Sword" parent="HoUnits" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.592325, 0.7125)
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="HoUnits"]
+
+[node name="Timer" type="Timer" parent="HoUnits"]
+autostart = true
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.660708, 0.757231, -0.546468)
+
+[node name="Player" parent="." instance=ExtResource("2_ox4fa")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 1.49, 0.988, 2.521)
+script = ExtResource("2_ypux3")
+
+[node name="Body" parent="Player" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0782843, 0)
+
+[node name="Shield" parent="Player" index="4"]
+transform = Transform3D(0.869333, 0, 0.232937, 0, 0.99, 0, -0.232937, 0, 0.869333, 0.740744, 0.134978, -0.299493)
+
+[node name="Timer" type="Timer" parent="Player"]
+autostart = true
+
+[node name="Virtual Nodes" type="Node3D" parent="."]
+editor_description = "For displaying where a unit can move, when the player wants to command them around"
+visible = false
+
+[node name="TileDisplay2" parent="Virtual Nodes" instance=ExtResource("4_87432")]
+transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, 1.5, 0.75, 1.5)
+skeleton = NodePath("../TileDisplay/Transparency")
+
+[node name="TileDisplay" parent="Virtual Nodes" instance=ExtResource("4_87432")]
+transform = Transform3D(0.8, 0, 0, 0, 0.061, 0, 0, 0, 0.8, 1.5, 0.75, 0.5)
+
+[node name="TileDisplay20" parent="Virtual Nodes" instance=ExtResource("4_87432")]
+transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, 2.5, 0.75, 1.5)
+skeleton = NodePath("../TileDisplay/Transparency")
+
+[node name="TileDisplay21" parent="Virtual Nodes" instance=ExtResource("4_87432")]
+transform = Transform3D(0.8, 0, 0, 0, 0.061, 0, 0, 0, 0.8, 2.5, 0.75, 0.5)
+
+[node name="TileDisplay22" parent="Virtual Nodes" instance=ExtResource("4_87432")]
+transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, 2.5, 0.75, -0.5)
+skeleton = NodePath("../TileDisplay/Transparency")
+
+[node name="TileDisplay24" parent="Virtual Nodes" instance=ExtResource("4_87432")]
+transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, 2.5, 0.75, -2.5)
+skeleton = NodePath("../TileDisplay/Transparency")
+
+[node name="TileDisplay23" parent="Virtual Nodes" instance=ExtResource("4_87432")]
+transform = Transform3D(0.8, 0, 0, 0, 0.061, 0, 0, 0, 0.8, 2.5, 0.75, -1.5)
+
+[node name="TileDisplay3" parent="Virtual Nodes" instance=ExtResource("4_87432")]
+transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, 0.5, 0.75, 1.5)
+skeleton = NodePath("../TileDisplay/Transparency")
+
+[node name="TileDisplay4" parent="Virtual Nodes" instance=ExtResource("4_87432")]
+transform = Transform3D(0.8, 0, 0, 0, 0.061, 0, 0, 0, 0.8, 1.5, 0.75, -2.5)
+
+[node name="TileDisplay13" parent="Virtual Nodes" instance=ExtResource("4_87432")]
+transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, 0.5, 0.75, -2.5)
+skeleton = NodePath("../TileDisplay/Transparency")
+
+[node name="TileDisplay17" parent="Virtual Nodes" instance=ExtResource("4_87432")]
+transform = Transform3D(0.8, 0, 0, 0, 0.061, 0, 0, 0, 0.8, 0.5, 0.75, -3.5)
+
+[node name="TileDisplay18" parent="Virtual Nodes" instance=ExtResource("4_87432")]
+transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, -0.5, 0.75, -2.5)
+skeleton = NodePath("../TileDisplay/Transparency")
+
+[node name="TileDisplay34" parent="Virtual Nodes" instance=ExtResource("4_87432")]
+transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, -1.5, 0.75, -2.5)
+skeleton = NodePath("../TileDisplay/Transparency")
+
+[node name="TileDisplay19" parent="Virtual Nodes" instance=ExtResource("4_87432")]
+transform = Transform3D(0.8, 0, 0, 0, 0.061, 0, 0, 0, 0.8, -0.5, 0.75, -3.5)
+
+[node name="TileDisplay14" parent="Virtual Nodes" instance=ExtResource("4_87432")]
+transform = Transform3D(0.8, 0, 0, 0, 0.061, 0, 0, 0, 0.8, -0.5, 1, -1.5)
+
+[node name="TileDisplay15" parent="Virtual Nodes" instance=ExtResource("4_87432")]
+transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, -1.5, 1, -0.5)
+skeleton = NodePath("../TileDisplay/Transparency")
+
+[node name="TileDisplay16" parent="Virtual Nodes" instance=ExtResource("4_87432")]
+transform = Transform3D(0.8, 0, 0, 0, 0.061, 0, 0, 0, 0.8, -1.49521, 1.0023, -1.5)
+
+[node name="TileDisplay9" parent="Virtual Nodes" instance=ExtResource("4_87432")]
+transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, -0.5, 0.75, 1.5)
+skeleton = NodePath("../TileDisplay/Transparency")
+
+[node name="TileDisplay26" parent="Virtual Nodes" instance=ExtResource("4_87432")]
+transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, 0.5, 0.75, 2.5)
+skeleton = NodePath("../TileDisplay/Transparency")
+
+[node name="TileDisplay27" parent="Virtual Nodes" instance=ExtResource("4_87432")]
+transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, -0.5, 0.75, 2.5)
+skeleton = NodePath("../TileDisplay/Transparency")
+
+[node name="TileDisplay28" parent="Virtual Nodes" instance=ExtResource("4_87432")]
+transform = Transform3D(-3.49691e-08, 0, -0.8, 0, 0.06, 0, 0.8, 0, -3.49691e-08, -2.5, 0.75, 0.5)
+skeleton = NodePath("../TileDisplay/Transparency")
+
+[node name="TileDisplay29" parent="Virtual Nodes" instance=ExtResource("4_87432")]
+transform = Transform3D(-3.49691e-08, 0, -0.8, 0, 0.06, 0, 0.8, 0, -3.49691e-08, -2.5, 0.75, -0.5)
+skeleton = NodePath("../TileDisplay/Transparency")
+
+[node name="TileDisplay30" parent="Virtual Nodes" instance=ExtResource("4_87432")]
+transform = Transform3D(-3.49691e-08, 0, -0.8, 0, 0.06, 0, 0.8, 0, -3.49691e-08, -2.5, 0.75, -1.5)
+skeleton = NodePath("../TileDisplay/Transparency")
+
+[node name="TileDisplay31" parent="Virtual Nodes" instance=ExtResource("4_87432")]
+transform = Transform3D(-3.49691e-08, 0, -0.8, 0, 0.06, 0, 0.8, 0, -3.49691e-08, -1.5, 0.75, 2.5)
+skeleton = NodePath("../TileDisplay/Transparency")
+
+[node name="TileDisplay32" parent="Virtual Nodes" instance=ExtResource("4_87432")]
+transform = Transform3D(-3.49691e-08, 0, -0.8, 0, 0.06, 0, 0.8, 0, -3.49691e-08, -2.5, 0.75, 2.5)
+skeleton = NodePath("../TileDisplay/Transparency")
+
+[node name="TileDisplay33" parent="Virtual Nodes" instance=ExtResource("4_87432")]
+transform = Transform3D(-3.49691e-08, 0, -0.8, 0, 0.06, 0, 0.8, 0, -3.49691e-08, -2.5, 0.75, 1.5)
+skeleton = NodePath("../TileDisplay/Transparency")
+
+[node name="TileDisplay10" parent="Virtual Nodes" instance=ExtResource("4_87432")]
+transform = Transform3D(0.8, 0, 0, 0, 0.061, 0, 0, 0, 0.8, -0.5, 0.75, 0.5)
+
+[node name="TileDisplay11" parent="Virtual Nodes" instance=ExtResource("4_87432")]
+transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, -1.5, 1, 1.5)
+skeleton = NodePath("../TileDisplay/Transparency")
+
+[node name="TileDisplay12" parent="Virtual Nodes" instance=ExtResource("4_87432")]
+transform = Transform3D(0.8, 0, 0, 0, 0.061, 0, 0, 0, 0.8, -1.5, 1, 0.5)
+
+[node name="TileDisplay5" parent="Virtual Nodes" instance=ExtResource("4_87432")]
+transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, 1.5, 1, -0.5)
+skeleton = NodePath("../TileDisplay/Transparency")
+
+[node name="TileDisplay6" parent="Virtual Nodes" instance=ExtResource("4_87432")]
+transform = Transform3D(0.8, 0, 0, 0, 0.061, 0, 0, 0, 0.8, 1.5, 1, -1.5)
+
+[node name="TileDisplay7" parent="Virtual Nodes" instance=ExtResource("4_87432")]
+transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, 0.5, 1.5, -0.5)
+skeleton = NodePath("../TileDisplay/Transparency")
+
+[node name="TileDisplay35" parent="Virtual Nodes" instance=ExtResource("4_87432")]
+transform = Transform3D(0.8, 0, 0, 0, 0.0424264, -0.565685, 0, 0.0424264, 0.565685, 0.5, 1.125, 0.45)
+skeleton = NodePath("../TileDisplay/Transparency")
+
+[node name="TileDisplay8" parent="Virtual Nodes" instance=ExtResource("4_87432")]
+transform = Transform3D(0.8, 0, 0, 0, 0.061, 0, 0, 0, 0.8, 0.5, 1, -1.5)
+
+[node name="TileDisplay25" parent="Virtual Nodes" instance=ExtResource("4_87432")]
+transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, 1.5, 0.75, 2.5)
+skeleton = NodePath("../TileDisplay/Transparency")
+
+[connection signal="timeout" from="HoUnits/Timer" to="HoUnits" method="_on_timer_timeout"]
+[connection signal="timeout" from="Player/Timer" to="Player" method="_on_timer_timeout"]
+
+[editable path="HoUnits"]
+[editable path="Player"]

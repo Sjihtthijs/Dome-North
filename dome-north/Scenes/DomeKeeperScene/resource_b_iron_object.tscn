@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://f0pppmafqw72"]
+
+[ext_resource type="Script" uid="uid://bu1m1dudpgea1" path="res://Scripts/resource_a_gold_object.gd" id="1_eea5c"]
+[ext_resource type="Texture2D" uid="uid://bi5s8lpbxfl7w" path="res://Assets/Sprites/Resource A- Gold Object - Prototpe Sprite.png" id="2_6g6nx"]
+[ext_resource type="AudioStream" uid="uid://btndiqytw1lql" path="res://Assets/Sounds/pennypickup.mp3" id="3_khgy1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kqayb"]
+radius = 2.0
+
+[node name="ResourceBIronObject" type="Node2D"]
+script = ExtResource("1_eea5c")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.19209e-07, -1.78814e-07)
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("2_6g6nx")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_kqayb")
+
+[node name="Pennypickup" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_khgy1")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

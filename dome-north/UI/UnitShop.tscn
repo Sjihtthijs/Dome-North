@@ -1,0 +1,213 @@
+[gd_scene load_steps=5 format=3 uid="uid://dl4xhmrqoh6r8"]
+
+[ext_resource type="Theme" uid="uid://be23ll5v6piho" path="res://UI/Resources/UITheme.tres" id="1_3b8j1"]
+[ext_resource type="Script" uid="uid://b1qo84lk17qk" path="res://UI/unit_shop.gd" id="1_jm678"]
+[ext_resource type="Texture2D" uid="uid://cpr1v3b3qewlh" path="res://UI/Assets/Illustration.png" id="2_jm678"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_3b8j1"]
+color = Color(0.564706, 0.454902, 0.360784, 1)
+thickness = 5
+
+[node name="UnitShop" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 7.0
+script = ExtResource("1_jm678")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 7.0
+
+[node name="Panel" type="HBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 8.0
+
+[node name="PanelContainer" type="VBoxContainer" parent="PanelContainer/Panel"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="AddUnit" type="Button" parent="PanelContainer/Panel/PanelContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("1_3b8j1")
+action_mode = 0
+text = "  Add Unit"
+icon = ExtResource("2_jm678")
+alignment = 0
+icon_alignment = 2
+expand_icon = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/Panel/PanelContainer"]
+layout_direction = 3
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_3b8j1")
+follow_focus = true
+draw_focus_border = true
+
+[node name="UnitButtons" type="VBoxContainer" parent="PanelContainer/Panel/PanelContainer/ScrollContainer"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/Panel"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 7.0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/Panel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="HBoxContainer" type="VBoxContainer" parent="PanelContainer/Panel/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_stretch_ratio = 7.0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/Panel/ScrollContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 20
+
+[node name="Damage" type="HBoxContainer" parent="PanelContainer/Panel/ScrollContainer/MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Damage0" type="Button" parent="PanelContainer/Panel/ScrollContainer/MarginContainer/HBoxContainer/MarginContainer/Damage"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = ExtResource("1_3b8j1")
+theme_override_constants/outline_size = 1
+text = "Knife
+Damage +1"
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/Panel/ScrollContainer/MarginContainer/HBoxContainer/MarginContainer/Damage"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_3b8j1")
+
+[node name="Damage1" type="Button" parent="PanelContainer/Panel/ScrollContainer/MarginContainer/HBoxContainer/MarginContainer/Damage"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = ExtResource("1_3b8j1")
+theme_override_constants/outline_size = 1
+text = "Bastard
+ Sword
+Damage + 2"
+
+[node name="HSeparator4" type="HSeparator" parent="PanelContainer/Panel/ScrollContainer/MarginContainer/HBoxContainer/MarginContainer/Damage"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_3b8j1")
+
+[node name="Damage2" type="Button" parent="PanelContainer/Panel/ScrollContainer/MarginContainer/HBoxContainer/MarginContainer/Damage"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = ExtResource("1_3b8j1")
+theme_override_constants/outline_size = 1
+text = "Broad 
+Sword
+Damage +1"
+
+[node name="HSeparator5" type="HSeparator" parent="PanelContainer/Panel/ScrollContainer/MarginContainer/HBoxContainer/MarginContainer/Damage"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_3b8j1")
+
+[node name="Damage3" type="Button" parent="PanelContainer/Panel/ScrollContainer/MarginContainer/HBoxContainer/MarginContainer/Damage"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = ExtResource("1_3b8j1")
+theme_override_constants/outline_size = 1
+text = "Claymore
+Damage +3"
+
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/Panel/ScrollContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 20
+
+[node name="Health" type="HBoxContainer" parent="PanelContainer/Panel/ScrollContainer/MarginContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Health0" type="Button" parent="PanelContainer/Panel/ScrollContainer/MarginContainer/HBoxContainer/MarginContainer2/Health"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = ExtResource("1_3b8j1")
+theme_override_constants/outline_size = 1
+text = "Helmet
+Health +1"
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/Panel/ScrollContainer/MarginContainer/HBoxContainer/MarginContainer2/Health"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_3b8j1")
+
+[node name="Health1" type="Button" parent="PanelContainer/Panel/ScrollContainer/MarginContainer/HBoxContainer/MarginContainer2/Health"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = ExtResource("1_3b8j1")
+theme_override_constants/outline_size = 1
+text = "Chainmail
+Health +4"
+
+[node name="HSeparator4" type="HSeparator" parent="PanelContainer/Panel/ScrollContainer/MarginContainer/HBoxContainer/MarginContainer2/Health"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_3b8j1")
+
+[node name="Health2" type="Button" parent="PanelContainer/Panel/ScrollContainer/MarginContainer/HBoxContainer/MarginContainer2/Health"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = ExtResource("1_3b8j1")
+theme_override_constants/outline_size = 1
+text = "Platemail
+Health +2"
+
+[node name="MarginContainer3" type="MarginContainer" parent="PanelContainer/Panel/ScrollContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 20
+
+[node name="HP" type="HBoxContainer" parent="PanelContainer/Panel/ScrollContainer/MarginContainer/HBoxContainer/MarginContainer3"]
+layout_mode = 2
+
+[node name="HP0" type="Button" parent="PanelContainer/Panel/ScrollContainer/MarginContainer/HBoxContainer/MarginContainer3/HP"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = ExtResource("1_3b8j1")
+theme_override_constants/outline_size = 1
+text = "Mead
+HP +5"
+
+[connection signal="pressed" from="PanelContainer/Panel/PanelContainer/AddUnit" to="." method="_on_add_unit_button_pressed"]
+[connection signal="pressed" from="PanelContainer/Panel/ScrollContainer/MarginContainer/HBoxContainer/MarginContainer3/HP/HP0" to="." method="_on_hp_0_pressed"]

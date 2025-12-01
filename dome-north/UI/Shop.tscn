@@ -1,0 +1,161 @@
+[gd_scene load_steps=9 format=3 uid="uid://cou5pj7414kia"]
+
+[ext_resource type="Script" uid="uid://dsqe8c7qvv7w1" path="res://UI/shop.gd" id="1_c0ofq"]
+[ext_resource type="PackedScene" uid="uid://dl4xhmrqoh6r8" path="res://UI/UnitShop.tscn" id="1_c53l5"]
+[ext_resource type="PackedScene" uid="uid://bopbetk3uwnnf" path="res://UI/VillageShop.tscn" id="2_7ae35"]
+[ext_resource type="Theme" uid="uid://be23ll5v6piho" path="res://UI/Resources/UITheme.tres" id="2_svtxo"]
+[ext_resource type="PackedScene" uid="uid://cug3q2pbu814c" path="res://UI/MineShop.tscn" id="3_f511j"]
+[ext_resource type="Script" uid="uid://dujdsi4gpi7t0" path="res://UI/signal.gd" id="6_6rs1d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ae35"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c0ofq"]
+bg_color = Color(0.862745, 0.780392, 0.709804, 1)
+
+[node name="Shop" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 6.0
+script = ExtResource("1_c0ofq")
+
+[node name="Shop" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7ae35")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Shop"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Shop/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="Village" type="Button" parent="Shop/HBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_svtxo")
+text = "Village"
+
+[node name="Units" type="Button" parent="Shop/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_svtxo")
+text = "Units"
+
+[node name="Mine" type="Button" parent="Shop/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_svtxo")
+text = "Mine"
+
+[node name="VillageShop" parent="Shop/HBoxContainer" instance=ExtResource("2_7ae35")]
+visible = false
+layout_mode = 2
+
+[node name="UnitShop" parent="Shop/HBoxContainer" instance=ExtResource("1_c53l5")]
+layout_mode = 2
+
+[node name="MineShop" parent="Shop/HBoxContainer" instance=ExtResource("3_f511j")]
+visible = false
+layout_mode = 2
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -125.0
+offset_right = -88.0
+offset_bottom = -72.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("6_6rs1d")
+
+[node name="Ready" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -79.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Ready"
+
+[node name="Confirmation" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Confirmation"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.5
+offset_top = -105.0
+offset_right = 76.5
+offset_bottom = 105.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainMenu" type="PanelContainer" parent="Confirmation/CenterContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_c0ofq")
+
+[node name="MarginContainer" type="MarginContainer" parent="Confirmation/CenterContainer/MainMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Confirmation/CenterContainer/MainMenu/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Confirmation/CenterContainer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Ready for the night?"
+horizontal_alignment = 1
+
+[node name="IAmReady" type="Button" parent="Confirmation/CenterContainer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "I am ready"
+
+[node name="GoBack" type="Button" parent="Confirmation/CenterContainer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Go back"
+
+[connection signal="pressed" from="Shop/HBoxContainer/VBoxContainer/Village" to="." method="_on_village_pressed"]
+[connection signal="pressed" from="Shop/HBoxContainer/VBoxContainer/Units" to="." method="_on_units_pressed"]
+[connection signal="pressed" from="Shop/HBoxContainer/VBoxContainer/Mine" to="." method="_on_mine_pressed"]
+[connection signal="unit_created" from="Shop/HBoxContainer/UnitShop" to="." method="_on_unit_shop_unit_created"]
+[connection signal="unit_updated" from="Shop/HBoxContainer/UnitShop" to="." method="_on_unit_shop_unit_updated"]
+[connection signal="pressed" from="Control/Ready" to="." method="_on_ready_pressed"]
+[connection signal="pressed" from="Confirmation/CenterContainer/MainMenu/MarginContainer/VBoxContainer/IAmReady" to="." method="_on_i_am_ready_pressed"]
+[connection signal="pressed" from="Confirmation/CenterContainer/MainMenu/MarginContainer/VBoxContainer/GoBack" to="." method="_on_go_back_pressed"]

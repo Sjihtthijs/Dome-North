@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://bw0y5b2x4kadb"]
+
+[ext_resource type="Script" uid="uid://cmgn0bawoi34q" path="res://UI/start_screen.gd" id="1_d4clo"]
+[ext_resource type="Theme" uid="uid://be23ll5v6piho" path="res://UI/Resources/UITheme.tres" id="2_mqr7l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t2adt"]
+bg_color = Color(0.862745, 0.780392, 0.709804, 1)
+
+[node name="StartScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d4clo")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_mqr7l")
+theme_override_styles/panel = SubResource("StyleBoxFlat_t2adt")
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Start Screen"
+
+[node name="Start Game" type="Button" parent="Panel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_mqr7l")
+theme_override_font_sizes/font_size = 32
+text = "Start game
+"
+
+[connection signal="pressed" from="Panel/CenterContainer/VBoxContainer/Start Game" to="." method="_on_start_game_pressed"]
