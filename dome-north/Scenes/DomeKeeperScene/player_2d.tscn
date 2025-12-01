@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bjfe14rmvfwnd" path="res://Assets/Sprites/Player - Miner.png" id="2_dnkg7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dnkg7"]
-radius = 4.0
+radius = 6.0
 height = 15.0
 
 [node name="player_2d" type="CharacterBody2D"]
