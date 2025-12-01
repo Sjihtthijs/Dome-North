@@ -27,7 +27,7 @@ func generate_grid(width: int, height: int):
 			var rand = randf()
 			if rand < ratio_Gold/100.0:
 				xy = 0
-			elif rand < ratio_Iron/100.0:
+			elif rand - ratio_Gold/100.0 < ratio_Iron/100.0:
 				xy = 1
 			else:
 				xy = 2
