@@ -26,12 +26,12 @@ func generate_grid(width: int, height: int):
 		for y in range(height):
 			ratio_Gold = 10
 			ratio_Iron = 5
-			ratio_Normal = 60
+			ratio_Normal = 85
 			var xy
 			var rand = randf()
 			if y > 0 and x > 0:
 				if row[y-1] == 0 or grid[x-1][y] == 0:
-					ratio_Gold += 25
+					ratio_Gold += 23
 				if row[y-1] == 1 or grid[x-1][y] == 1:
 					ratio_Iron += 27
 			if rand < ratio_Gold/100.0:
