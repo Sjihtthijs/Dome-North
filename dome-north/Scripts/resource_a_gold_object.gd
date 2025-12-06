@@ -7,7 +7,7 @@ func _process(delta):
 	pass
 
 func _on_area_2d_area_entered(area):
-	$Area2D/CollisionShape2D.disabled = true
+	$Area2D/CollisionShape2D.set_deferred("disabled", true)
 	$Pennypickup.play()
 	$Sprite2D.visible = false
 	await get_tree().create_timer($Pennypickup.stream.get_length()).timeout

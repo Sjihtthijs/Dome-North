@@ -3,7 +3,7 @@ extends Node
 @export var scenes: Array[PackedScene] = [
 	preload("res://Scenes/BadNorthScene/BNMain.tscn"),
 	preload("res://Scenes/DomeKeeperScene/mine.tscn"),
-	preload("res://UI/Shop.tscn")
+	preload("res://Scenes/UI/Shop.tscn")
 ]
 @export var switch_interval := 3.0
 
@@ -34,7 +34,6 @@ func load_scene(index: int):
 	else:
 		waiting_for_ready = false
 
-
 func _on_timer_timeout():
 	if waiting_for_ready:
 		return
@@ -44,7 +43,6 @@ func switch_to_next():
 	var next_index = (current_index + 1) % scenes.size()
 	load_scene(next_index)
 	waiting_for_ready = scenes[current_index].resource_path.ends_with("Shop.tscn")
-
 
 func _on_ready_from_C():
 	waiting_for_ready = false

@@ -1,9 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://ywj653nghlk4"]
+[gd_scene load_steps=4 format=3 uid="uid://ywj653nghlk4"]
 
-[ext_resource type="PackedScene" uid="uid://bfb3pnfhgotbr" path="res://UI/UI.tscn" id="2_idj7w"]
+[ext_resource type="Script" uid="uid://cft0u5tsfeh2c" path="res://Scripts/Main.gd" id="1_idj7w"]
+[ext_resource type="PackedScene" uid="uid://bfb3pnfhgotbr" path="res://Scenes/UI/UI.tscn" id="2_idj7w"]
+[ext_resource type="PackedScene" uid="uid://bw0y5b2x4kadb" path="res://Scenes/UI/StartScreen.tscn" id="3_kln2b"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_idj7w")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Control" parent="CanvasLayer" instance=ExtResource("2_idj7w")]
+[node name="UI" parent="CanvasLayer" instance=ExtResource("2_idj7w")]
+visible = false
+
+[node name="StartScreen" parent="CanvasLayer" instance=ExtResource("3_kln2b")]
+
+[node name="SceneSwitchTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="all_hostile_units_defeated" from="CanvasLayer/UI" to="." method="_on_all_hostile_units_defeated"]
+[connection signal="shop_ready" from="CanvasLayer/UI" to="." method="_shop_ready"]
+[connection signal="game_started" from="CanvasLayer/StartScreen" to="." method="_on_start_screen_game_started"]
+[connection signal="game_started" from="CanvasLayer/StartScreen" to="." method="_on_game_started"]
+[connection signal="timeout" from="SceneSwitchTimer" to="." method="_on_scene_switch_timer_timeout"]

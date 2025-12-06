@@ -1,6 +1,10 @@
 extends Control
 
-const NEW_GAME = preload("res://Scenes/UI/UI.tscn")
+@onready var ui: Control = $"../UI"
+@onready var start_screen: Control = $"."
+signal game_started
 
 func _on_start_game_pressed() -> void:
-	get_tree().change_scene_to_packed(NEW_GAME)
+	ui.show()
+	start_screen.hide()
+	emit_signal("game_started")

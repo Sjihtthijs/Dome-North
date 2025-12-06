@@ -6,6 +6,9 @@ var unit = 0
 
 const UI_THEME = preload("res://Assets/Resources/UITheme.tres")
 
+func _ready() -> void:
+	create_unit_buttons(UnitManager.units)
+	
 func _on_shop_unit_created() -> void:
 	create_unit_buttons(UnitManager.units)
 
@@ -18,9 +21,7 @@ func create_unit_buttons(units: Array[Unit]):
 		var button := Button.new()
 		
 		button.name = "ButtonUnit" + str(i)
-		button.text = "Unit %d 
-		HP: %d/%d
-		DMG: %d" % [i + 1, unit.health, unit.max_health, unit.damage]
+		button.text = "Unit %d\nHP: %d/%d\nDMG: %d" % [i + 1, unit.health, unit.max_health, unit.damage]
 		button.icon_alignment = 1
 		button.expand_icon = true
 		button.toggle_mode = true

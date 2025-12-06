@@ -67,4 +67,4 @@ position = Vector2(-135, 41)
 script = ExtResource("8_umdy5")
 
 [node name="ResourceAGoldObject" parent="." instance=ExtResource("12_hm3e8")]
-position = Vector2(-6, -5)
+position = Vector2(-8, -8)

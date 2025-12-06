@@ -210,4 +210,11 @@ text = "Mead
 HP +5"
 
 [connection signal="pressed" from="PanelContainer/Panel/PanelContainer/AddUnit" to="." method="_on_add_unit_button_pressed"]
+[connection signal="pressed" from="PanelContainer/Panel/ScrollContainer/MarginContainer/HBoxContainer/MarginContainer/Damage/Damage0" to="." method="_on_upgrade_pressed" binds= [0, 0, 1, 1]]
+[connection signal="pressed" from="PanelContainer/Panel/ScrollContainer/MarginContainer/HBoxContainer/MarginContainer/Damage/Damage1" to="." method="_on_upgrade_pressed" binds= [0, 0, 2, 2]]
+[connection signal="pressed" from="PanelContainer/Panel/ScrollContainer/MarginContainer/HBoxContainer/MarginContainer/Damage/Damage2" to="." method="_on_upgrade_pressed" binds= [0, 0, 3, 1]]
+[connection signal="pressed" from="PanelContainer/Panel/ScrollContainer/MarginContainer/HBoxContainer/MarginContainer/Damage/Damage3" to="." method="_on_upgrade_pressed" binds= [0, 0, 4, 3]]
+[connection signal="pressed" from="PanelContainer/Panel/ScrollContainer/MarginContainer/HBoxContainer/MarginContainer2/Health/Health0" to="." method="_on_upgrade_pressed" binds= [1, 1, 0, 0]]
+[connection signal="pressed" from="PanelContainer/Panel/ScrollContainer/MarginContainer/HBoxContainer/MarginContainer2/Health/Health1" to="." method="_on_upgrade_pressed" binds= [2, 4, 0, 0]]
+[connection signal="pressed" from="PanelContainer/Panel/ScrollContainer/MarginContainer/HBoxContainer/MarginContainer2/Health/Health2" to="." method="_on_upgrade_pressed" binds= [3, 2, 0, 0]]
 [connection signal="pressed" from="PanelContainer/Panel/ScrollContainer/MarginContainer/HBoxContainer/MarginContainer3/HP/HP0" to="." method="_on_hp_0_pressed"]

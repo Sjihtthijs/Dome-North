@@ -38,7 +38,7 @@ bg_color = Color(0.0156863, 0.0156863, 0.152941, 1)
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Day2:size_flags_stretch_ratio")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -50,7 +50,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath("UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Day:size_flags_stretch_ratio")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -62,7 +62,7 @@ tracks/1/keys = {
 }
 tracks/2/type = "value"
 tracks/2/imported = false
-tracks/2/enabled = true
+tracks/2/enabled = false
 tracks/2/path = NodePath("UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Night:size_flags_stretch_ratio")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
@@ -74,7 +74,7 @@ tracks/2/keys = {
 }
 tracks/3/type = "value"
 tracks/3/imported = false
-tracks/3/enabled = true
+tracks/3/enabled = false
 tracks/3/path = NodePath("UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Night2:size_flags_stretch_ratio")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
@@ -87,7 +87,6 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_foiwe"]
 resource_name = "day_night_cycle"
-length = 12.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -95,10 +94,10 @@ tracks/0/path = NodePath("UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 12),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [6.0, 0.0]
+"values": [1.0, 0.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -107,10 +106,10 @@ tracks/1/path = NodePath("UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 12),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [4.0, 4.0]
+"values": [1.0, 1.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -119,10 +118,10 @@ tracks/2/path = NodePath("UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 12),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 6.0]
+"values": [0.0, 1.0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -139,7 +138,6 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_3ujc7"]
 resource_name = "night_to_day"
-length = 8.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -147,10 +145,10 @@ tracks/0/path = NodePath("UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 8),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [4.0, 0.0]
+"values": [1.0, 0.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -159,10 +157,10 @@ tracks/1/path = NodePath("UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 8),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 4.0]
+"values": [0.0, 1.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -171,10 +169,10 @@ tracks/2/path = NodePath("UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 8),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [6.0, 6.0]
+"values": [1.0, 1.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5xurb"]
@@ -184,13 +182,14 @@ _data = {
 &"night_to_day": SubResource("Animation_3ujc7")
 }
 
-[node name="Control" type="Control"]
+[node name="UI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_0mc3e")
 
 [node name="UI" type="PanelContainer" parent="."]
@@ -200,10 +199,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_wusub")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 0
 
 [node name="TopBar" type="Panel" parent="UI/VBoxContainer"]
@@ -269,7 +270,7 @@ size_flags_horizontal = 8
 text = "100/100"
 horizontal_alignment = 2
 
-[node name="Button" type="Button" parent="UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/Panel"]
+[node name="VillageDamage" type="Button" parent="UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/Panel"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "1 Damage"
@@ -281,14 +282,12 @@ theme_override_constants/separation = 0
 [node name="Day" type="Panel" parent="UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 6.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_i1vam")
 
 [node name="Night" type="Panel" parent="UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 4.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_q77pa")
 
 [node name="Day2" type="Panel" parent="UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
@@ -327,6 +326,17 @@ item_1/selectable = false
 visible = false
 layout_mode = 2
 
+[node name="Button" type="Button" parent="UI/VBoxContainer/BadNorth"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -74.0
+offset_right = 74.0
+offset_bottom = 31.0
+grow_horizontal = 2
+text = "All Units Defeated"
+
 [node name="Shop" parent="UI/VBoxContainer" instance=ExtResource("6_27c8x")]
 visible = false
 layout_mode = 2
@@ -335,9 +345,11 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 6.0
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_2n5f6")
 
 [node name="MainMenu" parent="UI" instance=ExtResource("7_2n5f6")]
+process_mode = 3
 visible = false
 layout_mode = 2
 
@@ -345,9 +357,10 @@ layout_mode = 2
 libraries = {
 &"": SubResource("AnimationLibrary_5xurb")
 }
-speed_scale = 4.0
 
 [connection signal="pressed" from="UI/VBoxContainer/TopBar/HBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/Panel/VillageDamage" to="." method="_on_village_damage" binds= [1]]
+[connection signal="pressed" from="UI/VBoxContainer/BadNorth/Button" to="." method="_all_hostile_units_defeated"]
 [connection signal="ready_pressed" from="UI/VBoxContainer/Shop" to="." method="_on_shop_ready_pressed"]
 [connection signal="unit_created" from="UI/VBoxContainer/Shop" to="UI/VBoxContainer/BadNorth" method="_on_shop_unit_created"]
 [connection signal="unit_updated" from="UI/VBoxContainer/Shop" to="UI/VBoxContainer/BadNorth" method="_on_shop_unit_updated"]

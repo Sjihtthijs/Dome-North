@@ -3,8 +3,8 @@ extends Node
 signal gained_gold(int)
 signal gained_iron(int)
 
-var gold : int
-var iron : int
+var gold : int = 10
+var iron : int = 10
 
 func gain_gold(gold_gained:int):
 	gold += gold_gained
