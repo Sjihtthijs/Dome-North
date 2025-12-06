@@ -125,7 +125,7 @@ script = ExtResource("1_8p7oe")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_rcnk5")
-animation = &"bottom_side_middle"
+animation = &"bottom_corner_left"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

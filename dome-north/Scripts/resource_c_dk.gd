@@ -9,16 +9,18 @@ var start_mine = 0.0
 var mining = false
 
 func _ready():
-	pass 
+	$AnimatedSprite2D.play("middle_center_middle")
 
-func _process(delta):
+func _process(_delta):
 	Current_time = Time.get_ticks_msec()
 	if Current_time-start_mine >= time_to_mine and mining:
 		queue_free()
+		print("Poof")
 
 func _on_area_2d_body_entered(body):
 	if body is Player_2D:
 		start_mine = Time.get_ticks_msec()
+		mining = true
 		print("Yes!")
 		mining = true
 		if Current_time - start_mine >= time_to_mine:
