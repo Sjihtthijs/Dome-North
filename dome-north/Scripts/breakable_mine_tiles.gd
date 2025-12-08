@@ -16,6 +16,8 @@ func _on_area_2d_body_entered(body):
 	if body is Player_2D:
 		hit_count += 1
 		print("Boing")
+		$Stone4.play()
+		await get_tree().create_timer($Stone4.stream.get_length()).timeout
 		if hit_count >= MAX_HITS:
 			queue_free()
 
