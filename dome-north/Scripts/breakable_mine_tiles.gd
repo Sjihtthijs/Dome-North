@@ -14,10 +14,16 @@ func _ready():
 func _on_area_2d_body_entered(body):
 	#Breaks blocks when the player collided with it four times
 	if body is Player_2D:
-		hit_count += 1
-		print("Boing")
 		$Stone4.play()
 		await get_tree().create_timer($Stone4.stream.get_length()).timeout
+		hit_count += 1
+		print("Boing")
+		if hit_count == 1:
+			$"AnimatedSprite2D - Breaklines".play("hit_1")
+		if hit_count == 2:
+			$"AnimatedSprite2D - Breaklines".play("hit_2")
+		if hit_count == 3:
+			$"AnimatedSprite2D - Breaklines".play("hit_3")
 		if hit_count >= MAX_HITS:
 			queue_free()
 

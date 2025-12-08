@@ -1,8 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://mh52peoi08k7"]
+[gd_scene load_steps=20 format=3 uid="uid://mh52peoi08k7"]
 
 [ext_resource type="Script" uid="uid://bvabepqm1jjen" path="res://Scripts/breakable_mine_tiles.gd" id="1_8p7oe"]
 [ext_resource type="Texture2D" uid="uid://b5a75r81h0suu" path="res://Assets/Sprites/Mineable Walls.png" id="1_vok44"]
+[ext_resource type="Texture2D" uid="uid://n5rvl6pcginv" path="res://Assets/Sprites/Break Overlay 1-3.png" id="3_1cxne"]
 [ext_resource type="AudioStream" uid="uid://b0jqydqhvnf8f" path="res://Assets/Sounds/stone4.wav" id="3_3gdwl"]
+[ext_resource type="Texture2D" uid="uid://viua4qx357o1" path="res://Assets/Sprites/Break Overlay 2-3.png" id="4_iybfx"]
+[ext_resource type="Texture2D" uid="uid://dj7gecscbavyb" path="res://Assets/Sprites/Break Overlay 3-3.png" id="5_5s2pj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jneup"]
 atlas = ExtResource("1_vok44")
@@ -115,6 +118,38 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_dhebd"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"hit_0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_1cxne")
+}],
+"loop": true,
+"name": &"hit_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_iybfx")
+}],
+"loop": true,
+"name": &"hit_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_5s2pj")
+}],
+"loop": true,
+"name": &"hit_3",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fmarl"]
 size = Vector2(16, 16)
 
@@ -126,7 +161,11 @@ script = ExtResource("1_8p7oe")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_rcnk5")
-animation = &"bottom_corner_left"
+animation = &"bottom_corner_right"
+
+[node name="AnimatedSprite2D - Breaklines" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_dhebd")
+animation = &"hit_0"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

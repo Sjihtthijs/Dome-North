@@ -1,7 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://clpuc0usb5cxx"]
+[gd_scene load_steps=19 format=3 uid="uid://clpuc0usb5cxx"]
 
 [ext_resource type="Script" uid="uid://c53ivcvlma056" path="res://Scripts/resource_c_dk.gd" id="1_jf7v4"]
 [ext_resource type="Texture2D" uid="uid://bsl3uxiulv01t" path="res://Assets/Sprites/Resource Tile C.png" id="2_ip02x"]
+[ext_resource type="Texture2D" uid="uid://n5rvl6pcginv" path="res://Assets/Sprites/Break Overlay 1-3.png" id="3_i0n0s"]
+[ext_resource type="Texture2D" uid="uid://viua4qx357o1" path="res://Assets/Sprites/Break Overlay 2-3.png" id="4_0405g"]
+[ext_resource type="Texture2D" uid="uid://dj7gecscbavyb" path="res://Assets/Sprites/Break Overlay 3-3.png" id="5_s6a6k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_arnu7"]
 atlas = ExtResource("2_ip02x")
@@ -114,6 +117,38 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_boe1x"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"hit_0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_i0n0s")
+}],
+"loop": true,
+"name": &"hit_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_0405g")
+}],
+"loop": true,
+"name": &"hit_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_s6a6k")
+}],
+"loop": true,
+"name": &"hit_3",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fmarl"]
 size = Vector2(16, 16)
 
@@ -126,6 +161,10 @@ script = ExtResource("1_jf7v4")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_rcnk5")
 animation = &"bottom_corner_left"
+
+[node name="AnimatedSprite2D - Breaklines" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_boe1x")
+animation = &"hit_0"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

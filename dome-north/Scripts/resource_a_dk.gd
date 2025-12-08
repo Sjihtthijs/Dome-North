@@ -14,6 +14,12 @@ func _on_area_2d_body_entered(body):
 	if body is Player_2D:
 		hit_count += 1
 		print("Boing")
+		if hit_count == 1:
+			$"AnimatedSprite2D - Breaklines".play("hit_1")
+		if hit_count == 2:
+			$"AnimatedSprite2D - Breaklines".play("hit_2")
+		if hit_count == 3:
+			$"AnimatedSprite2D - Breaklines".play("hit_3")
 		if hit_count >= MAX_HITS:
 			drop_resource()
 			queue_free()

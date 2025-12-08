@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var game_speed = 5.0
+@export var game_speed = 20.0
 
 var current_index : = 0
 var current_instance: Node
