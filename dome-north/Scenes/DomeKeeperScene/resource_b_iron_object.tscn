@@ -21,3 +21,5 @@ shape = SubResource("CircleShape2D_wwhdw")
 
 [node name="Pennypickup" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_khgy1")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

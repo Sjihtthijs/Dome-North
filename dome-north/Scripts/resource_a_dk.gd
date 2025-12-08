@@ -9,17 +9,13 @@ var mining = false
 func _ready():
 	$AnimatedSprite2D.play("middle_center_middle")
 
-func _process(delta):
-	if hit_count >= MAX_HITS and mining:
-		drop_resource()
-		queue_free()
-
 func _on_area_2d_body_entered(body):
 	#Breaks blocks when the player collided with it four times
 	if body is Player_2D:
 		hit_count += 1
 		print("Boing")
 		if hit_count >= MAX_HITS:
+			drop_resource()
 			queue_free()
 
 func _on_area_2d_body_exited(body):
