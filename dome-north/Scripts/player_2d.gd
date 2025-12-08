@@ -4,8 +4,8 @@ class_name Player_2D
 var speed = 100
 @onready var sprite = $Sprite2D
 
-func _ready():
-	pass
+var knockback: Vector2 = Vector2.ZERO
+var knockback_timer: float = 0.0
 
 func _physics_process(_delta):
 		#checks what direction the player is looking (left/right)
