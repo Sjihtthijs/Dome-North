@@ -1,4 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://by88d32udbmay"]
+[gd_scene load_steps=17 format=3 uid="uid://by88d32udbmay"]
+
+[ext_resource type="Script" uid="uid://i5rjx7mhtdp4" path="res://Scripts/fr_units.gd" id="1_hcpbv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8ll11"]
 albedo_color = Color(0, 0.192157, 0.419608, 1)
@@ -46,7 +48,7 @@ tracks/0/path = NodePath("Sword:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(-0.0333333),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 0.613, 0.712)]
@@ -174,6 +176,7 @@ _data = {
 
 [node name="FrUnits" type="CharacterBody3D"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+script = ExtResource("1_hcpbv")
 
 [node name="Body" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_ia8ni")

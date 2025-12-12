@@ -7,6 +7,7 @@ class_name Player3DClickMove
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var cam: Camera3D = $"../Camera3D"   
 
+var _pending_move: bool = false
 var _has_target: bool = false
 var _target_position: Vector3 = Vector3.ZERO
 
@@ -64,7 +65,7 @@ func _set_navigation_target(world_pos: Vector3) -> void:
 		push_error("[Nav] nav_agent is null")
 		return
 
-	# ★★ 关键：把点击的世界坐标“吸附”到 NavMesh 上
+	
 	var nav_map := nav_agent.get_navigation_map()
 	if nav_map == RID():
 		push_error("[Nav] navigation_map is null，check if NavigationRegion3D exists")
@@ -86,10 +87,16 @@ func _set_navigation_target(world_pos: Vector3) -> void:
 		print("[Nav] ⚠ unable to reach")
 		_has_target = false
 		return
-
+	_pending_move = true
+	
 	_has_target = true
 
 func _physics_process(delta: float) -> void:
+	print("has_target =", _has_target, " pending =", _pending_move, " on_floor =", is_on_floor())
+	if _pending_move:
+		_has_target = true
+		_pending_move = false
+
 	if hp <= 0:
 		queue_free()
 	if nav_agent == null:
@@ -117,16 +124,22 @@ func _physics_process(delta: float) -> void:
 			print("[Move] close to target (distance_to_target <=", stop_distance, ") -> stop moving")
 			_stop_moving()
 			return
-
+		"""
+		if flat_dir.length() > 0.01:
+			var dir := flat_dir.normalized()
+			look_at(global_position + dir, Vector3.UP)
+			velocity = dir * move_speed
+			move_and_slide()
+			
 		#if flat_dir.length() < 0.01:
 			#print("[Move] flat_dir not yet target")
 			#return
 
 		#var dir := flat_dir.normalized()
-		
+		"""
 		var dir := raw_dir.normalized()
 
-		# 旋转朝向移动方向（可选）
+		
 		if dir.length() > 0.0:
 			look_at(global_position + dir, Vector3.UP)
 
