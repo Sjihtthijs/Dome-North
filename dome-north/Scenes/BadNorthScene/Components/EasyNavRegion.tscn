@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://etwn3i8joh8k"]
+
+[ext_resource type="PackedScene" uid="uid://cybkl1pj3fask" path="res://Scenes/BadNorthScene/Components/Landscapes/Easy landscape.tscn" id="1_pvhaw"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_wi2xy"]
+vertices = PackedVector3Array(-0.25, 1, -2.5, -0.5, 1, -3.5, -1.5, 1, -3.5, -1.5, 1, -1.75, 2.25, 1, -2.5, -1.5, 1, 1.75, -1.5, 1, 3.5, -0.75, 1, 3.5, -0.5, 1, 4.5, 1.5, 1, 4.5, 4.5, 1, -3.5, 2.5, 1, -3.5, 4.5, 1, -0.75, 1.75, 1, 3.5, 4.5, 1, 3.5, 4.5, 1, 2.75, -2.5, 1, -1.5, -2.5, 1, 1.5, 5.5, 1, 2.5, 5.5, 1, -0.5)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 4), PackedInt32Array(7, 6, 5), PackedInt32Array(9, 8, 7), PackedInt32Array(11, 10, 4), PackedInt32Array(4, 10, 12), PackedInt32Array(9, 7, 13), PackedInt32Array(13, 7, 5), PackedInt32Array(15, 14, 13), PackedInt32Array(15, 13, 12), PackedInt32Array(12, 13, 4), PackedInt32Array(4, 13, 5), PackedInt32Array(4, 5, 3), PackedInt32Array(16, 3, 17), PackedInt32Array(17, 3, 5), PackedInt32Array(18, 15, 19), PackedInt32Array(19, 15, 12)]
+
+[node name="EasyNavRegion" type="NavigationRegion3D"]
+navigation_mesh = SubResource("NavigationMesh_wi2xy")
+
+[node name="EasyLandscape" parent="." instance=ExtResource("1_pvhaw")]
