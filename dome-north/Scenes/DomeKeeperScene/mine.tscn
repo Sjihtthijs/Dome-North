@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=4 uid="uid://cpcn0fhltkl08"]
 
-[ext_resource type="Script" uid="uid://byl8tu3wanwf2" path="res://Scripts/mine.gd" id="1_j2k6g"]
+[ext_resource type="Script" path="res://Scripts/mine.gd" id="1_j2k6g"]
 [ext_resource type="Texture2D" uid="uid://bpmmjf6mhl7in" path="res://Assets/Sprites/Mine Limit Walls.png" id="2_jqbop"]
 [ext_resource type="PackedScene" uid="uid://dvspob7xdp68v" path="res://Scenes/DomeKeeperScene/player_2d.tscn" id="6_6tou7"]
 [ext_resource type="Script" uid="uid://bbd04gyy2eyxe" path="res://Scenes/DomeKeeperScene/generated_grid.gd" id="8_umdy5"]

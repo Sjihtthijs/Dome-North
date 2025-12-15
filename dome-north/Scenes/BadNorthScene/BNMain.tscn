@@ -1,11 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://cmj7xb0je6exd"]
+[gd_scene load_steps=11 format=3 uid="uid://cmj7xb0je6exd"]
 
 [ext_resource type="PackedScene" uid="uid://cmucxboiwvch3" path="res://Scenes/BadNorthScene/Components/ho_units.tscn" id="1_87432"]
+[ext_resource type="PackedScene" uid="uid://etwn3i8joh8k" path="res://Scenes/BadNorthScene/Components/EasyNavRegion.tscn" id="1_ypux3"]
 [ext_resource type="Script" uid="uid://b02hlmhvk0ltx" path="res://Scripts/ho_units.gd" id="2_osq6u"]
 [ext_resource type="PackedScene" uid="uid://by88d32udbmay" path="res://Scenes/BadNorthScene/Components/fr_units.tscn" id="2_ox4fa"]
 [ext_resource type="PackedScene" uid="uid://cq76wi8ag5svk" path="res://Scenes/BadNorthScene/Components/navigation_region_3d.tscn" id="4_ypux3"]
 [ext_resource type="PackedScene" uid="uid://di4aep3iyfi2o" path="res://Scenes/BadNorthScene/Components/Boat.tscn" id="7_gt7jy"]
+[ext_resource type="Script" uid="uid://bvg3vjxlmcalr" path="res://Scenes/BadNorthScene/FrUnit_Spawner.gd" id="8_jrrbk"]
 [ext_resource type="Script" uid="uid://dx2wkceya0k7s" path="res://Scripts/camera_3d.gd" id="9_jrrbk"]
+[ext_resource type="Script" uid="uid://baf1olv0owcyc" path="res://Scenes/BadNorthScene/ho_units_spawner.gd" id="9_p3c60"]
 
 [sub_resource type="GDScript" id="GDScript_m547k"]
 script/source = "extends Node3D
@@ -13,6 +16,8 @@ script/source = "extends Node3D
 
 [node name="BnMain" type="Node3D"]
 script = SubResource("GDScript_m547k")
+
+[node name="EasyNavRegion" parent="." instance=ExtResource("1_ypux3")]
 
 [node name="FrUnits" parent="." instance=ExtResource("2_ox4fa")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 1.5, 0.70291, 2.5)
@@ -23,6 +28,7 @@ visible = false
 
 [node name="NavigationRegion3D" parent="." instance=ExtResource("4_ypux3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.016047, 0.0402701, -0.145127)
+visible = false
 
 [node name="HoUnits" parent="." instance=ExtResource("1_87432")]
 script = ExtResource("2_osq6u")
@@ -35,3 +41,9 @@ script = ExtResource("9_jrrbk")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.74939, 1.22198)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Camera3D"]
+
+[node name="FrUnitSpawner" type="Node3D" parent="."]
+script = ExtResource("8_jrrbk")
+
+[node name="HoUnitsSpawner" type="Node3D" parent="."]
+script = ExtResource("9_p3c60")

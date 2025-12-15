@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://dbog4awpri7uf"]
+
+[node name="FlatTerrain" type="Node2D"]
