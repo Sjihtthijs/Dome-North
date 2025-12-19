@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var game_speed = 1.0
+@export var game_speed = 5.0
 @export var enemy_units : Array[int] = [0, 1, 2, 3, 4]
 
 var current_index : = 0
@@ -30,30 +30,39 @@ var daynight_animation : Array = [
 func set_enemy_spawns():
 	for child in night.get_children():
 		child.free()
-		
+	
 	for i in enemy_units.size():
-		var spawn_interval = game_speed / enemy_units.size()
-		var spawn_time = randf() * spawn_interval + (i * spawn_interval)
-		var percent = spawn_time / game_speed
+		var spawn_time = game_speed / enemy_units.size() / 3
+		if i > 0:
+			var spawn_interval = game_speed / enemy_units.size()
+			spawn_time = 0.9 * (randf() * spawn_interval + (i * spawn_interval)) + 0.05
+		draw_enemy_spawn_indicator(spawn_time)
+		create_enemy_spawn_timer(spawn_time, i)
+
+func draw_enemy_spawn_indicator(spawn_time):
+	var enemy_image := TextureRect.new()
+	enemy_image.texture = load("res://icon.svg")
+	enemy_image.anchor_right = spawn_time / game_speed
+	enemy_image.anchor_left = spawn_time / game_speed
+	enemy_image.anchor_top = 0
+	enemy_image.anchor_bottom = 1
+	enemy_image.expand_mode = 2
+	enemy_image.grow_horizontal = 2
+	enemy_image.custom_minimum_size.y = 30
+	night.add_child(enemy_image)
 		
-		
-		
-		var enemy_image := TextureRect.new()
-		enemy_image.texture = load("res://icon.svg")
-		enemy_image.anchor_right = percent
-		enemy_image.anchor_left = percent
-		enemy_image.anchor_top = 0
-		enemy_image.anchor_bottom = 1
-		enemy_image.expand_mode = 2
-		enemy_image.custom_minimum_size.y = 30
-		night.add_child(enemy_image)
-		
-		var enemy_spawn_timer := Timer.new()
-		enemy_spawn_timer.one_shot = true
-		enemy_spawn_timer.autostart = true
-		enemy_spawn_timer.name = "SpawnEnemyTimer" + str(i)
-		add_child(enemy_spawn_timer)
-		enemy_spawn_timer.timeout.connect(func(): spawn_enemy(enemy_spawn_timer))
+func create_enemy_spawn_timer(spawn_time, enemy):
+	var enemy_spawn_timer := Timer.new()
+	enemy_spawn_timer.one_shot = true
+	enemy_spawn_timer.name = "SpawnEnemyTimer" + str(enemy)
+	enemy_spawn_timer.wait_time = spawn_time
+	add_child(enemy_spawn_timer)
+	enemy_spawn_timer.timeout.connect(func(): spawn_enemy(enemy_spawn_timer))
+	
+func start_enemy_spawn_timer():
+	for child in get_children():
+		if child.name.begins_with("SpawnEnemyTimer"):
+			child.start()
 
 func spawn_enemy(enemy_spawn_timer):
 	print("enemy spawned")
@@ -91,14 +100,13 @@ func load_scene(index: int):
 	await scene_switch_animation.animation_finished
 	
 	if index == 0:
-		set_enemy_spawns()	
+		set_enemy_spawns()
 		$CanvasLayer/UI.dome_keeper_scene()
 	if index == 1 :
 		$CanvasLayer/UI.bad_north_scene()
 		
 	if current_instance:
 		current_instance.queue_free()
-
 
 	current_index = index
 	current_instance = scenes[current_index].instantiate()
@@ -110,7 +118,9 @@ func load_scene(index: int):
 	await scene_switch_animation.animation_finished
 	$CanvasLayer/UI.animation_player.play(daynight_animation[current_index])
 	scene_switch_timer.start()
-
+	
+	if index == 1:
+		start_enemy_spawn_timer()
 
 
 func switch_to_next():
