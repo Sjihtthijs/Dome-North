@@ -52,23 +52,19 @@ func shop_scene() -> void:
 	shop.show()
 	bad_north.hide()
 	dome_keeper.hide()
-	print("UI Shop")
 	
 func bad_north_scene() -> void:
 	shop.hide()
 	bad_north.show()
 	dome_keeper.hide()
-	print("UI BN")
 
 func dome_keeper_scene() -> void:
 	shop.hide()
 	bad_north.hide()
 	dome_keeper.show()
-	print("UI DK")
 
 func _on_shop_ready_pressed() -> void:
 	emit_signal("shop_ready")
-	#bad_north_scene()
 
 func _on_village_damage(damage):
 	village_health = village_health - damage

@@ -1,7 +1,15 @@
 [gd_scene load_steps=4 format=3 uid="uid://bw0y5b2x4kadb"]
 
-[ext_resource type="Script" uid="uid://cmgn0bawoi34q" path="res://Scripts/ui_start_screen.gd" id="1_d4clo"]
 [ext_resource type="Theme" uid="uid://be23ll5v6piho" path="res://Assets/Resources/UITheme.tres" id="2_mqr7l"]
+
+[sub_resource type="GDScript" id="GDScript_l5ut5"]
+script/source = "extends Control
+
+signal game_started
+
+func _on_start_game_pressed() -> void:
+	emit_signal(\"game_started\")
+"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t2adt"]
 bg_color = Color(0.862745, 0.780392, 0.709804, 1)
@@ -13,7 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_d4clo")
+script = SubResource("GDScript_l5ut5")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
