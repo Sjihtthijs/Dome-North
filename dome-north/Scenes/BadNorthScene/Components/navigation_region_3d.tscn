@@ -1,155 +1,162 @@
-[gd_scene load_steps=4 format=3 uid="uid://cq76wi8ag5svk"]
+[gd_scene load_steps=4 format=3 uid="uid://cn2ujny2kjolw"]
 
-[ext_resource type="PackedScene" uid="uid://betv6lyrq6sei" path="res://Scenes/BadNorthScene/Components/Landscapes/Nature_Landscape.tscn" id="1_hmnln"]
-[ext_resource type="PackedScene" uid="uid://dusi3kxa7f5da" path="res://Scenes/BadNorthScene/Components/TileTypes/tile_display.tscn" id="2_vhopk"]
+[ext_resource type="PackedScene" uid="uid://betv6lyrq6sei" path="res://Scenes/BadNorthScene/Components/Landscapes/Nature_Landscape.tscn" id="1_jndkv"]
+[ext_resource type="PackedScene" uid="uid://dusi3kxa7f5da" path="res://Scenes/BadNorthScene/Components/TileTypes/tile_display.tscn" id="2_dcaa6"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_gt7jy"]
-vertices = PackedVector3Array(0.25, 1.75, 0.25, 0.75, 1.75, 0.5, 0.75, 2, 0, 0.25, 2, -1, 1.5, 1.75, -0.25, 2.5, 1.25, -1, 2.5, 1.25, -2.5, 0.75, 1.25, -2.5, 0.5, 1.25, -3.5, -0.5, 1.25, -3.5, -0.5, 1.25, -2.75, -0.5, 2, -1.25, 0.25, 1.25, 1, 0.75, 1.25, 1, 1.5, 1.25, 1.75, -2.5, 1.25, -1.5, -1.75, 1.5, -1, -1, 1.5, 1, -2.5, 1.25, 2.5, 1.5, 1.25, 2.5, -1.75, 1.5, 0, 2.5, 1.25, 1.5, 1.5, 1.25, 1)
-polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(2, 3, 4), PackedInt32Array(4, 3, 5), PackedInt32Array(5, 3, 7), PackedInt32Array(5, 7, 6), PackedInt32Array(10, 9, 8), PackedInt32Array(8, 7, 10), PackedInt32Array(10, 7, 11), PackedInt32Array(11, 7, 3), PackedInt32Array(13, 12, 1), PackedInt32Array(1, 12, 0), PackedInt32Array(12, 13, 14), PackedInt32Array(16, 15, 11), PackedInt32Array(11, 15, 10), PackedInt32Array(14, 19, 12), PackedInt32Array(12, 19, 17), PackedInt32Array(17, 19, 18), PackedInt32Array(16, 20, 15), PackedInt32Array(15, 20, 18), PackedInt32Array(22, 4, 21), PackedInt32Array(21, 4, 5), PackedInt32Array(18, 20, 17), PackedInt32Array(13, 22, 14), PackedInt32Array(14, 22, 21)]
-geometry_parsed_geometry_type = 1
-cell_size = 0.1
-cell_height = 0.01
-agent_height = 0.0
-agent_radius = 0.0
-agent_max_climb = 0.0
-agent_max_slope = 90.0
-region_min_size = 0.5
-vertices_per_polygon = 20.0
-filter_low_hanging_obstacles = true
+[sub_resource type="NavigationMesh" id="NavigationMesh_c3ytp"]
+vertices = PackedVector3Array(-0.75, 1.25, 2.5, -0.75, 1.5, 2.25, -1.5, 1.5, 2, -2.5, 1.25, 2.5, 0.25, 2, -1, 0.25, 2, 0, 0.75, 2, 0, 1, 1.75, -1.5, 0.75, 1.25, -2.5, 0.5, 1.25, -3.5, -0.5, 1.25, -3.5, -0.75, 1.25, -2.5, -1.75, 1.5, -1, -2, 1.5, -1.5, -2.5, 1.25, -1.5, 1.75, 1.5, -1.5, 2, 1.5, -0.5, 2.5, 1.25, -0.5, 2.5, 1.25, -2.5, -1.5, 1.25, -2.5, -0.25, 2, -1.25, -0.25, 1.5, 2, 1.5, 1.25, 2.5, 0.25, 1.25, 1, 0.75, 1.25, 1, 1.5, 1.25, 1.75, 1.5, 1.25, 1, -0.25, 1.25, 1, 2.5, 1.25, 1.5)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 11), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 2), PackedInt32Array(14, 2, 3), PackedInt32Array(16, 15, 17), PackedInt32Array(17, 15, 18), PackedInt32Array(13, 19, 12), PackedInt32Array(12, 19, 11), PackedInt32Array(12, 11, 20), PackedInt32Array(4, 20, 7), PackedInt32Array(7, 20, 8), PackedInt32Array(8, 20, 11), PackedInt32Array(7, 8, 15), PackedInt32Array(15, 8, 18), PackedInt32Array(1, 21, 0), PackedInt32Array(0, 21, 22), PackedInt32Array(24, 23, 6), PackedInt32Array(6, 23, 5), PackedInt32Array(24, 26, 25), PackedInt32Array(21, 27, 23), PackedInt32Array(24, 25, 23), PackedInt32Array(23, 25, 22), PackedInt32Array(23, 22, 21), PackedInt32Array(25, 26, 28), PackedInt32Array(28, 26, 16), PackedInt32Array(28, 16, 17)]
 
-[node name="NavigationRegion3D" type="NavigationRegion3D"]
-navigation_mesh = SubResource("NavigationMesh_gt7jy")
+[node name="NavigationRegion3D2" type="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0540098)
+navigation_mesh = SubResource("NavigationMesh_c3ytp")
 navigation_layers = 3
 
-[node name="NatureLandscape" parent="." instance=ExtResource("1_hmnln")]
+[node name="NatureLandscape" parent="." instance=ExtResource("1_jndkv")]
 
 [node name="Virtual Nodes" type="Node3D" parent="."]
 editor_description = "For displaying where a unit can move, when the player wants to command them around"
 
-[node name="TileDisplay2" parent="Virtual Nodes" instance=ExtResource("2_vhopk")]
+[node name="TileDisplay2" parent="Virtual Nodes" instance=ExtResource("2_dcaa6")]
 transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, 1.5, 0.75, 1.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay" parent="Virtual Nodes" instance=ExtResource("2_vhopk")]
+[node name="TileDisplay" parent="Virtual Nodes" instance=ExtResource("2_dcaa6")]
 transform = Transform3D(0.8, 0, 0, 0, 0.061, 0, 0, 0, 0.8, 1.5, 0.75, 0.5)
 
-[node name="TileDisplay20" parent="Virtual Nodes" instance=ExtResource("2_vhopk")]
+[node name="TileDisplay20" parent="Virtual Nodes" instance=ExtResource("2_dcaa6")]
 transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, 2.5, 0.75, 1.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay21" parent="Virtual Nodes" instance=ExtResource("2_vhopk")]
+[node name="TileDisplay21" parent="Virtual Nodes" instance=ExtResource("2_dcaa6")]
 transform = Transform3D(0.8, 0, 0, 0, 0.061, 0, 0, 0, 0.8, 2.5, 0.75, 0.5)
 
-[node name="TileDisplay22" parent="Virtual Nodes" instance=ExtResource("2_vhopk")]
+[node name="TileDisplay22" parent="Virtual Nodes" instance=ExtResource("2_dcaa6")]
 transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, 2.5, 0.75, -0.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay24" parent="Virtual Nodes" instance=ExtResource("2_vhopk")]
+[node name="TileDisplay24" parent="Virtual Nodes" instance=ExtResource("2_dcaa6")]
 transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, 2.5, 0.75, -2.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay23" parent="Virtual Nodes" instance=ExtResource("2_vhopk")]
+[node name="TileDisplay23" parent="Virtual Nodes" instance=ExtResource("2_dcaa6")]
 transform = Transform3D(0.8, 0, 0, 0, 0.061, 0, 0, 0, 0.8, 2.5, 0.75, -1.5)
 
-[node name="TileDisplay3" parent="Virtual Nodes" instance=ExtResource("2_vhopk")]
+[node name="TileDisplay3" parent="Virtual Nodes" instance=ExtResource("2_dcaa6")]
 transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, 0.5, 0.75, 1.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay4" parent="Virtual Nodes" instance=ExtResource("2_vhopk")]
+[node name="TileDisplay4" parent="Virtual Nodes" instance=ExtResource("2_dcaa6")]
 transform = Transform3D(0.8, 0, 0, 0, 0.061, 0, 0, 0, 0.8, 1.5, 0.75, -2.5)
 
-[node name="TileDisplay13" parent="Virtual Nodes" instance=ExtResource("2_vhopk")]
+[node name="TileDisplay13" parent="Virtual Nodes" instance=ExtResource("2_dcaa6")]
 transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, 0.5, 0.75, -2.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay17" parent="Virtual Nodes" instance=ExtResource("2_vhopk")]
+[node name="TileDisplay17" parent="Virtual Nodes" instance=ExtResource("2_dcaa6")]
 transform = Transform3D(0.8, 0, 0, 0, 0.061, 0, 0, 0, 0.8, 0.5, 0.75, -3.5)
 
-[node name="TileDisplay18" parent="Virtual Nodes" instance=ExtResource("2_vhopk")]
+[node name="TileDisplay18" parent="Virtual Nodes" instance=ExtResource("2_dcaa6")]
 transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, -0.5, 0.75, -2.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay34" parent="Virtual Nodes" instance=ExtResource("2_vhopk")]
+[node name="TileDisplay34" parent="Virtual Nodes" instance=ExtResource("2_dcaa6")]
 transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, -1.5, 0.75, -2.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay19" parent="Virtual Nodes" instance=ExtResource("2_vhopk")]
+[node name="TileDisplay19" parent="Virtual Nodes" instance=ExtResource("2_dcaa6")]
 transform = Transform3D(0.8, 0, 0, 0, 0.061, 0, 0, 0, 0.8, -0.5, 0.75, -3.5)
 
-[node name="TileDisplay14" parent="Virtual Nodes" instance=ExtResource("2_vhopk")]
+[node name="TileDisplay14" parent="Virtual Nodes" instance=ExtResource("2_dcaa6")]
 transform = Transform3D(0.8, 0, 0, 0, 0.061, 0, 0, 0, 0.8, -0.5, 1, -1.5)
 
-[node name="TileDisplay15" parent="Virtual Nodes" instance=ExtResource("2_vhopk")]
+[node name="TileDisplay15" parent="Virtual Nodes" instance=ExtResource("2_dcaa6")]
 transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, -1.5, 1, -0.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay16" parent="Virtual Nodes" instance=ExtResource("2_vhopk")]
+[node name="TileDisplay16" parent="Virtual Nodes" instance=ExtResource("2_dcaa6")]
 transform = Transform3D(0.8, 0, 0, 0, 0.061, 0, 0, 0, 0.8, -1.49521, 1.0023, -1.5)
 
-[node name="TileDisplay9" parent="Virtual Nodes" instance=ExtResource("2_vhopk")]
+[node name="TileDisplay9" parent="Virtual Nodes" instance=ExtResource("2_dcaa6")]
 transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, -0.5, 0.75, 1.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay25" parent="Virtual Nodes" instance=ExtResource("2_vhopk")]
+[node name="TileDisplay25" parent="Virtual Nodes" instance=ExtResource("2_dcaa6")]
 transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, 1.5, 0.75, 2.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay26" parent="Virtual Nodes" instance=ExtResource("2_vhopk")]
+[node name="TileDisplay26" parent="Virtual Nodes" instance=ExtResource("2_dcaa6")]
 transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, 0.5, 0.75, 2.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay27" parent="Virtual Nodes" instance=ExtResource("2_vhopk")]
+[node name="TileDisplay27" parent="Virtual Nodes" instance=ExtResource("2_dcaa6")]
 transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, -0.5, 0.75, 2.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay28" parent="Virtual Nodes" instance=ExtResource("2_vhopk")]
+[node name="TileDisplay28" parent="Virtual Nodes" instance=ExtResource("2_dcaa6")]
 transform = Transform3D(-3.49691e-08, 0, -0.8, 0, 0.06, 0, 0.8, 0, -3.49691e-08, -2.5, 0.75, 0.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay29" parent="Virtual Nodes" instance=ExtResource("2_vhopk")]
+[node name="TileDisplay29" parent="Virtual Nodes" instance=ExtResource("2_dcaa6")]
 transform = Transform3D(-3.49691e-08, 0, -0.8, 0, 0.06, 0, 0.8, 0, -3.49691e-08, -2.5, 0.75, -0.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay30" parent="Virtual Nodes" instance=ExtResource("2_vhopk")]
+[node name="TileDisplay30" parent="Virtual Nodes" instance=ExtResource("2_dcaa6")]
 transform = Transform3D(-3.49691e-08, 0, -0.8, 0, 0.06, 0, 0.8, 0, -3.49691e-08, -2.5, 0.75, -1.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay31" parent="Virtual Nodes" instance=ExtResource("2_vhopk")]
+[node name="TileDisplay31" parent="Virtual Nodes" instance=ExtResource("2_dcaa6")]
 transform = Transform3D(-3.49691e-08, 0, -0.8, 0, 0.06, 0, 0.8, 0, -3.49691e-08, -1.5, 0.75, 2.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay32" parent="Virtual Nodes" instance=ExtResource("2_vhopk")]
+[node name="TileDisplay32" parent="Virtual Nodes" instance=ExtResource("2_dcaa6")]
 transform = Transform3D(-3.49691e-08, 0, -0.8, 0, 0.06, 0, 0.8, 0, -3.49691e-08, -2.5, 0.75, 2.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay33" parent="Virtual Nodes" instance=ExtResource("2_vhopk")]
+[node name="TileDisplay33" parent="Virtual Nodes" instance=ExtResource("2_dcaa6")]
 transform = Transform3D(-3.49691e-08, 0, -0.8, 0, 0.06, 0, 0.8, 0, -3.49691e-08, -2.5, 0.75, 1.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay10" parent="Virtual Nodes" instance=ExtResource("2_vhopk")]
+[node name="TileDisplay10" parent="Virtual Nodes" instance=ExtResource("2_dcaa6")]
 transform = Transform3D(0.8, 0, 0, 0, 0.061, 0, 0, 0, 0.8, -0.5, 0.75, 0.5)
 
-[node name="TileDisplay11" parent="Virtual Nodes" instance=ExtResource("2_vhopk")]
+[node name="TileDisplay11" parent="Virtual Nodes" instance=ExtResource("2_dcaa6")]
 transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, -1.5, 1, 1.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay12" parent="Virtual Nodes" instance=ExtResource("2_vhopk")]
+[node name="TileDisplay12" parent="Virtual Nodes" instance=ExtResource("2_dcaa6")]
 transform = Transform3D(0.8, 0, 0, 0, 0.061, 0, 0, 0, 0.8, -1.5, 1, 0.5)
 
-[node name="TileDisplay5" parent="Virtual Nodes" instance=ExtResource("2_vhopk")]
+[node name="TileDisplay5" parent="Virtual Nodes" instance=ExtResource("2_dcaa6")]
 transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, 1.5, 1, -0.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay6" parent="Virtual Nodes" instance=ExtResource("2_vhopk")]
+[node name="TileDisplay6" parent="Virtual Nodes" instance=ExtResource("2_dcaa6")]
 transform = Transform3D(0.8, 0, 0, 0, 0.061, 0, 0, 0, 0.8, 1.5, 1, -1.5)
 
-[node name="TileDisplay7" parent="Virtual Nodes" instance=ExtResource("2_vhopk")]
+[node name="TileDisplay7" parent="Virtual Nodes" instance=ExtResource("2_dcaa6")]
 transform = Transform3D(0.8, 0, 0, 0, 0.06, 0, 0, 0, 0.8, 0.5, 1.5, -0.5)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay35" parent="Virtual Nodes" instance=ExtResource("2_vhopk")]
+[node name="TileDisplay35" parent="Virtual Nodes" instance=ExtResource("2_dcaa6")]
 transform = Transform3D(0.8, 0, 0, 0, 0.0424264, -0.565685, 0, 0.0424264, 0.565685, 0.5, 1.125, 0.45)
 skeleton = NodePath("../TileDisplay/Transparency")
 
-[node name="TileDisplay8" parent="Virtual Nodes" instance=ExtResource("2_vhopk")]
+[node name="TileDisplay8" parent="Virtual Nodes" instance=ExtResource("2_dcaa6")]
 transform = Transform3D(0.8, 0, 0, 0, 0.061, 0, 0, 0, 0.8, 0.5, 1, -1.5)
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.17517, 0.808046, -0.451948)
+vertices = PackedVector3Array(-1.91436, 0, 2.14819, -1.88997, 0, 0.530839, -2.14783, 0, 0.500804, -2.05748, 0, 2.18812)
+affect_navigation_mesh = true
+avoidance_layers = 3
+
+[node name="NavigationObstacle3D2" type="NavigationObstacle3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11456, -3.0827)
+vertices = PackedVector3Array(1.19701, 0, 1.64519, -1.24635, 0, 1.64179, -1.22317, 0, 1.45689, 1.20958, 0, 1.48341)
+affect_navigation_mesh = true
+
+[node name="NavigationObstacle3D3" type="NavigationObstacle3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11784, 1.05725, -1.80788)
+vertices = PackedVector3Array(1.3068, 0, 0.705202, 1.31509, 0, 1.74194, 1.21138, 0, 1.7498, 1.22161, 0, 0.689823)
+affect_navigation_mesh = true
