@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://etwn3i8joh8k" path="res://Scenes/BadNorthScene/Components/EasyNavRegion.tscn" id="1_ypux3"]
 [ext_resource type="Script" uid="uid://b02hlmhvk0ltx" path="res://Scripts/ho_units.gd" id="2_osq6u"]
 [ext_resource type="PackedScene" uid="uid://by88d32udbmay" path="res://Scenes/BadNorthScene/Components/fr_units.tscn" id="2_ox4fa"]
-[ext_resource type="PackedScene" uid="uid://cq76wi8ag5svk" path="res://Scenes/BadNorthScene/Components/navigation_region_3d.tscn" id="4_ypux3"]
+[ext_resource type="PackedScene" uid="uid://cn2ujny2kjolw" path="res://Scenes/BadNorthScene/Components/navigation_region_3d.tscn" id="4_ypux3"]
 [ext_resource type="PackedScene" uid="uid://di4aep3iyfi2o" path="res://Scenes/BadNorthScene/Components/Boat.tscn" id="7_gt7jy"]
 [ext_resource type="Script" uid="uid://bvg3vjxlmcalr" path="res://Scenes/BadNorthScene/FrUnit_Spawner.gd" id="8_jrrbk"]
 [ext_resource type="Script" uid="uid://dx2wkceya0k7s" path="res://Scripts/camera_3d.gd" id="9_jrrbk"]

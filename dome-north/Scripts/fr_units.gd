@@ -4,7 +4,7 @@ class_name Player3DClickMove
 @export var move_speed: float = 5.0     
 @export var stop_distance: float = 0.2    
 
-@onready var nav_agent: NavigationAgent3D = $NavigationAgent3D #EasyNavRegion 
+@onready var nav_agent: NavigationAgent3D = $EasyNavRegion #NavigationAgent3D 
 @onready var cam: Camera3D = $"../Camera3D"   
 
 var _pending_move: bool = false

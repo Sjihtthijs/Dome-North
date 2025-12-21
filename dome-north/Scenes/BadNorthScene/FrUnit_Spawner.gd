@@ -4,27 +4,60 @@ extends Node3D
 
 # Variables for waves
 var units = UnitManager.units
-var Time_per_Wave = 10 #s
 
 # Initialize locations
-var locats
-@onready var Grid = get_node("EasyNavRegion")# /EasyLandscape/GridMap
+#var SpiralOfLocations = [[ 0,  1,  1,  0, -1, -1, -1,  0,  1,  2,  2,  2,  2,  1,  0, -1, -2, -2, -2, -2, -2, -1,  0,  1,
+#   2,  3,  3,  3,  3],
+# [ 0,  0,  1,  1,  1,  0, -1, -1, -1, -1,  0,  1,  2,  2,  2,  2,  2,  1,  0, -1, -2, -2, -2, -2,
+#  -2, -2, -1,  0,  1]]
 
+var SpiralOfLocations = [[ 0,  0],
+ [ 1,  0],
+ [ 1,  1],
+ [ 0,  1],
+ [-1,  1],
+ [-1,  0],
+ [-1, -1],
+ [ 0, -1],
+ [ 1, -1],
+ [ 2, -1],
+ [ 2,  0],
+ [ 2,  1],
+ [ 2,  2],
+ [ 1,  2],
+ [ 0,  2],
+ [-1,  2],
+ [-2,  2],
+ [-2,  1],
+ [-2,  0],
+ [-2, -1],
+ [-2, -2],
+ [-1, -2],
+ [ 0, -2],
+ [ 1, -2],
+ [ 2, -2],
+ [ 3, -2],
+ [ 3, -1],
+ [ 3,  0],
+ [ 3,  1]]
+
+var locats
+var height = 0
 # var Meshes = Grid.get_meshes
 
 # import what night it is.
 var night
 
 # Ready up scene for hostile units
-var HUnitScn = preload("res://Scenes/BadNorthScene/Components/fr_units.tscn")
-var Hinstance = HUnitScn.instantiate()
+var FrUnitScn = preload("res://Scenes/BadNorthScene/Components/fr_units.tscn")
+var Finstance = FrUnitScn.instantiate()
 
 ### Core Loop ###
 
 func _ready():
-	print("The Grid:", Grid)
 	locats = detspawnlocs(night)
 	spawnunits(locats, units)
+	pass
 
 
 func _process(_delta):
@@ -32,15 +65,19 @@ func _process(_delta):
 
 ### Custom Functions ###
 
-func detspawnlocs(Night):
+func detspawnlocs(units):
 	'''Determine per night when and where enemies will spawn'''
-	var Place = Vector3()
-	for i in range(10):
-		print(i)
-		Place = Vector3(i%1,i%2,0)
-		print(Place)
-	pass
+	var Places = Array([Vector3()])
+	print(units)
+	for i in range(1,3):#len(units)):
+		var Loc = Vector3(SpiralOfLocations[i][0], SpiralOfLocations[i][1], height)
+		Places.append(Loc)
+	print(Places)
+	return Places
 
 func spawnunits(locs, Units):
 	'''Do the act of spawning of enemies on the given times and locations'''
+	for i in [units, locs]:
+		#Instantiate and add units on the given locations. Then somehow combine the stats from the unit manager to the stats of the fr unit scene
+		pass
 	pass
