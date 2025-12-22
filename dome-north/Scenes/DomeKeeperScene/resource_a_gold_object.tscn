@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bi5s8lpbxfl7w" path="res://Assets/Sprites/Resource A- Gold Object - Prototpe Sprite.png" id="1_fcfwi"]
 [ext_resource type="Script" uid="uid://bu1m1dudpgea1" path="res://Scripts/resource_a_gold_object.gd" id="1_vw6mt"]
-[ext_resource type="AudioStream" uid="uid://btndiqytw1lql" path="res://Assets/Sounds/pennypickup.mp3" id="2_prbf1"]
+[ext_resource type="AudioStream" uid="uid://cg4f0lpgcw1ut" path="res://Assets/Sounds/Coin 3.wav" id="4_3yq3y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kqayb"]
 radius = 2.0
@@ -20,7 +20,7 @@ texture = ExtResource("1_fcfwi")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_kqayb")
 
-[node name="Pennypickup" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_prbf1")
+[node name="Coin3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_3yq3y")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

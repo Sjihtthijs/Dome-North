@@ -8,8 +8,8 @@ func _process(delta):
 
 func _on_area_2d_area_entered(area):
 	$Area2D/CollisionShape2D.set_deferred("disabled", true)
-	$Pennydrop.play()
+	$Coin4.play()
 	$Sprite2D.visible = false
-	await get_tree().create_timer($Pennydrop.stream.get_length()).timeout
+	await get_tree().create_timer($Coin4.stream.get_length()).timeout
 	GameManager.gain_iron(1)
 	queue_free()
