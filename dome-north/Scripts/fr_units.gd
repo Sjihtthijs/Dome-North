@@ -163,7 +163,7 @@ func _stop_moving() -> void:
 func _on_timer_timeout() -> void:
 	if $"../HoUnits".global_position.distance_to(global_position) <= 0.5:
 		$AnimationPlayer.play("Swordstab")
-		$"../HoUnits".hp -= 1
+		$"../HoUnits".hp -= dmg
 	else:
 		$AnimationPlayer.play("RESET")
 	pass # Replace with function body.
