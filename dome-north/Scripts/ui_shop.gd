@@ -26,7 +26,7 @@ func _on_mine_pressed() -> void:
 
 func _on_ready_pressed() -> void:
 	confirmation.show()
-	
+
 func _on_go_back_pressed() -> void:
 	confirmation.hide()
 
