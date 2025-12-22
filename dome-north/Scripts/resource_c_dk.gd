@@ -19,6 +19,8 @@ func _process(_delta):
 
 func _on_area_2d_body_entered(body):
 	if body is Player_2D:
+		var knockback_direction = (body.global_position - global_position).normalized()
+		body.apply_knockback(knockback_direction, 40.0, 0.25)
 		start_mine = Time.get_ticks_msec()
 		mining = true
 		print("Yes!")

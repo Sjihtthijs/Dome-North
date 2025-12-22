@@ -2,9 +2,11 @@ extends CharacterBody3D
 class_name Player3DClickMove
 
 @export var move_speed: float = 5.0     
-@export var stop_distance: float = 0.2    
+@export var stop_distance: float = 0.2   
+@export var hp = 10
+@export var dmg = 1
 
-@onready var nav_agent: NavigationAgent3D = $EasyNavRegion   #NavigationRegion3D
+@onready var nav_agent: NavigationAgent3D = $EasyNavRegion #NavigationAgent3D 
 @onready var cam: Camera3D = $"../Camera3D"   
 
 var _pending_move: bool = false
@@ -12,7 +14,7 @@ var _has_target: bool = false
 var _target_position: Vector3 = Vector3.ZERO
 
 var _debug_last_has_target: bool = false
-var hp = 10
+
 func _ready() -> void:
 	print("==== [Player3DClickMove] _ready ====")
 	print("  player global_position =", global_position)

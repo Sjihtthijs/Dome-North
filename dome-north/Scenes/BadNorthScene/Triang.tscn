@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://8oua6q53nscc"]
+
+[ext_resource type="Script" uid="uid://d4dvwu53g6drb" path="res://TriangleNumbers.gd" id="1_g3fww"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_g3fww")

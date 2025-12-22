@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cou5pj7414kia"]
+[gd_scene load_steps=9 format=3 uid="uid://cou5pj7414kia"]
 
 [ext_resource type="Script" uid="uid://dsqe8c7qvv7w1" path="res://Scripts/ui_shop.gd" id="1_c0ofq"]
 [ext_resource type="PackedScene" uid="uid://dl4xhmrqoh6r8" path="res://Scenes/UI/UnitShop.tscn" id="1_c53l5"]
@@ -8,6 +8,8 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ae35"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="GDScript" id="GDScript_tgufs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c0ofq"]
 bg_color = Color(0.862745, 0.780392, 0.709804, 1)
@@ -32,6 +34,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7ae35")
+script = SubResource("GDScript_tgufs")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Shop"]
 custom_minimum_size = Vector2(100, 0)
