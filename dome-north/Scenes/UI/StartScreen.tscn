@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bw0y5b2x4kadb"]
+[gd_scene load_steps=5 format=3 uid="uid://bw0y5b2x4kadb"]
 
 [ext_resource type="Script" uid="uid://cmgn0bawoi34q" path="res://Scripts/ui_start_screen.gd" id="1_d4clo"]
 [ext_resource type="Theme" uid="uid://be23ll5v6piho" path="res://Assets/Resources/UITheme.tres" id="2_mqr7l"]
+[ext_resource type="AudioStream" uid="uid://8ivq12jw0gs8" path="res://Assets/Sounds/Music/Juhani Junkala [Chiptune Adventures] 2. Stage2.wav" id="2_pw0np"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t2adt"]
 bg_color = Color(0.862745, 0.780392, 0.709804, 1)
@@ -14,6 +15,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_d4clo")
+
+[node name="JuhaniJunkala[chiptuneAdventures]2_Stage2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_pw0np")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1

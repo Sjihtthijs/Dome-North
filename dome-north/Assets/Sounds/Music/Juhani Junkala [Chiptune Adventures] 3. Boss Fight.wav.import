@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c3ifoii0nfoax"
+path="res://.godot/imported/Juhani Junkala [Chiptune Adventures] 3. Boss Fight.wav-89386d0c4fdab591ae316a41f83a932e.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/Music/Juhani Junkala [Chiptune Adventures] 3. Boss Fight.wav"
+dest_files=["res://.godot/imported/Juhani Junkala [Chiptune Adventures] 3. Boss Fight.wav-89386d0c4fdab591ae316a41f83a932e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

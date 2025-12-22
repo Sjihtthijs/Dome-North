@@ -27,8 +27,18 @@ func _physics_process(_delta):
 		velocity.y = vert_direction * speed
 	else:
 		velocity.y = move_toward(velocity.y, 0, speed)
+	
+	if knockback_timer > 0.0:
+		velocity = knockback
+		knockback_timer -= _delta
+		if knockback_timer <= 0.0:
+			knockback = Vector2.ZERO
 	move_and_slide()
 
+func apply_knockback(direction: Vector2, force: float, knockback_duration: float) -> void:
+	knockback = direction * force
+	knockback_timer = knockback_duration
+	pass
 # Make Function to send signal of breaking block
 # that acts when there is a collision
 # and when the player inputs to move in that direction

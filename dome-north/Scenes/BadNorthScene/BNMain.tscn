@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cmj7xb0je6exd"]
+[gd_scene load_steps=12 format=3 uid="uid://cmj7xb0je6exd"]
 
 [ext_resource type="PackedScene" uid="uid://cmucxboiwvch3" path="res://Scenes/BadNorthScene/Components/ho_units.tscn" id="1_87432"]
 [ext_resource type="PackedScene" uid="uid://etwn3i8joh8k" path="res://Scenes/BadNorthScene/Components/EasyNavRegion.tscn" id="1_ypux3"]
@@ -9,9 +9,13 @@
 [ext_resource type="Script" uid="uid://bvg3vjxlmcalr" path="res://Scenes/BadNorthScene/FrUnit_Spawner.gd" id="8_jrrbk"]
 [ext_resource type="Script" uid="uid://dx2wkceya0k7s" path="res://Scripts/camera_3d.gd" id="9_jrrbk"]
 [ext_resource type="Script" uid="uid://baf1olv0owcyc" path="res://Scenes/BadNorthScene/ho_units_spawner.gd" id="9_p3c60"]
+[ext_resource type="AudioStream" uid="uid://c3ifoii0nfoax" path="res://Assets/Sounds/Music/Juhani Junkala [Chiptune Adventures] 3. Boss Fight.wav" id="10_p3c60"]
 
 [sub_resource type="GDScript" id="GDScript_m547k"]
 script/source = "extends Node3D
+
+func _ready():
+	$\"JuhaniJunkala[chiptuneAdventures]3_BossFight\".play()
 "
 
 [node name="BnMain" type="Node3D"]
@@ -47,3 +51,7 @@ script = ExtResource("8_jrrbk")
 
 [node name="HoUnitsSpawner" type="Node3D" parent="."]
 script = ExtResource("9_p3c60")
+
+[node name="JuhaniJunkala[chiptuneAdventures]3_BossFight" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_p3c60")
+volume_db = -10.0
