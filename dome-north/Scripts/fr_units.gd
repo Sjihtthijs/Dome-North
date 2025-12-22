@@ -6,7 +6,7 @@ class_name Player3DClickMove
 @export var hp = 10
 @export var dmg = 1
 
-@onready var nav_agent: NavigationAgent3D = $EasyNavRegion #NavigationAgent3D 
+@onready var nav_agent: NavigationAgent3D = $NavigationAgent3D 
 @onready var cam: Camera3D = $"../Camera3D"   
 
 var _pending_move: bool = false
