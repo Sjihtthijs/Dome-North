@@ -19,6 +19,6 @@ one_shot = true
 
 [connection signal="all_hostile_units_defeated" from="CanvasLayer/UI" to="." method="_on_all_hostile_units_defeated"]
 [connection signal="shop_ready" from="CanvasLayer/UI" to="." method="_shop_ready"]
-[connection signal="game_started" from="CanvasLayer/StartScreen" to="." method="_on_game_started"]
 [connection signal="game_started" from="CanvasLayer/StartScreen" to="." method="_on_start_screen_game_started"]
+[connection signal="game_started" from="CanvasLayer/StartScreen" to="." method="_on_game_started"]
 [connection signal="timeout" from="SceneSwitchTimer" to="." method="_on_scene_switch_timer_timeout"]

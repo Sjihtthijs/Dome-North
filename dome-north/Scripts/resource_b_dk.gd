@@ -12,6 +12,8 @@ func _ready():
 func _on_area_2d_body_entered(body):
 	#Breaks blocks when the player collided with it four times
 	if body is Player_2D:
+		var knockback_direction = (body.global_position - global_position).normalized()
+		body.apply_knockback(knockback_direction, 40.0, 0.25)
 		hit_count += 1
 		print("Boing")
 		if hit_count == 1:
