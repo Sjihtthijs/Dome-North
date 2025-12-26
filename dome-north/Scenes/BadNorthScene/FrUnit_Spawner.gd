@@ -42,7 +42,7 @@ var SpiralOfLocations = [[ 0,  0],
  [ 3,  1]]
 
 var locats
-var height = 1
+var height = .25
 # var Meshes = Grid.get_meshes
 
 # import what night it is.
