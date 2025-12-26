@@ -14,6 +14,8 @@ func _on_area_2d_body_entered(body):
 	if body is Player_2D:
 		var knockback_direction = (body.global_position - global_position).normalized()
 		body.apply_knockback(knockback_direction, 40.0, 0.25)
+		$Shoot3.play()
+		await get_tree().create_timer($Shoot3.stream.get_length()).timeout
 		hit_count += 1
 		print("Boing")
 		if hit_count == 1:

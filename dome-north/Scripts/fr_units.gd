@@ -2,19 +2,17 @@ extends CharacterBody3D
 class_name Player3DClickMove
 
 @export var move_speed: float = 5.0     
-@export var stop_distance: float = 0.2   
+@export var stop_distance: float = 0.2    
 @export var hp = 10
 @export var dmg = 1
-
-@onready var nav_agent: NavigationAgent3D = $NavigationAgent3D 
+@onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var cam: Camera3D = $"../Camera3D"   
-
+var _is_selected: bool = false
 var _pending_move: bool = false
 var _has_target: bool = false
 var _target_position: Vector3 = Vector3.ZERO
 
 var _debug_last_has_target: bool = false
-
 func _ready() -> void:
 	print("==== [Player3DClickMove] _ready ====")
 	print("  player global_position =", global_position)
@@ -34,6 +32,44 @@ func _ready() -> void:
 	print("  nav_agent.path_desired_distance   =", nav_agent.path_desired_distance)
 	print("  nav_agent.navigation_map          =", nav_agent.get_navigation_map())
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton \
+	and event.button_index == MOUSE_BUTTON_LEFT \
+	and event.pressed:
+		_handle_click(event.position)
+		"""
+		print("[Input] click, spot =", event.position)
+		_handle_click(event.position)"""
+
+func _handle_click(mouse_pos: Vector2) -> void:
+	if cam == null:
+		push_error("[_handle_click] cam is null")
+		return
+
+	var from: Vector3 = cam.project_ray_origin(mouse_pos)
+	var dir: Vector3 = cam.project_ray_normal(mouse_pos)
+	print("[Ray] from =", from, " dir =", dir)
+
+	var space_state := get_world_3d().direct_space_state
+	var query := PhysicsRayQueryParameters3D.create(from, from + dir * 1000.0)
+	var result := space_state.intersect_ray(query)
+
+	if result:
+		var hit_pos: Vector3 = result.position
+		var collider = result.collider
+		if collider == self:
+			_is_selected = !_is_selected
+			print("[Selection] unit selected:", _is_selected)
+		if _is_selected:
+			print("[Ray] hitting:", collider, "  collider =", hit_pos)
+			_set_navigation_target(hit_pos)
+		else:
+			print("Select a unit first!")
+		
+	else:
+		print("[Ray] not hitting anything")
+
+"""
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton \
 	and event.button_index == MOUSE_BUTTON_LEFT \
@@ -61,13 +97,12 @@ func _handle_click(mouse_pos: Vector2) -> void:
 		_set_navigation_target(hit_pos)
 	else:
 		print("[Ray] not hitting anything")
+"""
 
 func _set_navigation_target(world_pos: Vector3) -> void:
 	if nav_agent == null:
 		push_error("[Nav] nav_agent is null")
 		return
-
-	
 	var nav_map := nav_agent.get_navigation_map()
 	if nav_map == RID():
 		push_error("[Nav] navigation_map is null，check if NavigationRegion3D exists")
@@ -94,7 +129,7 @@ func _set_navigation_target(world_pos: Vector3) -> void:
 	_has_target = true
 
 func _physics_process(delta: float) -> void:
-	print("has_target =", _has_target, " pending =", _pending_move, " on_floor =", is_on_floor())
+	#print("has_target =", _has_target, " pending =", _pending_move, " on_floor =", is_on_floor())
 	if _pending_move:
 		_has_target = true
 		_pending_move = false
@@ -163,7 +198,7 @@ func _stop_moving() -> void:
 func _on_timer_timeout() -> void:
 	if $"../HoUnits".global_position.distance_to(global_position) <= 0.5:
 		$AnimationPlayer.play("Swordstab")
-		$"../HoUnits".hp -= 1
+		$"../HoUnits".hp -= dmg
 	else:
 		$AnimationPlayer.play("RESET")
 	pass # Replace with function body.

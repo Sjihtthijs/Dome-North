@@ -3,6 +3,7 @@ class_name Player_2D
 
 var speed = 100
 @onready var sprite = $Sprite2D
+var mining_strength = 1
 
 var knockback: Vector2 = Vector2.ZERO
 var knockback_timer: float = 0.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bfb3pnfhgotbr"]
+[gd_scene load_steps=18 format=3 uid="uid://bfb3pnfhgotbr"]
 
 [ext_resource type="Script" uid="uid://de7qo7u3prg0l" path="res://Scripts/ui_main.gd" id="1_0mc3e"]
 [ext_resource type="Theme" uid="uid://be23ll5v6piho" path="res://Assets/Resources/UITheme.tres" id="1_3b2b5"]
@@ -26,114 +26,105 @@ bg_color = Color(0.417338, 0.780352, 0.943813, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q77pa"]
 bg_color = Color(0.0150534, 0.0158067, 0.152337, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n8582"]
-bg_color = Color(0.415686, 0.780392, 0.945098, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c6dx3"]
-bg_color = Color(0.0156863, 0.0156863, 0.152941, 1)
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2n5f6"]
-
-[sub_resource type="Animation" id="Animation_jqn02"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = false
-tracks/0/path = NodePath("UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Day2:size_flags_stretch_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/path = NodePath("UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Day:size_flags_stretch_ratio")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [6.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = false
-tracks/2/path = NodePath("UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Night:size_flags_stretch_ratio")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [4.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = false
-tracks/3/path = NodePath("UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Night2:size_flags_stretch_ratio")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
 
 [sub_resource type="Animation" id="Animation_foiwe"]
 resource_name = "day_night_cycle"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Day:size_flags_stretch_ratio")
+tracks/0/path = NodePath("UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/Panel2/Day:anchor_left")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [1.0, 0.0]
+"values": [0.0, -0.8]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Night:size_flags_stretch_ratio")
+tracks/1/path = NodePath("UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/Panel2/Day:anchor_right")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [1.0, 1.0]
+"values": [0.8, 0.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Day2:size_flags_stretch_ratio")
+tracks/2/path = NodePath("UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/Panel2/Night:anchor_left")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 1.0]
+"values": [0.8, 0.0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Night2:size_flags_stretch_ratio")
+tracks/3/path = NodePath("UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/Panel2/Night:anchor_right")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0]
+"values": [1.6, 0.8]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/Panel2/Day2:anchor_left")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.6, 0.8]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/Panel2/Day2:anchor_right")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.4, 1.6]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/Panel2/Night2:anchor_left")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 1.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/Panel2/Night2:anchor_right")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.8, 1.8]
 }
 
 [sub_resource type="Animation" id="Animation_3ujc7"]
@@ -141,43 +132,102 @@ resource_name = "night_to_day"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Night:size_flags_stretch_ratio")
+tracks/0/path = NodePath("UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/Panel2/Night:anchor_left")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [1.0, 0.0]
+"values": [0.0, -0.8]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Night2:size_flags_stretch_ratio")
+tracks/1/path = NodePath("UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/Panel2/Night:anchor_right")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 1.0]
+"values": [0.8, 0.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Day2:size_flags_stretch_ratio")
+tracks/2/path = NodePath("UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/Panel2/Day2:anchor_left")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [1.0, 1.0]
+"values": [0.8, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/Panel2/Day2:anchor_right")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.6, 0.8]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/Panel2/Night2:anchor_left")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.6, 0.8]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/Panel2/Night2:anchor_right")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.4, 1.6]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/Panel2/Day:anchor_left")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.5, -0.5]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/Panel2/Day:anchor_right")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5xurb"]
 _data = {
-&"RESET": SubResource("Animation_jqn02"),
 &"day_to_night": SubResource("Animation_foiwe"),
 &"night_to_day": SubResource("Animation_3ujc7")
 }
@@ -275,32 +325,56 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "1 Damage"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="Day" type="Panel" parent="UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_i1vam")
-
-[node name="Night" type="Panel" parent="UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Panel2" type="Panel" parent="UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer"]
+clip_contents = true
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+
+[node name="Day" type="Panel" parent="UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/Panel2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.8
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_i1vam")
+
+[node name="Day2" type="Panel" parent="UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/Panel2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.8
+anchor_right = 1.6
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_i1vam")
+
+[node name="Night" type="Panel" parent="UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/Panel2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.8
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_q77pa")
 
-[node name="Day2" type="Panel" parent="UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
+[node name="Night2" type="Panel" parent="UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/Panel2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.8
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_n8582")
-
-[node name="Night2" type="Panel" parent="UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_c6dx3")
+theme_override_styles/panel = SubResource("StyleBoxFlat_q77pa")
 
 [node name="CenterContainer" type="CenterContainer" parent="UI/VBoxContainer/TopBar/HBoxContainer"]
 layout_mode = 2

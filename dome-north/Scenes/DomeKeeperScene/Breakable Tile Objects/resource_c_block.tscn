@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://clpuc0usb5cxx"]
+[gd_scene load_steps=20 format=3 uid="uid://clpuc0usb5cxx"]
 
 [ext_resource type="Script" uid="uid://c53ivcvlma056" path="res://Scripts/resource_c_dk.gd" id="1_jf7v4"]
 [ext_resource type="Texture2D" uid="uid://bsl3uxiulv01t" path="res://Assets/Sprites/Resource Tile C.png" id="2_ip02x"]
 [ext_resource type="Texture2D" uid="uid://n5rvl6pcginv" path="res://Assets/Sprites/Break Overlay 1-3.png" id="3_i0n0s"]
 [ext_resource type="Texture2D" uid="uid://viua4qx357o1" path="res://Assets/Sprites/Break Overlay 2-3.png" id="4_0405g"]
 [ext_resource type="Texture2D" uid="uid://dj7gecscbavyb" path="res://Assets/Sprites/Break Overlay 3-3.png" id="5_s6a6k"]
+[ext_resource type="AudioStream" uid="uid://dyqaur4fw2v7v" path="res://Assets/Sounds/Shoot 3.wav" id="6_0405g"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_arnu7"]
 atlas = ExtResource("2_ip02x")
@@ -175,6 +176,9 @@ shape = SubResource("RectangleShape2D_fmarl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_71ypn")
+
+[node name="Shoot3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_0405g")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
