@@ -6,10 +6,11 @@ class_name NavCharacter3D
 @export var fall_speed: float = 10.0    
 
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
-
+@export var hp = 10
+@export var dmg = 1
 var _has_target: bool = false
 var _target_position: Vector3 = Vector3.ZERO
-var hp = 10
+
 
 func _ready() -> void:
 	if nav_agent == null:
@@ -106,7 +107,7 @@ func _snap_to_navmesh(first_time: bool, delta: float = 0.0) -> void:
 func _on_timer_timeout() -> void:
 	if $"../FrUnits".global_position.distance_to(global_position) <= 0.5:
 		$AnimationPlayer.play("SwordSlash")
-		$"../FrUnits".hp -= 1
+		$"../FrUnits".hp -= dmg
 	else:
 		$AnimationPlayer.play("RESET")
 	pass # Replace with function body.
