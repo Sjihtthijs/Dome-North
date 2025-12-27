@@ -1,8 +1,8 @@
 extends CharacterBody3D
 class_name NavCharacter3D
 
-@export var move_speed: float = 5.0      
-@export var stop_distance: float = 0.2  
+@export var move_speed: float = 1.0     
+@export var stop_distance: float = 0.5
 @export var fall_speed: float = 10.0    
 
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
@@ -10,7 +10,7 @@ class_name NavCharacter3D
 @export var dmg = 1
 var _has_target: bool = false
 var _target_position: Vector3 = Vector3.ZERO
-
+var player_target: Node3D = null
 
 func _ready() -> void:
 	if nav_agent == null:
@@ -19,7 +19,8 @@ func _ready() -> void:
 
 	nav_agent.target_desired_distance = stop_distance
 	nav_agent.path_desired_distance = 0.1
-	move_to($"../WorldController".global_position)
+	var pos = Vector3(0.5, 1.5, -0.5)
+	move_to(pos)
 
 
 func move_to(world_pos: Vector3) -> void:
@@ -50,11 +51,25 @@ func stop() -> void:
 func _physics_process(delta: float) -> void:
 	if hp <= 0:
 		queue_free()
-	if $"../FrUnits".global_position.distance_to(global_position) <= 2:
-		move_to($"../FrUnits".global_position)
+		"""
+	player_target = get_parent().find_child("FrUnits", true, false)
+	if player_target.global_position.distance_to(global_position) <= 2:
+		move_to(player_target.global_position)
 	if nav_agent == null:
 		return
+"""
+	player_target = get_parent().get_parent().find_child("FrUnits", true, false)
+	if player_target != null:
+		if player_target.global_position.distance_to(global_position) <= 2:
+			move_to(player_target.global_position)
+	else:
+		print("finding FrUnits，but not found under ", get_parent().name)
+		pass
 
+	if nav_agent == null:
+		return
+		
+		
 	_snap_to_navmesh(false, delta)
 
 	if _has_target:
@@ -105,9 +120,10 @@ func _snap_to_navmesh(first_time: bool, delta: float = 0.0) -> void:
 
 
 func _on_timer_timeout() -> void:
-	if $"../FrUnits".global_position.distance_to(global_position) <= 0.5:
+	if player_target.global_position.distance_to(global_position) <= 1.5:
 		$AnimationPlayer.play("SwordSlash")
-		$"../FrUnits".hp -= dmg
+		print("attack!")
+		player_target.hp -= dmg
 	else:
 		$AnimationPlayer.play("RESET")
 	pass # Replace with function body.

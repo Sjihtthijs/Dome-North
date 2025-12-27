@@ -3,8 +3,8 @@ extends Node3D
 ### Vars ###
 
 # Variables for waves
-var enemies = 
-
+var enemies 
+var spawn_count : int = 0
 # Initialize locations
 #var SpiralOfLocations = [[ 0,  1,  1,  0, -1, -1, -1,  0,  1,  2,  2,  2,  2,  1,  0, -1, -2, -2, -2, -2, -2, -1,  0,  1,
 #   2,  3,  3,  3,  3],
@@ -61,10 +61,10 @@ func _ready():
 	locats = detspawnlocs()
 	pass
 
-
+"""  --This part is already done in Main.gd
 func _process(_delta):
 	spawnunits(locats, enemies)
-
+"""
 ### Custom Functions ###
 
 func detspawnlocs():
@@ -75,7 +75,7 @@ func detspawnlocs():
 		Places.append(Loc)
 	print(Places)
 	return Places
-
+"""
 func spawnunits(locs, Units):
 	'''Do the act of spawning of enemies on the given times and locations'''
 	var Child
@@ -93,3 +93,20 @@ func spawnunits(locs, Units):
 		print("Position of", Hinstance.name, Child.position)
 		pass
 	pass
+"""
+func spawn_single_unit(unit_data):
+	if locats.is_empty(): 
+		locats = detspawnlocs()
+	
+	var pos_index = spawn_count % locats.size()
+	var spawn_pos = locats[pos_index]
+	spawn_count += 1
+	
+	var Hinstance = HoUnitScn.instantiate()
+	add_child(Hinstance)
+	
+	if "hp" in Hinstance: Hinstance.hp = unit_data.health
+	if "dmg" in Hinstance: Hinstance.dmg = unit_data.damage
+	
+	Hinstance.global_position = spawn_pos
+	print("Enemy spawned at: ", spawn_pos, " Total count: ", spawn_count)

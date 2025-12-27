@@ -2,7 +2,7 @@ extends Node2D
 
 @export var game_speed = 5.0
 @export var enemy_units : Array[int] = [0, 1, 2, 3, 4]
-
+var wave_count : int = 0
 var current_index : = 0
 var current_instance: Node
 var all_ho_units_defeated : bool = false
@@ -67,6 +67,15 @@ func start_enemy_spawn_timer():
 func spawn_enemy(enemy_spawn_timer):
 	print("enemy spawned")
 	enemy_spawn_timer.queue_free()
+	
+	if current_index == 1 and is_instance_valid(current_instance):
+		var spawner = current_instance.get_node_or_null("HoUnitsSpawner")
+		if spawner:
+			var single_enemy_data = {
+				"health": 10 ,
+				"damage": 1 
+			}
+			spawner.spawn_single_unit(single_enemy_data)
 
 func _on_game_started() -> void:
 	scene_switch_timer.wait_time = game_speed
@@ -125,6 +134,11 @@ func load_scene(index: int):
 
 func switch_to_next():
 	var next_index = (current_index + 1) % scenes.size()
+	# Every time add 2 enemies to the set
+	if next_index == 1: 
+		wave_count += 1
+		for i in range(2):
+			enemy_units.append(enemy_units.size())
 	load_scene(next_index)
 
 

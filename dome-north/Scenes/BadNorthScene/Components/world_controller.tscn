@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8riuboclxu85"]
+
+[ext_resource type="Script" uid="uid://cukwo7vrdc1r5" path="res://Scripts/world_controller.gd" id="1_smx0p"]
+
+[node name="WorldController" type="Node3D"]
+script = ExtResource("1_smx0p")
+
+[node name="ItemContainer" type="Node3D" parent="."]
+
+[node name="MapTimer" type="Timer" parent="."]

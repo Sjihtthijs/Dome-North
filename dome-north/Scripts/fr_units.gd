@@ -2,7 +2,7 @@ extends CharacterBody3D
 class_name Player3DClickMove
 
 @export var move_speed: float = 5.0     
-@export var stop_distance: float = 0.2    
+@export var stop_distance: float = 0.5  
 @export var hp = 10
 @export var dmg = 1
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
@@ -11,6 +11,7 @@ var _is_selected: bool = false
 var _pending_move: bool = false
 var _has_target: bool = false
 var _target_position: Vector3 = Vector3.ZERO
+var enemy_target: Node3D = null
 
 var _debug_last_has_target: bool = false
 func _ready() -> void:
@@ -20,12 +21,12 @@ func _ready() -> void:
 	print("  cam =", cam)
 
 	if nav_agent == null:
-		push_error("[Player3DClickMove] NavigationAgent3D 没找到，请检查节点路径 $NavigationAgent3D")
+		push_error("[Player3DClickMove] NavigationAgent3D not found, check $NavigationAgent3D")
 		return
 	if cam == null:
-		push_error("[Player3DClickMove] Camera3D 没找到，请检查路径 ../Camera3D")
+		push_error("[Player3DClickMove] Camera3D not found, check ../Camera3D")
 		return
-
+	enemy_target = get_parent().get_parent().find_child("HoUnits", true, false)
 	nav_agent.target_desired_distance = stop_distance
 	nav_agent.path_desired_distance = 0.1
 	print("  nav_agent.target_desired_distance =", nav_agent.target_desired_distance)
@@ -196,9 +197,10 @@ func _stop_moving() -> void:
 
 
 func _on_timer_timeout() -> void:
-	if $"../HoUnits".global_position.distance_to(global_position) <= 0.5:
+
+	if enemy_target.global_position.distance_to(global_position) <= 1.5:
 		$AnimationPlayer.play("Swordstab")
-		$"../HoUnits".hp -= dmg
+		enemy_target.hp -= dmg
 	else:
 		$AnimationPlayer.play("RESET")
 	pass # Replace with function body.
