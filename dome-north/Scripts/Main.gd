@@ -6,6 +6,7 @@ var wave_count : int = 0
 var current_index : = 0
 var current_instance: Node
 var all_ho_units_defeated : bool = false
+var spawn_times
 @onready var scene_switch_timer : Timer = $SceneSwitchTimer
 @onready var night: Panel = $CanvasLayer/UI/UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/Panel2/Night
 @onready var scene_switch_animation: AnimationPlayer = $SceneSwitchAnimation
@@ -31,11 +32,14 @@ func set_enemy_spawns():
 	for child in night.get_children():
 		child.free()
 	
+	spawn_times = []
+	
 	for i in enemy_units.size():
 		var spawn_time = game_speed / enemy_units.size() / 3
 		if i > 0:
 			var spawn_interval = game_speed / enemy_units.size()
 			spawn_time = 0.9 * (randf() * spawn_interval + (i * spawn_interval)) + 0.05
+			spawn_times.append(spawn_time)
 		draw_enemy_spawn_indicator(spawn_time)
 		create_enemy_spawn_timer(spawn_time, i)
 

@@ -87,8 +87,6 @@ func spawnunits(locs, Units):
 		add_child(Hinstance)
 		Hinstance.name = "FrUnit" + "%d" %[i]
 		Child = get_node(NodePath(Hinstance.name))
-		Child.hp = Units[i].health
-		Child.dmg = Units[i].damage
 		Child.position = locs[i]
 		print("Position of", Hinstance.name, Child.position)
 		pass
