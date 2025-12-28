@@ -177,6 +177,8 @@ _data = {
 [node name="FrUnits" type="CharacterBody3D"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 script = ExtResource("1_hcpbv")
+hp = 15
+attack_cooldown = 0.8
 
 [node name="Body" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_ia8ni")

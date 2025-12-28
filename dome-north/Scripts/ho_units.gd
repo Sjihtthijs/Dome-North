@@ -12,6 +12,10 @@ var _has_target: bool = false
 var _target_position: Vector3 = Vector3.ZERO
 var player_target: Node3D = null
 
+@export var attack_cooldown := 1.0
+var _attack_timer := 0.0
+var _is_attacking: bool = false
+
 func _ready() -> void:
 	if nav_agent == null:
 		push_error("NavigationAgent3D not found, check $NavigationAgent3D")
@@ -50,20 +54,14 @@ func stop() -> void:
 
 func _physics_process(delta: float) -> void:
 	if hp <= 0:
+		print("Enemy is dead")
 		queue_free()
-		"""
-	player_target = get_parent().find_child("FrUnits", true, false)
-	if player_target.global_position.distance_to(global_position) <= 2:
-		move_to(player_target.global_position)
-	if nav_agent == null:
-		return
-"""
 	player_target = get_parent().get_parent().find_child("FrUnits", true, false)
 	if player_target != null:
 		if player_target.global_position.distance_to(global_position) <= 2:
 			move_to(player_target.global_position)
 	else:
-		print("finding FrUnits，but not found under ", get_parent().name)
+		#print("finding FrUnits，but not found under ", get_parent().name)
 		pass
 
 	if nav_agent == null:
@@ -97,7 +95,27 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0.0, move_speed)
 
 	move_and_slide()
-
+	
+	_attack_timer -= delta
+	
+	if player_target == null or not is_instance_valid(player_target):
+		if _is_attacking:
+			$AnimationPlayer.play("RESET")
+			_is_attacking = false
+		return
+		
+	var dist := global_position.distance_to(player_target.global_position)
+	
+	if dist <= 1.5 and _attack_timer <= 0.0:
+		_attack_timer = attack_cooldown
+		_is_attacking = true
+		attack_player()
+		"""
+	else:
+		if _is_attacking:
+			$AnimationPlayer.play("RESET")
+			_is_attacking = false
+"""
 
 func _snap_to_navmesh(first_time: bool, delta: float = 0.0) -> void:
 	if nav_agent == null:
@@ -117,8 +135,12 @@ func _snap_to_navmesh(first_time: bool, delta: float = 0.0) -> void:
 		var t = clamp(fall_speed * delta, 0.0, 1.0)
 		global_position.y = lerp(global_position.y, target_y, t)
 
+func attack_player():
+	$AnimationPlayer.play("Swordstab")
+	print("attack")
+	player_target.hp -= dmg
 
-
+"""
 func _on_timer_timeout() -> void:
 	if player_target.global_position.distance_to(global_position) <= 1.5:
 		$AnimationPlayer.play("SwordSlash")
@@ -127,3 +149,4 @@ func _on_timer_timeout() -> void:
 	else:
 		$AnimationPlayer.play("RESET")
 	pass # Replace with function body.
+"""

@@ -13,6 +13,11 @@ var _has_target: bool = false
 var _target_position: Vector3 = Vector3.ZERO
 var enemy_target: Node3D = null
 
+
+@export var attack_cooldown := 1.0
+var _attack_timer := 0.0
+var _is_attacking: bool = false
+
 var _debug_last_has_target: bool = false
 func _ready() -> void:
 	print("==== [Player3DClickMove] _ready ====")
@@ -38,9 +43,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	and event.button_index == MOUSE_BUTTON_LEFT \
 	and event.pressed:
 		_handle_click(event.position)
-		"""
-		print("[Input] click, spot =", event.position)
-		_handle_click(event.position)"""
 
 func _handle_click(mouse_pos: Vector2) -> void:
 	if cam == null:
@@ -69,36 +71,6 @@ func _handle_click(mouse_pos: Vector2) -> void:
 		
 	else:
 		print("[Ray] not hitting anything")
-
-"""
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton \
-	and event.button_index == MOUSE_BUTTON_LEFT \
-	and event.pressed:
-		print("[Input] click, spot =", event.position)
-		_handle_click(event.position)
-
-func _handle_click(mouse_pos: Vector2) -> void:
-	if cam == null:
-		push_error("[_handle_click] cam is null")
-		return
-
-	var from: Vector3 = cam.project_ray_origin(mouse_pos)
-	var dir: Vector3 = cam.project_ray_normal(mouse_pos)
-	print("[Ray] from =", from, " dir =", dir)
-
-	var space_state := get_world_3d().direct_space_state
-	var query := PhysicsRayQueryParameters3D.create(from, from + dir * 1000.0)
-	var result := space_state.intersect_ray(query)
-
-	if result:
-		var hit_pos: Vector3 = result.position
-		var collider = result.collider
-		print("[Ray] hitting:", collider, "  collider =", hit_pos)
-		_set_navigation_target(hit_pos)
-	else:
-		print("[Ray] not hitting anything")
-"""
 
 func _set_navigation_target(world_pos: Vector3) -> void:
 	if nav_agent == null:
@@ -136,6 +108,7 @@ func _physics_process(delta: float) -> void:
 		_pending_move = false
 
 	if hp <= 0:
+		print("Friendly unit is dead")
 		queue_free()
 	if nav_agent == null:
 		return
@@ -162,19 +135,6 @@ func _physics_process(delta: float) -> void:
 			print("[Move] close to target (distance_to_target <=", stop_distance, ") -> stop moving")
 			_stop_moving()
 			return
-		"""
-		if flat_dir.length() > 0.01:
-			var dir := flat_dir.normalized()
-			look_at(global_position + dir, Vector3.UP)
-			velocity = dir * move_speed
-			move_and_slide()
-			
-		#if flat_dir.length() < 0.01:
-			#print("[Move] flat_dir not yet target")
-			#return
-
-		#var dir := flat_dir.normalized()
-		"""
 		var dir := raw_dir.normalized()
 
 		
@@ -188,6 +148,26 @@ func _physics_process(delta: float) -> void:
 			print("[Move] no target")
 		velocity = Vector3.ZERO
 		move_and_slide()
+		
+	_attack_timer -= delta	
+	if enemy_target == null or not is_instance_valid(enemy_target):
+		if _is_attacking:
+			$AnimationPlayer.play("RESET")
+			_is_attacking = false
+		return
+
+	
+	var dist := global_position.distance_to(enemy_target.global_position)
+	
+	if dist <= 1.5 and _attack_timer <= 0.0:
+		_attack_timer = attack_cooldown
+		_is_attacking = true
+		attack_enemy()
+	else:
+		if _is_attacking:
+			$AnimationPlayer.play("RESET")
+			_is_attacking = false
+	
 
 func _stop_moving() -> void:
 	_has_target = false
@@ -195,12 +175,15 @@ func _stop_moving() -> void:
 	move_and_slide()
 	print("[Move] _stop_moving, final spot =", global_position)
 
-
+"""
 func _on_timer_timeout() -> void:
-
 	if enemy_target.global_position.distance_to(global_position) <= 1.5:
 		$AnimationPlayer.play("Swordstab")
 		enemy_target.hp -= dmg
 	else:
 		$AnimationPlayer.play("RESET")
 	pass # Replace with function body.
+"""
+func attack_enemy():
+	$AnimationPlayer.play("Swordstab")
+	enemy_target.hp -= dmg

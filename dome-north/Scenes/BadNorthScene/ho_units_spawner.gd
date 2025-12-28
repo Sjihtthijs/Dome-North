@@ -94,10 +94,13 @@ func spawn_single_unit(unit_data):
 	spawn_count += 1
 	
 	var Hinstance = HoUnitScn.instantiate()
+	
+	Hinstance.global_position = spawn_pos
+	
 	add_child(Hinstance)
 	
 	if "hp" in Hinstance: Hinstance.hp = unit_data.health
 	if "dmg" in Hinstance: Hinstance.dmg = unit_data.damage
 	
-	Hinstance.global_position = spawn_pos
+	#Hinstance.global_position = spawn_pos
 	print("Enemy spawned at: ", spawn_pos, " Total count: ", spawn_count)

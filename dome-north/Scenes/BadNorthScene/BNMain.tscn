@@ -21,7 +21,6 @@ script = SubResource("GDScript_m547k")
 [node name="NavigationRegion3D2" parent="." instance=ExtResource("4_ypux3")]
 
 [node name="HoUnits" parent="." instance=ExtResource("1_87432")]
-script = null
 
 [node name="FrUnits" parent="." instance=ExtResource("2_ox4fa")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 1.5, 1.03963, 2.5)
