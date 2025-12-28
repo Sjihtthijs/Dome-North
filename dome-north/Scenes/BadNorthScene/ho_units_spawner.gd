@@ -5,13 +5,8 @@ extends Node3D
 # Variables for waves
 var enemies 
 var spawn_count : int = 0
-# Initialize locations
-#var SpiralOfLocations = [[ 0,  1,  1,  0, -1, -1, -1,  0,  1,  2,  2,  2,  2,  1,  0, -1, -2, -2, -2, -2, -2, -1,  0,  1,
-#   2,  3,  3,  3,  3],
-# [ 0,  0,  1,  1,  1,  0, -1, -1, -1, -1,  0,  1,  2,  2,  2,  2,  2,  1,  0, -1, -2, -2, -2, -2,
-#  -2, -2, -1,  0,  1]]
 
-var SpiralOfLocations = [[-8, -8],
+var SquareOfLocations = [[-8, -8],
  [-6, -8],
  [-4, -8],
  [-2, -8],
@@ -46,14 +41,12 @@ var SpiralOfLocations = [[-8, -8],
 
 var locats
 var height = .25
-# var Meshes = Grid.get_meshes
-
-# import what night it is.
-var night
 
 # Ready up scene for hostile units
 var HoUnitScn = preload("res://Scenes/BadNorthScene/Components/ho_units.tscn")
 
+# Signals
+signal all_hostile_units_defeated
 
 ### Core Loop ###
 
@@ -61,17 +54,17 @@ func _ready():
 	locats = detspawnlocs()
 	pass
 
-"""  --This part is already done in Main.gd
 func _process(_delta):
-	spawnunits(locats, enemies)
-"""
+	if get_children() == null:
+		emit_signal("all_hostile_units_defeated")
+
 ### Custom Functions ###
 
 func detspawnlocs():
 	'''Determine per night when and where enemies will spawn'''
 	var Places = Array([Vector3()])
-	for i in range(1,len(SpiralOfLocations)):#):
-		var Loc = Vector3(SpiralOfLocations[i][0], height, SpiralOfLocations[i][1])
+	for i in range(1,len(SquareOfLocations)):#):
+		var Loc = Vector3(SquareOfLocations[i][0], height, SquareOfLocations[i][1])
 		Places.append(Loc)
 	print(Places)
 	return Places

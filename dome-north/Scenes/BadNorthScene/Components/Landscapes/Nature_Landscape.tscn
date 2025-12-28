@@ -3,7 +3,7 @@
 [ext_resource type="MeshLibrary" uid="uid://dxib8wpedjmkq" path="res://Assets/kenney_nature-kit/MeshLibrary.tres" id="1_5wavh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o1b5p"]
-albedo_color = Color(0.188235, 0.615686, 1, 1)
+albedo_color = Color(0.188235, 0.741176, 1, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_4vm2e"]
 material = SubResource("StandardMaterial3D_o1b5p")
@@ -14,7 +14,6 @@ material = SubResource("StandardMaterial3D_o1b5p")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1000, 0, 0, 0, 1, 0, 0, 0, 1000, -0.176748, 0.628011, -0.0337844)
-visible = false
 mesh = SubResource("PlaneMesh_4vm2e")
 
 [node name="BaseShape" type="GridMap" parent="."]

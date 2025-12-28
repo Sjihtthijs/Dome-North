@@ -76,7 +76,7 @@ func detspawnlocs(units):
 	return Places
 
 func spawnunits(locs, Units):
-	'''Do the act of spawning of enemies on the given times and locations'''
+	'''Do the act of spawning of enemies on the given locations'''
 	var Child
 	for i in range(len(Units)):
 		#Instantiate and add units on the given locations. Then somehow combine the stats from the unit manager to the stats of the fr unit scene

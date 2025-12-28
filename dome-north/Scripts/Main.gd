@@ -7,6 +7,7 @@ var current_index : = 0
 var current_instance: Node
 var all_ho_units_defeated : bool = false
 var spawn_times
+var timeout = false
 @onready var scene_switch_timer : Timer = $SceneSwitchTimer
 @onready var night: Panel = $CanvasLayer/UI/UI/VBoxContainer/TopBar/HBoxContainer/MarginContainer/VBoxContainer/Panel2/Night
 @onready var scene_switch_animation: AnimationPlayer = $SceneSwitchAnimation
@@ -54,7 +55,7 @@ func draw_enemy_spawn_indicator(spawn_time):
 	enemy_image.grow_horizontal = 2
 	enemy_image.custom_minimum_size.y = 30
 	night.add_child(enemy_image)
-		
+
 func create_enemy_spawn_timer(spawn_time, enemy):
 	var enemy_spawn_timer := Timer.new()
 	enemy_spawn_timer.one_shot = true
@@ -62,7 +63,7 @@ func create_enemy_spawn_timer(spawn_time, enemy):
 	enemy_spawn_timer.wait_time = spawn_time
 	add_child(enemy_spawn_timer)
 	enemy_spawn_timer.timeout.connect(func(): spawn_enemy(enemy_spawn_timer))
-	
+
 func start_enemy_spawn_timer():
 	for child in get_children():
 		if child.name.begins_with("SpawnEnemyTimer"):
@@ -106,7 +107,9 @@ func _on_game_started() -> void:
 func _ready() -> void:
 	$CanvasLayer/UI.animation_player.speed_scale = 1.0 / game_speed
 
-
+func _process(_delta) -> void:
+	if timeout:
+		_on_scene_switch_timer_timeout()
 
 func load_scene(index: int):
 	scene_switch_animation.play("scene_fade_out")
@@ -148,13 +151,17 @@ func switch_to_next():
 
 
 func _on_scene_switch_timer_timeout() -> void:
+	timeout = true
+	print("Time Out")
 	if current_index == 0:
 		current_instance.queue_free()
 		$CanvasLayer/UI.shop_scene()
+		timeout = false
 	elif all_ho_units_defeated == false:
 		return
 	else:
 		switch_to_next()
+		timeout = false
 
 
 
@@ -166,5 +173,4 @@ func _shop_ready() -> void:
 func _on_all_hostile_units_defeated() -> void:
 	all_ho_units_defeated = true
 	$CanvasLayer/UI.animation_player.seek(1.0, true)
-	_on_scene_switch_timer_timeout()
 	
