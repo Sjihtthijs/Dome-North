@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://cug3q2pbu814c"]
+[gd_scene load_steps=2 format=3 uid="uid://cug3q2pbu814c"]
+
+[ext_resource type="Script" uid="uid://bsf74xibnrvj4" path="res://Scripts/ui_mine_shop.gd" id="1_4qexk"]
 
 [node name="MineShop" type="Control"]
 layout_mode = 3
@@ -9,6 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 7.0
+script = ExtResource("1_4qexk")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -48,3 +51,6 @@ text = "Speed +"
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 text = "Damage +"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]

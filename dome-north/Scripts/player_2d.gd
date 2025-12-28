@@ -3,7 +3,7 @@ class_name Player_2D
 
 var speed = 100
 @onready var sprite = $Sprite2D
-var mining_strength = 1
+var mining_strength = 0
 
 var knockback: Vector2 = Vector2.ZERO
 var knockback_timer: float = 0.0
@@ -36,6 +36,10 @@ func _physics_process(_delta):
 			knockback = Vector2.ZERO
 	move_and_slide()
 
+func _ready():
+	upgrade_mining_strength(1)
+	upgrade_speed(100)
+
 func apply_knockback(direction: Vector2, force: float, knockback_duration: float) -> void:
 	knockback = direction * force
 	knockback_timer = knockback_duration
@@ -43,3 +47,11 @@ func apply_knockback(direction: Vector2, force: float, knockback_duration: float
 # Make Function to send signal of breaking block
 # that acts when there is a collision
 # and when the player inputs to move in that direction
+
+func upgrade_speed(value):
+	speed += value
+	print("speed: " , speed)
+
+func upgrade_mining_strength(value):
+	mining_strength += value
+	print("Mining Strength: " , mining_strength)
