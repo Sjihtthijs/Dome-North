@@ -37,8 +37,7 @@ func _physics_process(_delta):
 	move_and_slide()
 
 func _ready():
-	upgrade_mining_strength(1)
-	upgrade_speed(100)
+	Global.player = self
 
 func apply_knockback(direction: Vector2, force: float, knockback_duration: float) -> void:
 	knockback = direction * force

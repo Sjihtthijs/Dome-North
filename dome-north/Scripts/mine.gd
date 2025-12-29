@@ -1,5 +1,8 @@
 extends Node2D
 
+var player_scene = preload("res://Scenes/DomeKeeperScene/player_2d.tscn")
+var player = null
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
