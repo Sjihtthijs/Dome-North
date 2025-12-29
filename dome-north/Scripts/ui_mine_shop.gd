@@ -10,18 +10,12 @@ var player = Global.player
 
 func _on_button_2_pressed():
 	if GameManager.gold >= speed_cost:
-		GameManager.gain_gold(-speed_cost)
-		if is_instance_valid(Global.player):
-			Global.upgrade_speed(20)
-		else:
-			print("Player object is invalid!")
-		speed_cost += 10
+		GameManager.gain_gold(-Global.speed_cost)
+		Global.upgrade_speed(speed_upgrade)  # Upgrade speed
+		Global.speed_cost += 10  # Increase cost
 
 func _on_button_pressed():
 	if GameManager.gold >= mining_strength_cost:
-		GameManager.gain_gold(-mining_strength_cost)
-		if is_instance_valid(Global.player):
-			Global.upgrade_mining_strength(1)
-		else:
-			print("Player object is invalid!")
-		mining_strength_cost += 10
+		GameManager.gain_gold(-Global.mining_strength_cost)
+		Global.upgrade_mining_strength(mining_strength_upgrade)  # Upgrade mining strength
+		Global.mining_strength_cost += 10  # Increase cost

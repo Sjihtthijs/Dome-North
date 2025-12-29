@@ -21,7 +21,8 @@ func _on_area_2d_body_entered(body):
 		hit_count += 1
 		print("Boing hit count:", hit_count, "required:", MAX_HITS)
 		if hit_count >= required_hits:
-			queue_free()  # Destroy block when enough hits are reached
+			queue_free()
+			drop_resource()  # Destroy block when enough hits are reached
 		else:
 			# Play animation depending on how much damage has been taken
 			if hit_count == 1:

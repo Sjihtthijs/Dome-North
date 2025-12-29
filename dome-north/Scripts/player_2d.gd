@@ -37,7 +37,13 @@ func _physics_process(_delta):
 	move_and_slide()
 
 func _ready():
-	Global.player = self
+	speed = Global.player_speed
+	mining_strength = Global.player_mining_strength
+
+func apply_upgrade():
+	velocity.x = speed  # Use speed to modify movement
+	print("Player Speed: ", speed)
+	print("Player Mining Strength: ", mining_strength)
 
 func apply_knockback(direction: Vector2, force: float, knockback_duration: float) -> void:
 	knockback = direction * force
