@@ -6,7 +6,7 @@ extends Node3D
 var enemies 
 var spawn_count : int = 0
 
-var SquareOfLocations = [[-8, -8],
+var SquareOfLocations = [[-8, 8],
  [-6, -8],
  [-4, -8],
  [-2, -8],
@@ -40,7 +40,7 @@ var SquareOfLocations = [[-8, -8],
  [-8, -6],]
 
 var locats
-var height = .25
+var height = 1
 
 # Ready up scene for hostile units
 var HoUnitScn = preload("res://Scenes/BadNorthScene/Components/ho_units.tscn")
@@ -62,9 +62,9 @@ func _process(_delta):
 
 func detspawnlocs():
 	'''Determine per night when and where enemies will spawn'''
-	var Places = Array([Vector3()])
-	for i in range(1,len(SquareOfLocations)):#):
-		var Loc = Vector3(SquareOfLocations[i][0], height, SquareOfLocations[i][1])
+	var Places: Array
+	for i in range(0,len(SquareOfLocations)):#):
+		var Loc = Vector3(SquareOfLocations[i][0]/4, height, SquareOfLocations[i][1]/4)
 		Places.append(Loc)
 	print(Places)
 	return Places
@@ -88,14 +88,23 @@ func spawnunits(locs, Units):
 func spawn_single_unit(unit_data):
 	if locats.is_empty(): 
 		locats = detspawnlocs()
+	print("locats ,", locats)
 	
 	var pos_index = spawn_count % locats.size()
 	var spawn_pos = locats[pos_index]
 	spawn_count += 1
 	
-	var Hinstance = HoUnitScn.instantiate()
+	print("locat ,", spawn_pos)
 	
-	Hinstance.global_position = spawn_pos
+	var Hinstance = HoUnitScn.instantiate()
+	add_child(Hinstance)
+	Hinstance.name = "FrUnit" + "%d" %[spawn_count]
+	print("Name, ", Hinstance.name)
+	var Child = get_node(NodePath(Hinstance.name))
+	print("Child, ", Child)
+	Child.position = spawn_pos
+	Child.set_move_target(Vector3.ZERO)
+	print("global_position, ", Child.position)
 	
 	add_child(Hinstance)
 	

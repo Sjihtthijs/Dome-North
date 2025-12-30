@@ -42,7 +42,7 @@ var SpiralOfLocations = [[ 0,  0],
  [ 3,  1]]
 
 var locats
-var height = .25
+var height = 1
 # var Meshes = Grid.get_meshes
 
 # import what night it is.
@@ -70,7 +70,7 @@ func detspawnlocs(units):
 	var Places = Array([Vector3()])
 	print(units)
 	for i in range(1,len(units)):#):
-		var Loc = Vector3(SpiralOfLocations[i][0], height, SpiralOfLocations[i][1])
+		var Loc = Vector3(SpiralOfLocations[i][0] + 1.5, height, -SpiralOfLocations[i][1] + 1.5)
 		Places.append(Loc)
 	print(Places)
 	return Places

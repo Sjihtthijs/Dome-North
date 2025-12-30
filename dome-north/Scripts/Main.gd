@@ -152,7 +152,7 @@ func switch_to_next():
 
 func _on_scene_switch_timer_timeout() -> void:
 	timeout = true
-	print("Time Out")
+	# print("Time Out")
 	if current_index == 0:
 		current_instance.queue_free()
 		$CanvasLayer/UI.shop_scene()

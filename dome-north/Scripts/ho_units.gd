@@ -24,8 +24,19 @@ func _ready() -> void:
 	nav_agent.target_desired_distance = stop_distance
 	nav_agent.path_desired_distance = 0.1
 	var pos = Vector3(0.5, 1.5, -0.5)
-	move_to(pos)
+	print("Start pos", position)
 
+func set_move_target(world_pos: Vector3) -> void:
+	if nav_agent == null:
+		return
+	
+	var nav_map := nav_agent.get_navigation_map()
+	if nav_map == RID():
+		return
+
+	var target_on_nav := NavigationServer3D.map_get_closest_point(nav_map, world_pos)
+	nav_agent.set_target_position(target_on_nav)
+	_has_target = true
 
 func move_to(world_pos: Vector3) -> void:
 	if nav_agent == null:
@@ -53,6 +64,7 @@ func stop() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	# print("Curr pos", position, name)
 	if hp <= 0:
 		print("Enemy is dead")
 		queue_free()
