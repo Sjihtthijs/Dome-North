@@ -50,5 +50,5 @@ script = ExtResource("8_umdy5")
 
 [node name="ExploringTown0" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_3f7pg")
-volume_db = -10.0
+volume_db = -25.0
 parameters/looping = true

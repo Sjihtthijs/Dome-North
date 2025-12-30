@@ -26,6 +26,7 @@ script = SubResource("GDScript_l5ut5")
 
 [node name="JuhaniJunkala[chiptuneAdventures]2_Stage2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_pw0np")
+volume_db = -25.0
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
