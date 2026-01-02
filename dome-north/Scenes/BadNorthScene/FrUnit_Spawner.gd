@@ -57,6 +57,7 @@ var FrUnitScn = preload("res://Scenes/BadNorthScene/Components/fr_units.tscn")
 func _ready():
 	locats = detspawnlocs(units)
 	spawnunits(locats, units)
+	
 	pass
 
 

@@ -11,11 +11,13 @@ class_name NavCharacter3D
 var _has_target: bool = false
 var _target_position: Vector3 = Vector3.ZERO
 var player_target: Node3D = null
-
+var is_aggro := false
 @export var attack_cooldown := 1.0
 var _attack_timer := 0.0
 var _is_attacking: bool = false
-
+var path_update_timer := 0.0
+var path_update_interval := 0.2
+var aggro_target: Node3D = null
 func _ready() -> void:
 	if nav_agent == null:
 		push_error("NavigationAgent3D not found, check $NavigationAgent3D")
@@ -25,6 +27,18 @@ func _ready() -> void:
 	nav_agent.path_desired_distance = 0.1
 	var pos = Vector3(0.5, 1.5, -0.5)
 	print("Start pos", position)
+
+func take_damage(amount: int, attacker: Node3D) -> void:
+	hp -= amount
+	#print(name, "took damage:", amount)
+
+	if hp <= 0:
+		queue_free()
+		return
+
+	is_aggro = true
+	aggro_target = attacker
+
 
 func set_move_target(world_pos: Vector3) -> void:
 	if nav_agent == null:
@@ -68,14 +82,21 @@ func _physics_process(delta: float) -> void:
 	if hp <= 0:
 		print("Enemy is dead")
 		queue_free()
-	player_target = get_parent().get_parent().find_child("FrUnits", true, false)
-	if player_target != null:
-		if player_target.global_position.distance_to(global_position) <= 2:
-			move_to(player_target.global_position)
-	else:
-		#print("finding FrUnits，but not found under ", get_parent().name)
-		pass
+	#player_target = get_parent().get_parent().find_child("FrUnits", true, false)
+	#var players = get_tree().get_nodes_in_group("FrUnits")
+	#if players.size() > 0:
+	#	player_target = players[0]
+	#	_has_target = true
+	if not is_aggro:
+		velocity.x = move_toward(velocity.x, 0.0, move_speed)
+		velocity.z = move_toward(velocity.z, 0.0, move_speed)
 
+		_snap_to_navmesh(false, delta)
+		move_and_slide()
+		return
+		
+	player_target = aggro_target
+	
 	if nav_agent == null:
 		return
 		
@@ -107,28 +128,20 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0.0, move_speed)
 
 	move_and_slide()
-	
-	_attack_timer -= delta
-	
-	if player_target == null or not is_instance_valid(player_target):
-		if _is_attacking:
-			$AnimationPlayer.play("RESET")
-			_is_attacking = false
-		return
-		
-	var dist := global_position.distance_to(player_target.global_position)
-	
-	if dist <= 1.5 and _attack_timer <= 0.0:
-		_attack_timer = attack_cooldown
-		_is_attacking = true
-		attack_player()
-		"""
-	else:
-		if _is_attacking:
-			$AnimationPlayer.play("RESET")
-			_is_attacking = false
-"""
+	if player_target != null:
+		var dist := global_position.distance_to(player_target.global_position)
 
+		if dist > stop_distance:
+			move_to(player_target.global_position)
+		else:
+			stop()
+
+		_attack_timer -= delta
+		if dist <= 1.5 and _attack_timer <= 0.0:
+			_attack_timer = attack_cooldown
+			attack_player()
+		
+		
 func _snap_to_navmesh(first_time: bool, delta: float = 0.0) -> void:
 	if nav_agent == null:
 		return
@@ -149,16 +162,6 @@ func _snap_to_navmesh(first_time: bool, delta: float = 0.0) -> void:
 
 func attack_player():
 	$AnimationPlayer.play("Swordstab")
-	print("attack")
+	
 	player_target.hp -= dmg
-
-"""
-func _on_timer_timeout() -> void:
-	if player_target.global_position.distance_to(global_position) <= 1.5:
-		$AnimationPlayer.play("SwordSlash")
-		print("attack!")
-		player_target.hp -= dmg
-	else:
-		$AnimationPlayer.play("RESET")
-	pass # Replace with function body.
-"""
+	print("Enemy attack, player hp:",player_target.hp )

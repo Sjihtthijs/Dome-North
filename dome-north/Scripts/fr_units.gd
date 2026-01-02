@@ -31,46 +31,38 @@ func _ready() -> void:
 	if cam == null:
 		push_error("[Player3DClickMove] Camera3D not found, check ../Camera3D")
 		return
-	enemy_target = get_parent().get_parent().find_child("HoUnits", true, false)
+	#enemy_target = get_parent().get_parent().find_child("HoUnits", true, false)
 	nav_agent.target_desired_distance = stop_distance
 	nav_agent.path_desired_distance = 0.1
 	print("  nav_agent.target_desired_distance =", nav_agent.target_desired_distance)
 	print("  nav_agent.path_desired_distance   =", nav_agent.path_desired_distance)
 	print("  nav_agent.navigation_map          =", nav_agent.get_navigation_map())
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton \
-	and event.button_index == MOUSE_BUTTON_LEFT \
-	and event.pressed:
-		_handle_click(event.position)
+func select_unit(value: bool):
+	_is_selected = value
+	print(name, " selected: ", _is_selected)
 
-func _handle_click(mouse_pos: Vector2) -> void:
-	if cam == null:
-		push_error("[_handle_click] cam is null")
-		return
+func find_nearest_enemy(max_dist: float) -> Node3D:
+	var enemies = get_tree().get_nodes_in_group("HoUnits")
+	var nearest: Node3D = null
+	var nearest_dist := max_dist
 
-	var from: Vector3 = cam.project_ray_origin(mouse_pos)
-	var dir: Vector3 = cam.project_ray_normal(mouse_pos)
-	print("[Ray] from =", from, " dir =", dir)
+	for e in enemies:
+		if not is_instance_valid(e):
+			continue
 
-	var space_state := get_world_3d().direct_space_state
-	var query := PhysicsRayQueryParameters3D.create(from, from + dir * 1000.0)
-	var result := space_state.intersect_ray(query)
+		var d = global_position.distance_to(e.global_position)
+		if d < nearest_dist:
+			nearest_dist = d
+			nearest = e
 
-	if result:
-		var hit_pos: Vector3 = result.position
-		var collider = result.collider
-		if collider == self:
-			_is_selected = !_is_selected
-			print("[Selection] unit selected:", _is_selected)
-		if _is_selected:
-			print("[Ray] hitting:", collider, "  collider =", hit_pos)
-			_set_navigation_target(hit_pos)
-		else:
-			print("Select a unit first!")
-		
-	else:
-		print("[Ray] not hitting anything")
+	return nearest
+
+
+func move_to_position(pos: Vector3):
+	if _is_selected:
+		_set_navigation_target(pos)
+
 
 func _set_navigation_target(world_pos: Vector3) -> void:
 	if nav_agent == null:
@@ -114,13 +106,13 @@ func _physics_process(delta: float) -> void:
 		return
 
 	if _has_target != _debug_last_has_target:
-		print("[Move] _has_target changed to ", _has_target, " nav_finished =", nav_agent.is_navigation_finished())
+		#print("[Move] _has_target changed to ", _has_target, " nav_finished =", nav_agent.is_navigation_finished())
 		_debug_last_has_target = _has_target
 
 	if _has_target:
 		if nav_agent.is_navigation_finished():
-			print("[Move] stop moving pos =", global_position,
-				  " distance_to_target =", nav_agent.distance_to_target())
+		#	print("[Move] stop moving pos =", global_position,
+		#		  " distance_to_target =", nav_agent.distance_to_target())
 			_stop_moving()
 			return
 
@@ -128,11 +120,11 @@ func _physics_process(delta: float) -> void:
 		var raw_dir: Vector3 = next_point - global_position
 		var flat_dir := Vector3(raw_dir.x, 0.0, raw_dir.z)
 
-		print("[Move] next point =", next_point, " raw_dir =", raw_dir, " flat_dir =", flat_dir,
-			  " distance_to_target =", nav_agent.distance_to_target())
+		#print("[Move] next point =", next_point, " raw_dir =", raw_dir, " flat_dir =", flat_dir,
+			  #" distance_to_target =", nav_agent.distance_to_target())
 
 		if nav_agent.distance_to_target() <= stop_distance:
-			print("[Move] close to target (distance_to_target <=", stop_distance, ") -> stop moving")
+			#print("[Move] close to target (distance_to_target <=", stop_distance, ") -> stop moving")
 			_stop_moving()
 			return
 		var dir := raw_dir.normalized()
@@ -149,6 +141,7 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector3.ZERO
 		move_and_slide()
 		
+	"""
 	_attack_timer -= delta	
 	if enemy_target == null or not is_instance_valid(enemy_target):
 		if _is_attacking:
@@ -159,7 +152,7 @@ func _physics_process(delta: float) -> void:
 	
 	var dist := global_position.distance_to(enemy_target.global_position)
 	
-	if dist <= 1.5 and _attack_timer <= 0.0:
+	if dist <= 0.5 and _attack_timer <= 0.0:
 		_attack_timer = attack_cooldown
 		_is_attacking = true
 		attack_enemy()
@@ -167,6 +160,24 @@ func _physics_process(delta: float) -> void:
 		if _is_attacking:
 			$AnimationPlayer.play("RESET")
 			_is_attacking = false
+	"""
+	_attack_timer -= delta
+
+	var target = find_nearest_enemy(0.6) # 攻击半径
+
+	if target == null:
+		if _is_attacking:
+			$AnimationPlayer.play("RESET")
+			_is_attacking = false
+		return
+
+# 有敌人进入攻击范围
+	if _attack_timer <= 0.0:
+		_attack_timer = attack_cooldown
+		_is_attacking = true
+		attack_enemy(target)
+
+	
 	
 
 func _stop_moving() -> void:
@@ -175,15 +186,8 @@ func _stop_moving() -> void:
 	move_and_slide()
 	print("[Move] _stop_moving, final spot =", global_position)
 
-"""
-func _on_timer_timeout() -> void:
-	if enemy_target.global_position.distance_to(global_position) <= 1.5:
-		$AnimationPlayer.play("Swordstab")
-		enemy_target.hp -= dmg
-	else:
-		$AnimationPlayer.play("RESET")
-	pass # Replace with function body.
-"""
-func attack_enemy():
+func attack_enemy(target):
 	$AnimationPlayer.play("Swordstab")
-	enemy_target.hp -= dmg
+	#enemy_target.hp -= dmg
+	target.take_damage(dmg,self)
+	print("Player attack, enemy hp:", target.hp)

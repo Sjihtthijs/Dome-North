@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://cmj7xb0je6exd"]
+[gd_scene load_steps=11 format=3 uid="uid://cmj7xb0je6exd"]
 
 [ext_resource type="PackedScene" uid="uid://c8riuboclxu85" path="res://Scenes/BadNorthScene/Components/world_controller.tscn" id="1_jrrbk"]
 [ext_resource type="PackedScene" uid="uid://by88d32udbmay" path="res://Scenes/BadNorthScene/Components/fr_units.tscn" id="2_ox4fa"]
 [ext_resource type="PackedScene" uid="uid://cn2ujny2kjolw" path="res://Scenes/BadNorthScene/Components/navigation_region_3d.tscn" id="4_ypux3"]
 [ext_resource type="PackedScene" uid="uid://di4aep3iyfi2o" path="res://Scenes/BadNorthScene/Components/Boat.tscn" id="7_gt7jy"]
 [ext_resource type="Script" uid="uid://bvg3vjxlmcalr" path="res://Scenes/BadNorthScene/FrUnit_Spawner.gd" id="8_jrrbk"]
+[ext_resource type="Script" uid="uid://dn3rl4uc02sng" path="res://Scenes/BadNorthScene/input_handler.gd" id="8_ypux3"]
 [ext_resource type="Script" uid="uid://dx2wkceya0k7s" path="res://Scripts/camera_3d.gd" id="9_jrrbk"]
 [ext_resource type="Script" uid="uid://baf1olv0owcyc" path="res://Scenes/BadNorthScene/ho_units_spawner.gd" id="9_p3c60"]
 
@@ -46,4 +47,7 @@ visible = false
 mesh = SubResource("SphereMesh_osq6u")
 
 [node name="FrUnits" parent="." instance=ExtResource("2_ox4fa")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 1.5, 1, 1.5)
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 2.22099, 1, 0.316124)
+
+[node name="InputHandler" type="Node" parent="."]
+script = ExtResource("8_ypux3")

@@ -30,6 +30,11 @@ folder_colors={
 "res://Scripts/": "yellow"
 }
 
+[global_group]
+
+FrUnits=""
+HoUnits=""
+
 [input]
 
 move_left={

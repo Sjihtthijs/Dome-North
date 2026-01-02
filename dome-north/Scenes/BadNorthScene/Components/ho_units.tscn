@@ -149,7 +149,7 @@ _data = {
 &"SwordSlash": SubResource("Animation_0uonj")
 }
 
-[node name="HoUnits" type="CharacterBody3D"]
+[node name="HoUnits" type="CharacterBody3D" groups=["HoUnits"]]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 script = ExtResource("1_h0pva")
 
