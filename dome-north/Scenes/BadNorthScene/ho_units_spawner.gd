@@ -106,7 +106,7 @@ func spawn_single_unit(unit_data):
 	Child.set_move_target(Vector3.ZERO)
 	print("global_position, ", Child.position)
 	
-	add_child(Hinstance)
+	#add_child(Hinstance)
 	
 	if "hp" in Hinstance: Hinstance.hp = unit_data.health
 	if "dmg" in Hinstance: Hinstance.dmg = unit_data.damage
