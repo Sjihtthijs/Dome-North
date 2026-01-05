@@ -1,7 +1,7 @@
 extends CharacterBody3D
 class_name NavCharacter3D
 
-@export var move_speed: float = 1.0     
+@export var move_speed: float = 2.0     
 @export var stop_distance: float = 0.5
 @export var fall_speed: float = 10.0    
 @export var idle_target: Vector3 = Vector3(0.5, 1.5, -0.5)

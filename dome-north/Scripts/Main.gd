@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var game_speed = 5.0
+@export var game_speed = 15.0
 @export var enemy_units : Array[int] = [0, 1, 2, 3, 4]
 var wave_count : int = 0
 var current_index : = 0

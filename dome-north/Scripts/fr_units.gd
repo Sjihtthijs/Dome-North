@@ -1,7 +1,7 @@
 extends CharacterBody3D
 class_name Player3DClickMove
 
-@export var move_speed: float = 5.0     
+@export var move_speed: float = 3.0     
 @export var stop_distance: float = 0.5  
 @export var hp = 10
 @export var dmg = 1
