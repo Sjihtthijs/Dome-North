@@ -6,7 +6,7 @@ class_name NavCharacter3D
 @export var fall_speed: float = 10.0    
 @export var idle_target: Vector3 = Vector3(0.5, 1.5, -0.5)
 var has_idle_target := false
-
+var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 @export var hp = 10
 @export var dmg = 1

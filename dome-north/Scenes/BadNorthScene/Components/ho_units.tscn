@@ -151,6 +151,7 @@ _data = {
 
 [node name="HoUnits" type="CharacterBody3D" groups=["HoUnits"]]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+collision_layer = 2
 script = ExtResource("1_h0pva")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -220,3 +221,4 @@ libraries = {
 }
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+radius = 0.2

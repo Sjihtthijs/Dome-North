@@ -140,30 +140,9 @@ func _physics_process(delta: float) -> void:
 			print("[Move] no target")
 		velocity = Vector3.ZERO
 		move_and_slide()
-		
-	"""
-	_attack_timer -= delta	
-	if enemy_target == null or not is_instance_valid(enemy_target):
-		if _is_attacking:
-			$AnimationPlayer.play("RESET")
-			_is_attacking = false
-		return
-
-	
-	var dist := global_position.distance_to(enemy_target.global_position)
-	
-	if dist <= 0.5 and _attack_timer <= 0.0:
-		_attack_timer = attack_cooldown
-		_is_attacking = true
-		attack_enemy()
-	else:
-		if _is_attacking:
-			$AnimationPlayer.play("RESET")
-			_is_attacking = false
-	"""
 	_attack_timer -= delta
 
-	var target = find_nearest_enemy(0.6) # 攻击半径
+	var target = find_nearest_enemy(0.6) 
 
 	if target == null:
 		if _is_attacking:
@@ -171,14 +150,11 @@ func _physics_process(delta: float) -> void:
 			_is_attacking = false
 		return
 
-# 有敌人进入攻击范围
 	if _attack_timer <= 0.0:
 		_attack_timer = attack_cooldown
 		_is_attacking = true
 		attack_enemy(target)
 
-	
-	
 
 func _stop_moving() -> void:
 	_has_target = false
